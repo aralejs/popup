@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Dropdown Example</title>
+<link rel="stylesheet" href="https://assets.alipay.com/al/alice.base-1.0.css">
+<style>
+    a { color: #0090F0; }
+    #container {
+        width: 960px;
+        margin: 50px auto;
+    }
+    .header {
+        border-bottom: 1px solid #CCC;
+        padding: 3px 5px;
+    }
+    .header h1 {
+        width: 600px;
+        font-size: 22px;
+    }
+    .menu {
+        width: 330px;
+        float: right;
+        text-align: right;
+    }
+    .footer {
+        text-align: center;
+        color: #999;
+        clear: both;
+        padding: 10px 0;
+        margin: 0 auto;
+    }
+    .footer a {
+        color: #999;
+    }
+    #container h3 {
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .fn-hide, .ui-dropdown {
+        display: none;
+    }
+    .example {
+        padding: 10px 5px;
+        border-bottom: 2px dotted #CCC;
+    }
+    .ui-dropdown {
+        border: 1px solid #CCC;
+        padding: 3px 5px;
+        background: #EEE;
+    }
+    .ui-dropdown li {
+        list-style: none;
+    }
+    .tips {
+        background: #FFC;
+        border: 1px solid #CCC;
+        padding: 10px;
+        margin: 10px 0;
+    }
+    .tips-grey {
+        background: #DDD;
+    }
+    .grey {
+        color: #999;
+    }
+</style>
+<script src="../../../tools/seajs-and-its-friends.js"></script>
+</head>
+<body>
+<div id="container">
+    <div class="header">
+        <div class="menu">
+            <a href="https://github.com/alipay/arale/tree/master/lib/triggerable">文档</a> |
+            <a href="https://github.com/alipay/arale/blob/master/lib/triggerable/src/triggerable.js">代码</a> |
+            <a href="http://aralejs.org/lib/triggerable/tests/runner.html">单元测试</a>
+        </div>
+        <h1>Arale Triggerable</h1>
+    </div>
+
+    <div class="example">
+        <h3>范例1: data-api</h3>
+        <div class="dropdown">
+            <a href="#dropdown1" id="triggerId1">下拉框<span class="icon">▼</span></a>
+            <ul class="ui-dropdown" id="dropdown1" data-widget="dropdown" data-trigger="#triggerId1" data-trigger-type="click">
+                <li><a href="http://aralejs.org#1">内容1</a></li>
+                <li><a href="http://aralejs.org#2">内容2</a></li>
+                <li><a href="http://aralejs.org#3">内容3</a></li>
+                <li><a href="http://aralejs.org#4">内容4</a></li>
+            </ul>
+        </div>
+        <div class="tips tips-grey">
+            点击下上面的链接
+            <ul class="fn-hide">
+                <li><del>data-trigger='click', 不指定则采用 hover 为默认值。可选有：click|hover</del></li>
+                <li><del>可以在 href 或者 data-target='#dropdown1' 指定你要展示的元素id。不指定则默认采用兄弟元素('.ui-dropdown')。</del></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>范例2: 默认行为与表现</h3>
+        <div class="dropdown">
+            <a href="#dropdown2" id="triggerId2">下拉框<span class="icon">▼</span></a>
+            <ul class="fn-hide ui-dropdown" id="dropdown2">
+                <li><a href="http://aralejs.org#1">内容1</a></li>
+                <li><a href="http://aralejs.org#2">内容2</a></li>
+                <li><a href="http://aralejs.org#3">内容3</a></li>
+                <li><a href="http://aralejs.org#4">内容4</a></li>
+            </ul>
+        </div>
+        <div class="selectbox">
+            <select>
+                <option>我有仙心一颗</option>
+                <option>久被尘劳封锁</option>
+                <option>何日尘尽光生</option>
+                <option>照破山河万朵</option>
+            </select>
+            <span class="grey">选择框用于测试 IE6 遮罩</span>
+        </div>
+        <div class="tips">
+            <p>说明: 默认行为通过 hover 触发，可以不用传递参数 triggerType</p> 
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>范例3: 自定义行为(click)</h3>
+        <div class="dropdown">
+            <a href="#dropdown3" id="triggerId3">下拉框<span class="icon">▼</span></a>
+            <ul class="fn-hide ui-dropdown" id="dropdown3">
+                <li><a href="http://aralejs.org#1">内容1</a></li>
+                <li><a href="http://aralejs.org#3">内容2</a></li>
+                <li><a href="http://aralejs.org#3">内容3</a></li>
+                <li><a href="http://aralejs.org#4">内容4</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>范例4: 自定义动画效果以及延时触发效果</h3>
+        <div class="dropdown">
+            <a href="#dropdown4" id="triggerId4" title="400ms 后出现, 请稍安勿躁">下拉框<span class="icon">▼</span></a> 
+            <ul class="fn-hide ui-dropdown" id="dropdown4">
+                <li><a href="http://aralejs.org#1">内容1</a></li>
+                <li><a href="http://aralejs.org#2">内容2</a></li>
+                <li><a href="http://aralejs.org#3">内容3</a></li>
+                <li><a href="http://aralejs.org#4">内容4</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>范例5: 自定义Template、Align并设置回调函数</h3>
+        <div class="dropdown">
+            <a href="#" id="triggerId5">下拉框<span class="icon">▼</span></a>
+            <a href="#" id='releated5' class="fn-right">我是无辜的被定位元素</a>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>范例6: 简单的自动完成组件</h3>
+        <div class="dropdown">
+            <input id="triggerId6" placeholder="请输入..." />
+            <ul class="fn-hide ui-dropdown" id="dropdown6">
+                <li><a href="http://aralejs.org#1">内容1</a></li>
+                <li><a href="http://aralejs.org#2">内容2</a></li>
+                <li><a href="http://aralejs.org#3">内容3</a></li>
+                <li><a href="http://aralejs.org#4">内容4</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="http://aralejs.org">aralejs.org</a> 2012
+    </div>
+
+</div>
+<script>
+seajs.use(['jquery','../src/dropdown', 'widget'], function($, Dropdown, Widget){
+
+    // for debugging only;
+    window.$ = window.jQuery = $;
+    if (!window.console) {
+        var helper = ['log','dir','error', 'warn','info'];
+        window.console = {};
+        $.map(helper, function(val, i){
+            window.console[val] = $.noop;
+        });
+    }
+
+
+    // example1
+    // data-api 自动渲染
+    Widget.autoRenderAll();
+
+
+    var example2 = new Dropdown({
+        trigger: '#triggerId2',
+        element: '#dropdown2'
+    });
+    example2.render();
+    // 订阅事件
+    example2.after('show', function(){
+        console.log('example2 is shown');
+    }).after('hide', function(){
+        console.log('example2 is hidden');
+    });
+    // 触发事件
+    // example2.trigger('shown');
+
+
+    var example3 = new Dropdown({
+        trigger: '#triggerId3',
+        triggerType: 'click',
+        align: {
+            baseXY: [0, -80]
+        },
+        element: '#dropdown3'
+    });
+    example3.render();
+
+
+    var animDropdown = Dropdown.extend({
+        // 此处定义动画效果存疑; 是否应该覆盖私有方法？
+        _onChangeVisible: function(val){
+            if (val) {
+                //this.element.fadeIn(); //淡入效果
+                this.element.animate({'height': 'toggle', 'opacity':'show'}, 200);
+            } else {
+                //this.element.fadeOut(); //淡出效果
+                this.element.animate({'height': 'toggle', 'opacity':'hide'}, 200);
+            }
+        }
+    });
+    var example4 = new animDropdown({
+        trigger: '#triggerId4',
+        align: {
+            baseXY: [5,20]
+        },
+        delay: 400,
+        element: '#dropdown4'
+    });
+    example4.render();
+
+
+    var example5 = new Dropdown({
+        trigger: '#triggerId5',
+        align: {
+            baseElement: $('#releated5')[0],
+            selfXY: [-10,-10],
+            baseXY: [0,20]
+        },
+        template: '<div class="ui-dropdown fn-hide"><ul><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>'
+    });
+    example5.after('show', function(){
+        $('#triggerId5').text('三秒后改变浮层位置');
+        window.setTimeout(function() {
+            example5.set('align', { baseXY: [0, -90] });
+        }, 3000);
+    });
+    example5.render();
+
+
+    var example6 = new Dropdown({
+        trigger: '#triggerId6',
+        triggerType: 'focus',
+        element: '#dropdown6',
+        align: {
+            baseXY: [0, $('#triggerId6').height() + 5]
+        }
+    });
+    example6.render();
+    example6.element.find('a').click(function(e) {
+        e.preventDefault();
+        example6.get('trigger').val($(this).text());
+        example6.set('visible', false);
+    });
+
+});
+</script>
+</body>
+</html>

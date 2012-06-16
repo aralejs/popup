@@ -1,0 +1,8 @@
+{
+    "version": "0.9.4",
+    "dist": {
+        "popup.js": "default",
+        "dropdown.js": "default"
+    },
+    "tests": ["dropdown"]
+}
