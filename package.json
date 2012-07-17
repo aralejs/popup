@@ -1,9 +1,12 @@
 {
     "name": "popup",
-    "version": "0.9.5",
+    "version": "0.9.7",
     "dist": {
-        "popup.js": "default",
-        "dropdown.js": "default"
+        "popup.js": ["popup.js"],
+        "dropdown.js": ["dropdown.js"]
+    },
+    "moduleDependencies": {
+        "overlay": "overlay/0.9.8/overlay"
     },
     "tests": ["dropdown"]
 }
