@@ -1,11 +1,12 @@
 {
     "name": "popup",
     "version": "0.9.7",
-    "dist": {
+    "output": {
         "popup.js": ["popup.js"],
         "dropdown.js": ["dropdown.js"]
     },
-    "moduleDependencies": {
+    "dependencies": {
+        "$":"jquery/1.7.2/jquery",
         "overlay": "overlay/0.9.8/overlay"
     },
     "tests": ["dropdown"]
