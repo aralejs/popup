@@ -9,6 +9,11 @@ define(function(require, exports, module) {
             Dropdown.superclass.setup.call(this);
             this._tweakAlignDefaultValue();
         },
+        
+        show: function() {
+            Dropdown.superclass.setup.call(this);
+            this._setPosition();
+        },
 
         // 调整 align 属性的默认值
         _tweakAlignDefaultValue: function() {
