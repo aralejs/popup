@@ -32,49 +32,47 @@
             <div class="container">
 
 <style>
-    .fn-hide, .ui-dropdown {
+    .fn-hide, .ui-popup {
         display: none;
     }
 
-    .ui-dropdown {
+    .ui-popup {
         border: 1px solid #CCC;
         padding: 3px 5px;
         background: #EEE;
         margin: 0;
     }
-    .ui-dropdown ul{
+    .ui-popup ul{
         margin: 0;
     }
-    .ui-dropdown li {
+    .ui-popup li {
         list-style: none;
     }
 </style>
 <p>范例1: data-api</p>
 
-<div class="dropdown">
+<div class="popup">
     点击链接
-    <a href="#dropdown1" id="triggerId1">下拉框<span class="icon">▼</span></a>
-    <ul class="ui-dropdown" id="dropdown1" data-widget="../src/dropdown" data-trigger="#triggerId1" data-trigger-type="click">
+    <a href="#popup1" id="triggerId1">下拉框<span class="icon">▼</span></a>
+    <ul class="ui-popup" id="popup1" data-widget="popup" data-trigger="#triggerId1" data-trigger-type="click">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#2">内容2</a></li>
         <li><a href="http://aralejs.org#3">内容3</a></li>
         <li><a href="http://aralejs.org#4">内容4</a></li>
     </ul>
 </div>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;jquery&#39;</span><span class="p">,</span><span class="s1">&#39;../src/dropdown&#39;</span><span class="p">,</span> <span class="s1">&#39;#widget/0.9.16/widget&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="nx">Dropdown</span><span class="p">,</span> <span class="nx">Widget</span><span class="p">){</span>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;jquery&#39;</span><span class="p">,</span><span class="s1">&#39;../src/popup&#39;</span><span class="p">,</span> <span class="s1">&#39;#widget/0.9.16/widget&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="nx">Popup</span><span class="p">,</span> <span class="nx">Widget</span><span class="p">){</span>
     <span class="c1">// example1</span>
     <span class="c1">// data-api 自动渲染</span>
     <span class="nx">Widget</span><span class="p">.</span><span class="nx">autoRenderAll</span><span class="p">();</span>
-
 <span class="p">});</span>
 </pre></div>
 
 <script type="text/javascript">
-seajs.use(['jquery','../src/dropdown', '#widget/0.9.16/widget'], function($, Dropdown, Widget){
+seajs.use(['jquery','../src/popup', '#widget/0.9.16/widget'], function($, Popup, Widget){
     // example1
     // data-api 自动渲染
     Widget.autoRenderAll();
-
 });
 </script>
 <p>范例2: 默认行为与表现</p>
@@ -83,9 +81,9 @@ seajs.use(['jquery','../src/dropdown', '#widget/0.9.16/widget'], function($, Dro
 <p>默认行为通过 hover 触发，可以不用传递参数 triggerType</p>
 </blockquote>
 
-<div class="dropdown">
-    <a href="#dropdown2" id="triggerId2">下拉框<span class="icon">▼</span></a>
-    <ul class="fn-hide ui-dropdown" id="dropdown2">
+<div class="popup">
+    <a href="#popup2" id="triggerId2">下拉框<span class="icon">▼</span></a>
+    <ul class="fn-hide ui-popup" id="popup2">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#2">内容2</a></li>
         <li><a href="http://aralejs.org#3">内容3</a></li>
@@ -101,11 +99,14 @@ seajs.use(['jquery','../src/dropdown', '#widget/0.9.16/widget'], function($, Dro
     </select>
     <span class="grey">选择框用于测试 IE6 遮罩</span>
 </div>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/dropdown&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Dropdown</span><span class="p">){</span>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/popup&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">){</span>
 
-    <span class="kd">var</span> <span class="nx">example2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dropdown</span><span class="p">({</span>
+    <span class="kd">var</span> <span class="nx">example2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Popup</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#triggerId2&#39;</span><span class="p">,</span>
-        <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#dropdown2&#39;</span>
+        <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#popup2&#39;</span><span class="p">,</span>
+        <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;100%&#39;</span><span class="p">]</span>
+        <span class="p">}</span>
     <span class="p">});</span>
     <span class="nx">example2</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
     <span class="c1">// 订阅事件</span>
@@ -120,11 +121,14 @@ seajs.use(['jquery','../src/dropdown', '#widget/0.9.16/widget'], function($, Dro
 </pre></div>
 
 <script type="text/javascript">
-seajs.use(['../src/dropdown'], function(Dropdown){
+seajs.use(['../src/popup'], function(Popup){
 
-    var example2 = new Dropdown({
+    var example2 = new Popup({
         trigger: '#triggerId2',
-        element: '#dropdown2'
+        element: '#popup2',
+        align: {
+            baseXY: [0, '100%']
+        }
     });
     example2.render();
     // 订阅事件
@@ -139,54 +143,54 @@ seajs.use(['../src/dropdown'], function(Dropdown){
 </script>
 <p>范例3: 自定义行为(click)</p>
 
-<div class="dropdown">
-    <a href="#dropdown3" id="triggerId3">下拉框<span class="icon">▼</span></a>
-    <ul class="fn-hide ui-dropdown" id="dropdown3">
+<div class="popup">
+    <a href="#popup3" id="triggerId3">下拉框<span class="icon">▼</span></a>
+    <ul class="fn-hide ui-popup" id="popup3">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#3">内容2</a></li>
         <li><a href="http://aralejs.org#3">内容3</a></li>
         <li><a href="http://aralejs.org#4">内容4</a></li>
     </ul>
 </div>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/dropdown&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Dropdown</span><span class="p">){</span>
-    <span class="kd">var</span> <span class="nx">example3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dropdown</span><span class="p">({</span>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/popup&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">example3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Popup</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#triggerId3&#39;</span><span class="p">,</span>
         <span class="nx">triggerType</span><span class="o">:</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">80</span><span class="p">]</span>
         <span class="p">},</span>
-        <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#dropdown3&#39;</span>
+        <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#popup3&#39;</span>
     <span class="p">});</span>
     <span class="nx">example3</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
 <span class="p">});</span>
 </pre></div>
 
 <script type="text/javascript">
-seajs.use(['../src/dropdown'], function(Dropdown){
-    var example3 = new Dropdown({
+seajs.use(['../src/popup'], function(Popup){
+    var example3 = new Popup({
         trigger: '#triggerId3',
         triggerType: 'click',
         align: {
             baseXY: [0, -80]
         },
-        element: '#dropdown3'
+        element: '#popup3'
     });
     example3.render();
 });
 </script>
 <p>范例4: 自定义动画效果以及延时触发效果</p>
 
-<div class="dropdown">
-    <a href="#dropdown4" id="triggerId4" title="400ms 后出现, 请稍安勿躁">下拉框<span class="icon">▼</span></a> 
-    <ul class="fn-hide ui-dropdown" id="dropdown4">
+<div class="popup">
+    <a href="#popup4" id="triggerId4" title="400ms 后出现, 请稍安勿躁">下拉框<span class="icon">▼</span></a> 
+    <ul class="fn-hide ui-popup" id="popup4">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#2">内容2</a></li>
         <li><a href="http://aralejs.org#3">内容3</a></li>
         <li><a href="http://aralejs.org#4">内容4</a></li>
     </ul>
 </div>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/dropdown&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Dropdown</span><span class="p">){</span>
-    <span class="kd">var</span> <span class="nx">animDropdown</span> <span class="o">=</span> <span class="nx">Dropdown</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/popup&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">animPopup</span> <span class="o">=</span> <span class="nx">Popup</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
         <span class="c1">// 此处定义动画效果存疑; 是否应该覆盖私有方法？</span>
         <span class="nx">_onChangeVisible</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">){</span>
             <span class="k">if</span> <span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
@@ -198,21 +202,21 @@ seajs.use(['../src/dropdown'], function(Dropdown){
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">});</span>
-    <span class="kd">var</span> <span class="nx">example4</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">animDropdown</span><span class="p">({</span>
+    <span class="kd">var</span> <span class="nx">example4</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">animPopup</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#triggerId4&#39;</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span>
         <span class="p">},</span>
         <span class="nx">delay</span><span class="o">:</span> <span class="mi">400</span><span class="p">,</span>
-        <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#dropdown4&#39;</span>
+        <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#popup4&#39;</span>
     <span class="p">});</span>
     <span class="nx">example4</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
 <span class="p">});</span>
 </pre></div>
 
 <script type="text/javascript">
-seajs.use(['../src/dropdown'], function(Dropdown){
-    var animDropdown = Dropdown.extend({
+seajs.use(['../src/popup'], function(Popup){
+    var animPopup = Popup.extend({
         // 此处定义动画效果存疑; 是否应该覆盖私有方法？
         _onChangeVisible: function(val){
             if (val) {
@@ -224,33 +228,33 @@ seajs.use(['../src/dropdown'], function(Dropdown){
             }
         }
     });
-    var example4 = new animDropdown({
+    var example4 = new animPopup({
         trigger: '#triggerId4',
         align: {
             baseXY: [5,20]
         },
         delay: 400,
-        element: '#dropdown4'
+        element: '#popup4'
     });
     example4.render();
 });
 </script>
 <p>范例5: 自定义Template、Align并设置回调函数</p>
 
-<div class="dropdown">
+<div class="popup">
     <a href="#" id="triggerId5">下拉框<span class="icon">▼</span></a>
     <a href="#" id="releated5" style="float:right;">我是无辜的被定位元素</a>
 </div>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/dropdown&#39;</span><span class="p">,</span><span class="s1">&#39;jquery&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Dropdown</span><span class="p">,</span> <span class="nx">$</span><span class="p">){</span>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/popup&#39;</span><span class="p">,</span><span class="s1">&#39;jquery&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">,</span> <span class="nx">$</span><span class="p">){</span>
 
-    <span class="kd">var</span> <span class="nx">example5</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dropdown</span><span class="p">({</span>
+    <span class="kd">var</span> <span class="nx">example5</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Popup</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#triggerId5&#39;</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">baseElement</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#releated5&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
             <span class="nx">selfXY</span><span class="o">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">],</span>
             <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span>
         <span class="p">},</span>
-        <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;div class=&quot;ui-dropdown fn-hide&quot;&gt;&lt;ul&gt;&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;&lt;li&gt;3&lt;/li&gt;&lt;li&gt;4&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&#39;</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;div class=&quot;ui-popup fn-hide&quot;&gt;&lt;ul&gt;&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;&lt;li&gt;3&lt;/li&gt;&lt;li&gt;4&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&#39;</span>
     <span class="p">});</span>
     <span class="nx">example5</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;show&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
         <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#triggerId5&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;三秒后改变浮层位置&#39;</span><span class="p">);</span>
@@ -264,16 +268,16 @@ seajs.use(['../src/dropdown'], function(Dropdown){
 </pre></div>
 
 <script type="text/javascript">
-seajs.use(['../src/dropdown','jquery'], function(Dropdown, $){
+seajs.use(['../src/popup','jquery'], function(Popup, $){
 
-    var example5 = new Dropdown({
+    var example5 = new Popup({
         trigger: '#triggerId5',
         align: {
             baseElement: $('#releated5')[0],
             selfXY: [-10,-10],
             baseXY: [0,20]
         },
-        template: '<div class="ui-dropdown fn-hide"><ul><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>'
+        template: '<div class="ui-popup fn-hide"><ul><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>'
     });
     example5.after('show', function(){
         $('#triggerId5').text('三秒后改变浮层位置');
@@ -287,23 +291,23 @@ seajs.use(['../src/dropdown','jquery'], function(Dropdown, $){
 </script>
 <p>范例6: 简单的自动完成组件</p>
 
-<div class="dropdown">
+<div class="popup">
     <input id="triggerId6" placeholder="请输入..." />
-    <ul class="fn-hide ui-dropdown" id="dropdown6">
+    <ul class="fn-hide ui-popup" id="popup6">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#2">内容2</a></li>
         <li><a href="http://aralejs.org#3">内容3</a></li>
         <li><a href="http://aralejs.org#4">内容4</a></li>
     </ul>
 </div>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/dropdown&#39;</span><span class="p">,</span><span class="s1">&#39;jquery&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Dropdown</span><span class="p">,</span><span class="nx">$</span><span class="p">){</span>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/popup&#39;</span><span class="p">,</span><span class="s1">&#39;jquery&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">,</span> <span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="kd">var</span> <span class="nx">example6</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dropdown</span><span class="p">({</span>
+    <span class="kd">var</span> <span class="nx">example6</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Popup</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#triggerId6&#39;</span><span class="p">,</span>
         <span class="nx">triggerType</span><span class="o">:</span> <span class="s1">&#39;focus&#39;</span><span class="p">,</span>
-        <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#dropdown6&#39;</span><span class="p">,</span>
+        <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#popup6&#39;</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#triggerId6&#39;</span><span class="p">).</span><span class="nx">height</span><span class="p">()</span> <span class="o">+</span> <span class="mi">12</span><span class="p">]</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;100%+12&#39;</span><span class="p">]</span>
         <span class="p">}</span>
     <span class="p">});</span>
     <span class="nx">example6</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
@@ -317,14 +321,14 @@ seajs.use(['../src/dropdown','jquery'], function(Dropdown, $){
 </pre></div>
 
 <script type="text/javascript">
-seajs.use(['../src/dropdown','jquery'], function(Dropdown,$){
+seajs.use(['../src/popup','jquery'], function(Popup, $) {
 
-    var example6 = new Dropdown({
+    var example6 = new Popup({
         trigger: '#triggerId6',
         triggerType: 'focus',
-        element: '#dropdown6',
+        element: '#popup6',
         align: {
-            baseXY: [0, $('#triggerId6').height() + 12]
+            baseXY: [0, '100%+12']
         }
     });
     example6.render();
