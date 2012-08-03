@@ -32,6 +32,7 @@ define("#popup/0.9.6/popup-debug", ["$-debug", "#overlay/0.9.8/overlay-debug", "
             Popup.superclass.setup.call(this);
             this._bindTrigger();
             this._tweakAlignDefaultValue();
+            this._blurHide();
         },
 
         show: function() {

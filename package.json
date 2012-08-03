@@ -5,8 +5,17 @@
         "popup.js": ["popup.js"]
     },
     "dependencies": {
-        "$":"$",
+        "$": "$",
         "overlay": "overlay/0.9.8/overlay"
+    },
+    "devDependencies": {
+        "overlay": "overlay/master/overlay",
+        "iframe-shim": "iframe-shim/0.9.3/iframe-shim",
+        "position": "position/0.9.2/position",
+        "widget": "widget/0.9.16/widget",
+        "base": "base/0.9.16/base",
+        "events": "events/0.9.1/events",
+        "class": "class/0.9.2/class"
     },
     "tests": ["popup"]
 }

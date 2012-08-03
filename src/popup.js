@@ -37,9 +37,10 @@ define(function(require, exports, module) {
         show: function() {
             Popup.superclass.show.call(this);
             this._setPosition();
+            this._blurHide([this.get('trigger')]);            
         },
 
-        toggle: function() {            
+        toggle: function() {
             this[this.get('visible') ? 'hide' : 'show']();
         },
 
@@ -71,6 +72,7 @@ define(function(require, exports, module) {
             if (triggerType === 'click') {
                 trigger.on(triggerType, function(ev) {
                     ev.preventDefault();
+                    ev.stopPropagation();
                     that.toggle();
                 });
             }
@@ -110,5 +112,5 @@ define(function(require, exports, module) {
     });
 
     module.exports = Popup;
-
+    
 });
