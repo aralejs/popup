@@ -32,7 +32,6 @@ define(function(require, exports, module) {
             Popup.superclass.setup.call(this);
             this._bindTrigger();
             this._tweakAlignDefaultValue();
-            this._blurHide();
         },
 
         show: function() {

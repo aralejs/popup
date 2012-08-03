@@ -2,12 +2,11 @@
     "name": "popup",
     "version": "0.9.6",
     "output": {
-        "popup.js": ["popup.js"],
-        "dropdown.js": ["dropdown.js"]
+        "popup.js": ["popup.js"]
     },
     "dependencies": {
         "$":"$",
         "overlay": "overlay/0.9.8/overlay"
     },
-    "tests": ["dropdown"]
+    "tests": ["popup"]
 }

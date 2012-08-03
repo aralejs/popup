@@ -19,16 +19,45 @@ define("#popup/0.9.6/popup-debug", ["$-debug", "#overlay/0.9.8/overlay-debug", "
             triggerType: 'hover', // or click
 
             // 延迟触发和隐藏时间
-            delay: 100
+            delay: 100,
+
+            // 判断何时 trigger 为不响应事件的情况
+            ifTriggerDisabled: function() {
+                var n = this.trigger[0];
+                return (n.tagName === 'INPUT' && n.disabled);
+            }
         },
 
         setup: function() {
             Popup.superclass.setup.call(this);
             this._bindTrigger();
+            this._tweakAlignDefaultValue();
         },
 
-        toggle: function() {
+        show: function() {
+            Popup.superclass.show.call(this);
+            this._setPosition();
+        },
+
+        toggle: function() {            
             this[this.get('visible') ? 'hide' : 'show']();
+        },
+
+        // 调整 align 属性的默认值
+        _tweakAlignDefaultValue: function() {
+            var align = this.get('align');
+
+            // 默认坐标在目标元素左下角
+            if (align.baseXY.toString() === [0, 0].toString()) {
+                align.baseXY = [0, '100%'];
+            }
+
+            // 默认基准定位元素为 trigger
+            if (align.baseElement._id === 'VIEWPORT') {
+                align.baseElement = this.get('trigger');
+            }
+
+            this.set('align', align);
         },
 
         _bindTrigger: function() {
