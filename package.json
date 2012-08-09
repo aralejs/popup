@@ -1,6 +1,6 @@
 {
     "name": "popup",
-    "version": "0.9.6",
+    "version": "0.9.7",
     "output": {
         "popup.js": ["popup.js"]
     },
