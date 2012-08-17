@@ -32,12 +32,12 @@ define(function(require, exports, module) {
             Popup.superclass.setup.call(this);
             this._bindTrigger();
             this._tweakAlignDefaultValue();
+            this._blurHide([this.get('trigger')]);            
         },
 
         show: function() {
             Popup.superclass.show.call(this);
             this._setPosition();
-            this._blurHide([this.get('trigger')]);            
         },
 
         toggle: function() {
@@ -72,7 +72,6 @@ define(function(require, exports, module) {
             if (triggerType === 'click') {
                 trigger.on(triggerType, function(ev) {
                     ev.preventDefault();
-                    ev.stopPropagation();
                     that.toggle();
                 });
             }
