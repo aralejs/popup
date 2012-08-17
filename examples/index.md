@@ -17,7 +17,7 @@
     }
 </style>
 
-范例1: data-api
+### 范例1: data-api
 
 <div class="popup">
     点击链接
@@ -38,7 +38,7 @@ seajs.use(['jquery','../src/popup', '#widget/0.9.16/widget'], function($, Popup,
 });
 ```
 
-范例2: 默认行为与表现
+### 范例2: 默认行为与表现
 
 > 默认行为通过 hover 触发，可以不用传递参数 triggerType
 
@@ -83,7 +83,7 @@ seajs.use(['../src/popup'], function(Popup){
 });
 ```
 
-范例3: 自定义行为(click)
+### 范例3: 自定义行为(click)
 
 <div class="popup">
     <a href="#popup3" id="triggerId3">下拉框<span class="icon">▼</span></a>
@@ -109,7 +109,7 @@ seajs.use(['../src/popup'], function(Popup){
 });
 ```
 
-范例4: 自定义动画效果以及延时触发效果
+### 范例4: 自定义动画效果以及延时触发效果
 
 <div class="popup">
     <a href="#popup4" id="triggerId4" title="400ms 后出现, 请稍安勿躁">下拉框<span class="icon">▼</span></a> 
@@ -147,7 +147,7 @@ seajs.use(['../src/popup'], function(Popup){
 });
 ```
 
-范例5: 自定义Template、Align并设置回调函数
+### 范例5: 自定义Template、Align并设置回调函数
 
 <div class="popup">
     <a href="#" id="triggerId5">下拉框<span class="icon">▼</span></a>
