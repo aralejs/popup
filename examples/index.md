@@ -2,7 +2,6 @@
     .fn-hide, .ui-popup {
         display: none;
     }
-
     .ui-popup {
         border: 1px solid #CCC;
         padding: 3px 5px;
@@ -17,7 +16,7 @@
     }
 </style>
 
-### 范例1: data-api
+## 范例1: data-api
 
 <div class="popup">
     点击链接
@@ -30,15 +29,15 @@
     </ul>
 </div>
 
-```javascript
-seajs.use(['jquery','../src/popup', '#widget/0.9.16/widget'], function($, Popup, Widget){
+````javascript
+seajs.use(['jquery','popup', '#widget/0.9.16/widget'], function($, Popup, Widget){
     // example1
     // data-api 自动渲染
     Widget.autoRenderAll();
 });
-```
+````
 
-### 范例2: 默认行为与表现
+## 范例2: 默认行为与表现
 
 > 默认行为通过 hover 触发，可以不用传递参数 triggerType
 
@@ -61,8 +60,8 @@ seajs.use(['jquery','../src/popup', '#widget/0.9.16/widget'], function($, Popup,
     <span class="grey">选择框用于测试 IE6 遮罩</span>
 </div>
 
-```javascript
-seajs.use(['../src/popup'], function(Popup){
+````javascript
+seajs.use(['popup'], function(Popup){
 
     var example2 = new Popup({
         trigger: '#triggerId2',
@@ -81,9 +80,9 @@ seajs.use(['../src/popup'], function(Popup){
     // 触发事件
     // example2.trigger('shown');
 });
-```
+````
 
-### 范例3: 自定义行为(click)
+## 范例3: 自定义行为(click)
 
 <div class="popup">
     <a href="#popup3" id="triggerId3">下拉框<span class="icon">▼</span></a>
@@ -95,8 +94,8 @@ seajs.use(['../src/popup'], function(Popup){
     </ul>
 </div>
 
-```javascript
-seajs.use(['../src/popup'], function(Popup){
+````javascript
+seajs.use(['popup'], function(Popup){
     var example3 = new Popup({
         trigger: '#triggerId3',
         triggerType: 'click',
@@ -107,9 +106,9 @@ seajs.use(['../src/popup'], function(Popup){
     });
     example3.render();
 });
-```
+````
 
-### 范例4: 自定义动画效果以及延时触发效果
+## 范例4: 自定义动画效果以及延时触发效果
 
 <div class="popup">
     <a href="#popup4" id="triggerId4" title="400ms 后出现, 请稍安勿躁">下拉框<span class="icon">▼</span></a> 
@@ -121,8 +120,8 @@ seajs.use(['../src/popup'], function(Popup){
     </ul>
 </div>
 
-```javascript
-seajs.use(['../src/popup'], function(Popup){
+````javascript
+seajs.use(['popup'], function(Popup){
     var animPopup = Popup.extend({
         // 此处定义动画效果存疑; 是否应该覆盖私有方法？
         _onChangeVisible: function(val){
@@ -145,17 +144,17 @@ seajs.use(['../src/popup'], function(Popup){
     });
     example4.render();
 });
-```
+````
 
-### 范例5: 自定义Template、Align并设置回调函数
+## 范例5: 自定义Template、Align并设置回调函数
 
 <div class="popup">
     <a href="#" id="triggerId5">下拉框<span class="icon">▼</span></a>
     <a href="#" id="releated5" style="float:right;">我是无辜的被定位元素</a>
 </div>
 
-```javascript
-seajs.use(['../src/popup','jquery'], function(Popup, $){
+````javascript
+seajs.use(['popup','jquery'], function(Popup, $){
 
     var example5 = new Popup({
         trigger: '#triggerId5',
@@ -175,7 +174,7 @@ seajs.use(['../src/popup','jquery'], function(Popup, $){
     example5.render();
     
 });
-```
+````
 
 范例6: 简单的自动完成组件
 
@@ -189,8 +188,8 @@ seajs.use(['../src/popup','jquery'], function(Popup, $){
     </ul>
 </div>
 
-```javascript
-seajs.use(['../src/popup','jquery'], function(Popup, $) {
+````javascript
+seajs.use(['popup','jquery'], function(Popup, $) {
 
     var example6 = new Popup({
         trigger: '#triggerId6',
@@ -208,5 +207,5 @@ seajs.use(['../src/popup','jquery'], function(Popup, $) {
     });
     
 });
-```
+````
 
