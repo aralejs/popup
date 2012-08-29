@@ -48,21 +48,37 @@
 <h2>依赖</h2>
 
 <ul>
-<li>seajs</li>
-<li>position</li>
-<li>overlay</li>
+<li><a href="../position/">position</a></li>
+<li><a href="../overlay">overlay</a></li>
 </ul>
 
-<h2>使用说明</h2>
+<h2>配置说明</h2>
 
-<h3>Dropdown</h3>
+<ul>
+<li><p><code>contentElement</code> {element|string} </p>
+<p>提示内容节点。</p></li>
+<li><p><code>contentElement</code> {element|string} </p>
+<p>提示内容节点。</p></li>
+<li><p><code>contentElement</code> {element|string} </p>
+<p>提示内容节点。</p></li>
+<li><p><code>contentElement</code> {element|string} </p>
+<p>提示内容节点。</p></li>
+</ul>
 
-<pre><code>seajs.use(['jquery','dropdown'], function($, Dropdown){
-    var example = new Dropdown({
+<h2>最佳实践</h2>
+
+<pre><code>seajs.use(['popup'], function(Popup){
+    var example = new Popup({
         trigger: '#triggerId',
         element: '#targetId'
     });
 });</code></pre>
+<p>另外，Popup 已实现了点击页面空白处浮层消失的功能。</p>
+
+<h2>交流讨论</h2>
+<p>欢迎创建
+<a href="http://git.alipay.im/popup/issues/new">Gitlab Issue</a>
+来提交反馈。</p>
 
 <h2>感谢</h2>
 
