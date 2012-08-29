@@ -13,22 +13,17 @@ Popup 是可触发 Overlay 型 UI 组件。
 
 ## 配置说明
 
-* `contentElement` {element|string} 
+* `trigger` {element|string} 
 
-    提示内容节点。
+    触发元素。
 
-* `contentElement` {element|string} 
+* `triggerType` {string} 
 
-    提示内容节点。
+    触发类型，可选[hover|click]，默认为 hover。
 
-* `contentElement` {element|string} 
+* `delay` {number} 
 
-    提示内容节点。
-
-* `contentElement` {element|string} 
-
-    提示内容节点。
-
+    延迟触发和隐藏时间，默认 100 毫秒。
 
 ## 最佳实践
 
@@ -42,6 +37,8 @@ seajs.use(['popup'], function(Popup){
 ```
 
 另外，Popup 已实现了点击页面空白处浮层消失的功能。
+
+详细请查看演示。
 
 ## 交流讨论
 
