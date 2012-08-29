@@ -1,11 +1,11 @@
 define(function(require) {
 
     var $ = require('$');
-    var Dropdown = require('../src/dropdown');
+    var Popup = require('../src/popup');
 
-    describe('dropdown', function() {
+    describe('popup', function() {
         var element = '<div>' +
-                            '<a href="#" id="trigger1">dropdown</a>' +
+                            '<a href="#" id="trigger1">popup</a>' +
                             '<ul id="element1">' +
                                 '<li>那些年，我们一起写过的单元测试...</li>' +
                                 '<li>卖萌是一种风格...</li>' +
@@ -20,7 +20,7 @@ define(function(require) {
         });
 
         test('instance', function() {
-            var test1 = new Dropdown({
+            var test1 = new Popup({
                 trigger: '#trigger1',
                 element: '#element1',
                 timeout: 200
@@ -40,7 +40,7 @@ define(function(require) {
         test('event', function() {
             var event1;
             var event2;
-            var test2 = new Dropdown({
+            var test2 = new Popup({
                 trigger: '#trigger1',
                 element: '#element1'
             });
