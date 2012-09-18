@@ -6,7 +6,7 @@
     },
     "dependencies": {
         "$": "$",
-        "overlay": "overlay/0.9.9/overlay"
+        "overlay": "overlay/0.9.10/overlay"
     },
     "tests": ["popup"]
 }
