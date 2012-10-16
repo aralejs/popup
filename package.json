@@ -1,12 +1,13 @@
 {
     "name": "popup",
-    "version": "0.9.8",
+    "version": "0.9.9",
+    "description": "Popup 是可触发的浮层组件。",
     "output": {
         "popup.js": ["popup.js"]
     },
     "dependencies": {
         "$": "$",
-        "overlay": "overlay/0.9.10/overlay"
+        "overlay": "0.9.11"
     },
     "tests": ["popup"]
 }
