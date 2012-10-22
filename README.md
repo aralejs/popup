@@ -1,17 +1,8 @@
-
 # Popup
 
-Popup 是可触发 Overlay 型 UI 组件。
+-------------
 
----
-
-
-## 依赖
-
-- [position](../position/)
-- [overlay](../overlay)
-
-## 配置说明
+## API
 
 * `trigger` {element|string} 
 
@@ -39,12 +30,6 @@ seajs.use(['popup'], function(Popup){
 另外，Popup 已实现了点击页面空白处浮层消失的功能。
 
 详细请查看演示。
-
-## 交流讨论
-
-欢迎创建
-[Gitlab Issue](http://git.alipay.im/popup/issues/new)
-来提交反馈。
 
 ## 感谢
 

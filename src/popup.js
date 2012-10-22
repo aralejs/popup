@@ -35,11 +35,6 @@ define(function(require, exports, module) {
             this._blurHide([this.get('trigger')]);
         },
 
-        show: function() {
-            Popup.superclass.show.call(this);
-            this._setPosition();
-        },
-
         toggle: function() {
             this[this.get('visible') ? 'hide' : 'show']();
         },

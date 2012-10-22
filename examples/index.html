@@ -1,46 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-<title>Popup</title>
-<link rel="stylesheet" href="http://aralejs.org/assets/base.css">
-<link rel="stylesheet" href="http://aralejs.org/assets/style.css">
-<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
-<script src="http://seajs.org/dist/sea.js"></script>
-<script src="http://aralejs.org/tools/seajs-helper.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>Popup - 演示文档</title><link rel="stylesheet" href="http://alipay.github.com/liquidluck-theme-arale/assets/app.min.css">
+    <link rel="shortcut icon" href="http://alipay.github.com/liquidluck-theme-arale/assets/favicon.ico" type="image/x-icon" />
+    <script src="http://seajs.org/dist/sea.js"></script>
+    <script src="http://alipay.github.com/liquidluck-theme-arale/tools/arale-helper.js"></script>
+    <!--[if lt IE 9]>
+      <script src="http://alipay.github.com/liquidluck-theme-arale/assets/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header id="header">
+      <div class="container">
+        <a title="Home" class="icon-home" href="/" id="logo">Arale</a>
+        <div class="wrapper fn-clear">
+          
+          <nav class="global-nav" role="navigation">
+            <ul class="fn-clear">
+              <li class="developer-guides"><a href="/developer-guides/">开发指南</a></li>
+              <li class="user-guides"><a href="/components/">组件文档</a> • <a style="padding-left:0;" href="/mapping.html">Map</a></li>
+            </ul>
+          </nav>
+          <nav class="top-nav" role="navigation">
+            <ul class="fn-clear">
+              <li class="first"><a target="_blank" href="http://seajs.org">SeaJS</a></li>
+              <li class="last"><a target="_blank" href="https://github.com/seajs/spm/wiki">SPM</a></li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+    </header>
 
-
-<!--[if lt IE 9]>
-<script src="http://aralejs.org/assets/html5shiv.js"></script>
-<![endif]-->
-</head>
-<body>
-<header id="header">
-    <div class="container fn-clear">
-
-    <a href="../" >Popup</a>
-    <a href="../examples/" class="current">演示</a>
-    
-    
-    <a id="nav-test" href="../tests/runner.html">用例</a>
-    
-
-
-        <nav role="navigation" id="nav">
-            <a title="Home" class="icon-home" href="/" id="logo">首页</a>
-            <a id="code-link" class="icon-github" href="https://github.com/aralejs/popup">源码</a>
-        </nav>
-    </div>
-</header>
-
-<div id="main">
-    <div class="container">
-<div class="document-body">
-  
-
-  <div class="markdown-body">
-    <style>
+    <div id="main">
+      <div class="container fn-clear">
+<div class="markdown-body">
+  <h1 class="entry-title"><a id="back-to-module" href="../">Popup</a> - 演示文档</h1>
+  <style>
     .fn-hide, .ui-popup {
         display: none;
     }
@@ -58,7 +56,7 @@
     }
 </style>
 
-<h2>范例1: data-api</h2>
+<h2 id="toc_0">范例1: data-api</h2>
 
 <div class="popup">
     点击链接
@@ -85,7 +83,7 @@ seajs.use(['jquery','popup', '#widget/0.9.16/widget'], function($, Popup, Widget
 <span class="p">});</span>
 </pre></div>
 
-<h2>范例2: 默认行为与表现</h2>
+<h2 id="toc_1">范例2: 默认行为与表现</h2>
 
 <blockquote>
 <p>默认行为通过 hover 触发，可以不用传递参数 triggerType</p>
@@ -152,7 +150,7 @@ seajs.use(['popup'], function(Popup){
 <span class="p">});</span>
 </pre></div>
 
-<h2>范例3: 自定义行为(click)</h2>
+<h2 id="toc_2">范例3: 自定义行为(click)</h2>
 
 <div class="popup">
     <a href="#popup3" id="triggerId3">下拉框<span class="icon">▼</span></a>
@@ -190,7 +188,7 @@ seajs.use(['popup'], function(Popup){
 <span class="p">});</span>
 </pre></div>
 
-<h2>范例4: 自定义动画效果以及延时触发效果</h2>
+<h2 id="toc_3">范例4: 自定义动画效果以及延时触发效果</h2>
 
 <div class="popup">
     <a href="#popup4" id="triggerId4" title="400ms 后出现, 请稍安勿躁">下拉框<span class="icon">▼</span></a> 
@@ -252,7 +250,7 @@ seajs.use(['popup'], function(Popup){
 <span class="p">});</span>
 </pre></div>
 
-<h2>范例5: 自定义Template、Align并设置回调函数</h2>
+<h2 id="toc_4">范例5: 自定义Template、Align并设置回调函数</h2>
 
 <div class="popup">
     <a href="#" id="triggerId5">下拉框<span class="icon">▼</span></a>
@@ -354,12 +352,18 @@ seajs.use(['popup','jquery'], function(Popup, $) {
 <span class="p">});</span>
 </pre></div>
 
-  </div>
 </div>
-
+<div class="sidebar sidebar-components"></div>
+      </div>
     </div>
-</div>
-<hr class="end">
-<script src="http://aralejs.org/tools/nico-helper.js"></script>
-</body>
+
+    <footer id="footer">
+      <div class="container">
+        <div class="copyright">
+          <p>&copy; 2012 aralejs.org</p>
+          <p>除非另有声明，本站所有代码遵循 MIT 协议</p>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
