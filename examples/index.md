@@ -36,7 +36,7 @@
 </div>
 
 ````javascript
-seajs.use(['jquery','popup', '#widget/0.9.16/widget'], function($, Popup, Widget){
+seajs.use(['jquery','popup', '#widget/1.0.2/widget'], function($, Popup, Widget){
     // example1
     // data-api 自动渲染
     Widget.autoRenderAll();
