@@ -42,16 +42,16 @@
     .fn-hide, .ui-popup {
         display: none;
     }
-    .ui-popup {
+     .markdown-body .ui-popup {
         border: 1px solid #CCC;
         padding: 3px 5px;
         background: #EEE;
         margin: 0;
     }
-    .ui-popup ul{
+    .markdown-body .ui-popup ul {
         margin: 0;
     }
-    .ui-popup li {
+     .markdown-body .ui-popup li {
         list-style: none;
     }
 </style>
@@ -61,7 +61,7 @@
 <div class="popup">
     点击链接
     <a href="#popup1" id="triggerId1">下拉框<span class="icon">▼</span></a>
-    <ul class="ui-popup" id="popup1" data-widget="popup" data-trigger="#triggerId1" data-trigger-type="click">
+    <ul class="ui-popup" id="popup1" data-widget="../src/popup" data-trigger="#triggerId1" data-trigger-type="click">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#2">内容2</a></li>
         <li><a href="http://aralejs.org#3">内容3</a></li>
@@ -70,13 +70,13 @@
 </div>
 
 <script>
-seajs.use(['jquery','popup', '#widget/1.0.2/widget'], function($, Popup, Widget){
+seajs.use(['#widget/1.0.2/widget'], function(Widget){
     // example1
     // data-api 自动渲染
     Widget.autoRenderAll();
 });
 </script>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;jquery&#39;</span><span class="p">,</span><span class="s1">&#39;popup&#39;</span><span class="p">,</span> <span class="s1">&#39;#widget/1.0.2/widget&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="nx">Popup</span><span class="p">,</span> <span class="nx">Widget</span><span class="p">){</span>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;#widget/1.0.2/widget&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Widget</span><span class="p">){</span>
     <span class="c1">// example1</span>
     <span class="c1">// data-api 自动渲染</span>
     <span class="nx">Widget</span><span class="p">.</span><span class="nx">autoRenderAll</span><span class="p">();</span>
@@ -109,16 +109,14 @@ seajs.use(['jquery','popup', '#widget/1.0.2/widget'], function($, Popup, Widget)
 </div>
 
 <script>
-seajs.use(['popup'], function(Popup){
-
+seajs.use(['../src/popup'], function(Popup) {
     var example2 = new Popup({
         trigger: '#triggerId2',
         element: '#popup2',
         align: {
-            baseXY: [0, '100%']
+            baseXY: [0, 0]
         }
     });
-    example2.render();
     // 订阅事件
     example2.after('show', function(){
         console.log('example2 is shown');
@@ -129,16 +127,14 @@ seajs.use(['popup'], function(Popup){
     // example2.trigger('shown');
 });
 </script>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;popup&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">){</span>
-
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/popup&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">example2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Popup</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#triggerId2&#39;</span><span class="p">,</span>
         <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#popup2&#39;</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;100%&#39;</span><span class="p">]</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="p">}</span>
     <span class="p">});</span>
-    <span class="nx">example2</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
     <span class="c1">// 订阅事件</span>
     <span class="nx">example2</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;show&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;example2 is shown&#39;</span><span class="p">);</span>
@@ -163,7 +159,7 @@ seajs.use(['popup'], function(Popup){
 </div>
 
 <script>
-seajs.use(['popup'], function(Popup){
+seajs.use(['../src/popup'], function(Popup){
     var example3 = new Popup({
         trigger: '#triggerId3',
         triggerType: 'click',
@@ -172,10 +168,9 @@ seajs.use(['popup'], function(Popup){
         },
         element: '#popup3'
     });
-    example3.render();
 });
 </script>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;popup&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">){</span>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/popup&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">){</span>
     <span class="kd">var</span> <span class="nx">example3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Popup</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#triggerId3&#39;</span><span class="p">,</span>
         <span class="nx">triggerType</span><span class="o">:</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span>
@@ -184,7 +179,6 @@ seajs.use(['popup'], function(Popup){
         <span class="p">},</span>
         <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#popup3&#39;</span>
     <span class="p">});</span>
-    <span class="nx">example3</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
 <span class="p">});</span>
 </pre></div>
 
@@ -201,7 +195,7 @@ seajs.use(['popup'], function(Popup){
 </div>
 
 <script>
-seajs.use(['popup'], function(Popup){
+seajs.use(['../src/popup'], function(Popup) {
     var animPopup = Popup.extend({
         // 此处定义动画效果存疑; 是否应该覆盖私有方法？
         _onChangeVisible: function(val){
@@ -222,10 +216,9 @@ seajs.use(['popup'], function(Popup){
         delay: 400,
         element: '#popup4'
     });
-    example4.render();
 });
 </script>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;popup&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">){</span>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/popup&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">animPopup</span> <span class="o">=</span> <span class="nx">Popup</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
         <span class="c1">// 此处定义动画效果存疑; 是否应该覆盖私有方法？</span>
         <span class="nx">_onChangeVisible</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">){</span>
@@ -246,7 +239,6 @@ seajs.use(['popup'], function(Popup){
         <span class="nx">delay</span><span class="o">:</span> <span class="mi">400</span><span class="p">,</span>
         <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#popup4&#39;</span>
     <span class="p">});</span>
-    <span class="nx">example4</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
 <span class="p">});</span>
 </pre></div>
 
@@ -254,16 +246,14 @@ seajs.use(['popup'], function(Popup){
 
 <div class="popup">
     <a href="#" id="triggerId5">下拉框<span class="icon">▼</span></a>
-    <a href="#" id="releated5" style="float:right;">我是无辜的被定位元素</a>
 </div>
 
 <script>
-seajs.use(['popup','jquery'], function(Popup, $){
+seajs.use(['../src/popup','jquery'], function(Popup, $){
 
     var example5 = new Popup({
         trigger: '#triggerId5',
         align: {
-            baseElement: $('#releated5')[0],
             selfXY: [-10,-10],
             baseXY: [0,20]
         },
@@ -279,12 +269,11 @@ seajs.use(['popup','jquery'], function(Popup, $){
 
 });
 </script>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;popup&#39;</span><span class="p">,</span><span class="s1">&#39;jquery&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">,</span> <span class="nx">$</span><span class="p">){</span>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/popup&#39;</span><span class="p">,</span><span class="s1">&#39;jquery&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">,</span> <span class="nx">$</span><span class="p">){</span>
 
     <span class="kd">var</span> <span class="nx">example5</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Popup</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#triggerId5&#39;</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">baseElement</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#releated5&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
             <span class="nx">selfXY</span><span class="o">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">],</span>
             <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span>
         <span class="p">},</span>
@@ -313,7 +302,7 @@ seajs.use(['popup','jquery'], function(Popup, $){
 </div>
 
 <script>
-seajs.use(['popup','jquery'], function(Popup, $) {
+seajs.use(['../src/popup','jquery'], function(Popup, $) {
 
     var example6 = new Popup({
         trigger: '#triggerId6',
@@ -323,7 +312,6 @@ seajs.use(['popup','jquery'], function(Popup, $) {
             baseXY: [0, '100%+12']
         }
     });
-    example6.render();
     example6.element.find('a').click(function(e) {
         e.preventDefault();
         example6.get('trigger').val($(this).text());
@@ -332,7 +320,7 @@ seajs.use(['popup','jquery'], function(Popup, $) {
 
 });
 </script>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;popup&#39;</span><span class="p">,</span><span class="s1">&#39;jquery&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">,</span> <span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/popup&#39;</span><span class="p">,</span><span class="s1">&#39;jquery&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">,</span> <span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="kd">var</span> <span class="nx">example6</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Popup</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#triggerId6&#39;</span><span class="p">,</span>
@@ -342,13 +330,44 @@ seajs.use(['popup','jquery'], function(Popup, $) {
             <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;100%+12&#39;</span><span class="p">]</span>
         <span class="p">}</span>
     <span class="p">});</span>
-    <span class="nx">example6</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
     <span class="nx">example6</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
         <span class="nx">example6</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;trigger&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">());</span>
         <span class="nx">example6</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;visible&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
     <span class="p">});</span>
 
+<span class="p">});</span>
+</pre></div>
+
+<h2 id="toc_5">范例7: 多个 Trigger 的情况</h2>
+
+<div class="popup">
+    <a class="trigger-all">下拉框1<span class="icon">▼</span></a>
+    <a class="trigger-all">下拉框2<span class="icon">▼</span></a>
+    <a class="trigger-all">下拉框3<span class="icon">▼</span></a>
+    <ul class="fn-hide ui-popup" id="popup7">
+        <li><a href="http://aralejs.org#1">内容1</a></li>
+        <li><a href="http://aralejs.org#3">内容2</a></li>
+        <li><a href="http://aralejs.org#3">内容3</a></li>
+        <li><a href="http://aralejs.org#4">内容4</a></li>
+    </ul>
+</div>
+
+<script>
+seajs.use(['../src/popup'], function(Popup){
+    new Popup({
+        trigger: '.trigger-all',
+        triggerType: 'hover',
+        element: '#popup7'
+    });
+});
+</script>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/popup&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Popup</span><span class="p">){</span>
+    <span class="k">new</span> <span class="nx">Popup</span><span class="p">({</span>
+        <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;.trigger-all&#39;</span><span class="p">,</span>
+        <span class="nx">triggerType</span><span class="o">:</span> <span class="s1">&#39;hover&#39;</span><span class="p">,</span>
+        <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#popup7&#39;</span>
+    <span class="p">});</span>
 <span class="p">});</span>
 </pre></div>
 

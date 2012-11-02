@@ -4,7 +4,12 @@
 
 ### 0.9.9
 
-    * [`featrue`] 依赖升级到 overlay 0.9.11 ，将popup的显示时重新定位功能提到overlay中
+    * [`featrue`] 依赖升级到 overlay 0.9.12 ，将popup的显示时重新定位功能提到overlay中。
+    * [`featrue`] 增加 disabled（是否能触发）参数。
+    * [`bugfix`] 修复 trigger 为多个元素时的定位bug。
+    * [`bugfix`] 修复 align.baseXY 为 [0, 0] 时无效的bug。
+    * [`improve`] 去掉 delay 参数。
+    * [`improve`] 代码优化重构。
 
 ### 0.9.8 
     * 依赖升级到 overlay 0.9.10 版本，由此增加了窗口 resize 时，浮层重新定位的特性

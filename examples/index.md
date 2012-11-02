@@ -8,16 +8,16 @@
     .fn-hide, .ui-popup {
         display: none;
     }
-    .ui-popup {
+     .markdown-body .ui-popup {
         border: 1px solid #CCC;
         padding: 3px 5px;
         background: #EEE;
         margin: 0;
     }
-    .ui-popup ul{
+    .markdown-body .ui-popup ul {
         margin: 0;
     }
-    .ui-popup li {
+     .markdown-body .ui-popup li {
         list-style: none;
     }
 </style>
@@ -27,7 +27,7 @@
 <div class="popup">
     点击链接
     <a href="#popup1" id="triggerId1">下拉框<span class="icon">▼</span></a>
-    <ul class="ui-popup" id="popup1" data-widget="popup" data-trigger="#triggerId1" data-trigger-type="click">
+    <ul class="ui-popup" id="popup1" data-widget="../src/popup" data-trigger="#triggerId1" data-trigger-type="click">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#2">内容2</a></li>
         <li><a href="http://aralejs.org#3">内容3</a></li>
@@ -36,7 +36,7 @@
 </div>
 
 ````javascript
-seajs.use(['jquery','popup', '#widget/1.0.2/widget'], function($, Popup, Widget){
+seajs.use(['#widget/1.0.2/widget'], function(Widget){
     // example1
     // data-api 自动渲染
     Widget.autoRenderAll();
@@ -67,16 +67,14 @@ seajs.use(['jquery','popup', '#widget/1.0.2/widget'], function($, Popup, Widget)
 </div>
 
 ````javascript
-seajs.use(['popup'], function(Popup){
-
+seajs.use(['../src/popup'], function(Popup) {
     var example2 = new Popup({
         trigger: '#triggerId2',
         element: '#popup2',
         align: {
-            baseXY: [0, '100%']
+            baseXY: [0, 0]
         }
     });
-    example2.render();
     // 订阅事件
     example2.after('show', function(){
         console.log('example2 is shown');
@@ -101,7 +99,7 @@ seajs.use(['popup'], function(Popup){
 </div>
 
 ````javascript
-seajs.use(['popup'], function(Popup){
+seajs.use(['../src/popup'], function(Popup){
     var example3 = new Popup({
         trigger: '#triggerId3',
         triggerType: 'click',
@@ -110,7 +108,6 @@ seajs.use(['popup'], function(Popup){
         },
         element: '#popup3'
     });
-    example3.render();
 });
 ````
 
@@ -127,7 +124,7 @@ seajs.use(['popup'], function(Popup){
 </div>
 
 ````javascript
-seajs.use(['popup'], function(Popup){
+seajs.use(['../src/popup'], function(Popup) {
     var animPopup = Popup.extend({
         // 此处定义动画效果存疑; 是否应该覆盖私有方法？
         _onChangeVisible: function(val){
@@ -148,7 +145,6 @@ seajs.use(['popup'], function(Popup){
         delay: 400,
         element: '#popup4'
     });
-    example4.render();
 });
 ````
 
@@ -156,16 +152,14 @@ seajs.use(['popup'], function(Popup){
 
 <div class="popup">
     <a href="#" id="triggerId5">下拉框<span class="icon">▼</span></a>
-    <a href="#" id="releated5" style="float:right;">我是无辜的被定位元素</a>
 </div>
 
 ````javascript
-seajs.use(['popup','jquery'], function(Popup, $){
+seajs.use(['../src/popup','jquery'], function(Popup, $){
 
     var example5 = new Popup({
         trigger: '#triggerId5',
         align: {
-            baseElement: $('#releated5')[0],
             selfXY: [-10,-10],
             baseXY: [0,20]
         },
@@ -195,7 +189,7 @@ seajs.use(['popup','jquery'], function(Popup, $){
 </div>
 
 ````javascript
-seajs.use(['popup','jquery'], function(Popup, $) {
+seajs.use(['../src/popup','jquery'], function(Popup, $) {
 
     var example6 = new Popup({
         trigger: '#triggerId6',
@@ -205,7 +199,6 @@ seajs.use(['popup','jquery'], function(Popup, $) {
             baseXY: [0, '100%+12']
         }
     });
-    example6.render();
     example6.element.find('a').click(function(e) {
         e.preventDefault();
         example6.get('trigger').val($(this).text());
@@ -215,3 +208,26 @@ seajs.use(['popup','jquery'], function(Popup, $) {
 });
 ````
 
+## 范例7: 多个 Trigger 的情况
+
+<div class="popup">
+    <a class="trigger-all">下拉框1<span class="icon">▼</span></a>
+    <a class="trigger-all">下拉框2<span class="icon">▼</span></a>
+    <a class="trigger-all">下拉框3<span class="icon">▼</span></a>
+    <ul class="fn-hide ui-popup" id="popup7">
+        <li><a href="http://aralejs.org#1">内容1</a></li>
+        <li><a href="http://aralejs.org#3">内容2</a></li>
+        <li><a href="http://aralejs.org#3">内容3</a></li>
+        <li><a href="http://aralejs.org#4">内容4</a></li>
+    </ul>
+</div>
+
+````javascript
+seajs.use(['../src/popup'], function(Popup){
+    new Popup({
+        trigger: '.trigger-all',
+        triggerType: 'hover',
+        element: '#popup7'
+    });
+});
+````
