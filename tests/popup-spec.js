@@ -22,17 +22,13 @@ define(function(require) {
         test('instance', function() {
             var test1 = new Popup({
                 trigger: '#trigger1',
-                element: '#element1',
-                timeout: 200
+                element: '#element1'
             });
             var trigger = test1.get('trigger');
             var align = test1.get('align');
             expect(trigger.attr('id')).toBe('trigger1');
             expect(test1.element.attr('id')).toBe('element1');
             expect(test1.get('triggerType')).toBe('hover');
-            expect(test1.get('timeout')).toBe(200);
-            expect(test1.get('delay')).toBe(100);
-            expect($(align.baseElement)[0]).toBe(trigger[0]);
             expect(align.baseXY).toEqual([0,'100%']);
             expect(align.selfXY).toEqual([0,0]);
         });
