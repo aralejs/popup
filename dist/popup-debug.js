@@ -1,7 +1,7 @@
-define("#popup/0.9.9/popup-debug", ["$-debug", "#overlay/0.9.11/overlay-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "#widget/1.0.2/widget-debug", "#base/1.0.1/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug"], function(require, exports, module) {
+define("arale/popup/0.9.9/popup-debug", ["$-debug", "arale/overlay/0.9.12/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug"], function(require, exports, module) {
 
     var $ = require('$-debug');
-    var Overlay = require('#overlay/0.9.11/overlay-debug');
+    var Overlay = require('arale/overlay/0.9.12/overlay-debug');
 
 
     // Popup 是可触发 Overlay 型 UI 组件
@@ -15,63 +15,67 @@ define("#popup/0.9.9/popup-debug", ["$-debug", "#overlay/0.9.11/overlay-debug", 
                     return $(val);
                 }
             },
+
             // 触发类型
-            triggerType: 'hover', // or click
+            triggerType: 'hover', // or click or focus
 
-            // 延迟触发和隐藏时间
-            delay: 100,
+            // 默认的定位参数
+            align: {
+                baseXY: [0, '100%'],
+                selfXY: [0, 0]
+            },
 
-            // 判断何时 trigger 为不响应事件的情况
-            ifTriggerDisabled: function() {
-                var n = this.trigger[0];
-                return (n.tagName === 'INPUT' && n.disabled);
-            }
+            // 是否能够触发
+            // 可以通过set('disabled', true)关闭
+            disabled: false
         },
 
         setup: function() {
             Popup.superclass.setup.call(this);
             this._bindTrigger();
-            this._tweakAlignDefaultValue();
             this._blurHide([this.get('trigger')]);
         },
 
-        toggle: function() {
-            this[this.get('visible') ? 'hide' : 'show']();
+        show: function() {
+            // 若从未渲染，则调用 render
+            (!this.rendered) && this.render();
+            this.set('visible', true);
+
+            var align = this.get('align');
+            align.baseElement = this.activeTrigger;
+            this.set('align', align);
         },
 
-        // 调整 align 属性的默认值
-        _tweakAlignDefaultValue: function() {
-            var align = this.get('align');
-
-            // 默认坐标在目标元素左下角
-            if (align.baseXY.toString() === [0, 0].toString()) {
-                align.baseXY = [0, '100%'];
+        toggle: function() {
+            if (this.get('disabled')) {
+                return;
             }
-
-            // 默认基准定位元素为 trigger
-            if (align.baseElement._id === 'VIEWPORT') {
-                align.baseElement = this.get('trigger');
-            }
-
-            this.set('align', align);
+            this[this.get('visible') ? 'hide' : 'show']();
         },
 
         _bindTrigger: function() {
             var trigger = this.get('trigger');
             var triggerType = this.get('triggerType');
-            var delay = this.get('delay');
+
+            // 延迟触发和隐藏时间
+            var delay = 100;
 
             var showTimer, hideTimer;
             var that = this;
 
             if (triggerType === 'click') {
-                trigger.on(triggerType, function(ev) {
-                    ev.preventDefault();
+                trigger.on(triggerType, function(e) {
+                    e.preventDefault();
+
+                    // 标识当前点击的元素
+                    that.activeTrigger = $(this);
                     that.toggle();
                 });
             }
             else if (triggerType === 'focus') {
                 trigger.on('focus blur', function() {
+                    // 标识当前点击的元素
+                    that.activeTrigger = $(this);
                     that.toggle();
                 });
             }
@@ -81,8 +85,10 @@ define("#popup/0.9.9/popup-debug", ["$-debug", "#overlay/0.9.11/overlay-debug", 
                     clearTimeout(hideTimer);
 
                     if (!that.get('visible')) {
+                        // 标识当前点击的元素
+                        that.activeTrigger = $(this);
                         showTimer = setTimeout(function() {
-                            that.show();
+                            that.toggle();
                         }, delay);
                     }
                 }, leaveHandler);
@@ -98,7 +104,7 @@ define("#popup/0.9.9/popup-debug", ["$-debug", "#overlay/0.9.11/overlay-debug", 
 
                 if (that.get('visible')) {
                     hideTimer = setTimeout(function() {
-                        that.hide();
+                        that.toggle();
                     }, delay);
                 }
             }
@@ -106,5 +112,5 @@ define("#popup/0.9.9/popup-debug", ["$-debug", "#overlay/0.9.11/overlay-debug", 
     });
 
     module.exports = Popup;
-    
+
 });
