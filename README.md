@@ -1,20 +1,29 @@
 # Popup
 
--------------
+---
 
-## API
+Popup 是可触发的浮层组件。
 
-* `trigger` {element|string} 
+---
 
-    触发元素。
+## 配置说明
 
-* `triggerType` {string} 
+### element *element|string*
 
-    触发类型，可选[hover|click]，默认为 hover。
+弹出的浮层元素。
 
-* `delay` {number} 
+### trigger *element|string*
 
-    延迟触发和隐藏时间，默认 100 毫秒。
+触发元素。
+
+### triggerType *string*
+
+触发类型，可选[hover|click]，默认为 hover。
+
+### disabled *boolean*
+
+是否能触发弹出效果，可用`.set('disabled', true)`进行开关。
+
 
 ## 最佳实践
 

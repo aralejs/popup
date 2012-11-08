@@ -8,16 +8,16 @@
     .fn-hide, .ui-popup {
         display: none;
     }
-     .markdown-body .ui-popup {
+    .ui-popup {
         border: 1px solid #CCC;
         padding: 3px 5px;
         background: #EEE;
         margin: 0;
     }
-    .markdown-body .ui-popup ul {
+    .ui-popup ul {
         margin: 0;
     }
-     .markdown-body .ui-popup li {
+    .ui-popup li {
         list-style: none;
     }
 </style>
