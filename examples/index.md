@@ -22,12 +22,12 @@
     }
 </style>
 
-## 范例1: data-api
+## 1. data-api
 
 <div class="popup">
     点击链接
     <a href="#popup1" id="triggerId1">下拉框<span class="icon">▼</span></a>
-    <ul class="ui-popup" id="popup1" data-widget="../src/popup" data-trigger="#triggerId1" data-trigger-type="click">
+    <ul class="ui-popup" id="popup1" data-widget="popup" data-trigger="#triggerId1" data-trigger-type="click">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#2">内容2</a></li>
         <li><a href="http://aralejs.org#3">内容3</a></li>
@@ -43,7 +43,7 @@ seajs.use(['arale/widget/1.0.2/widget'], function(Widget){
 });
 ````
 
-## 范例2: 默认行为与表现
+## 2. 默认行为与表现
 
 > 默认行为通过 hover 触发，可以不用传递参数 triggerType
 
@@ -67,7 +67,7 @@ seajs.use(['arale/widget/1.0.2/widget'], function(Widget){
 </div>
 
 ````javascript
-seajs.use(['../src/popup'], function(Popup) {
+seajs.use(['popup'], function(Popup) {
     var example2 = new Popup({
         trigger: '#triggerId2',
         element: '#popup2',
@@ -86,7 +86,7 @@ seajs.use(['../src/popup'], function(Popup) {
 });
 ````
 
-## 范例3: 自定义行为(click)
+## 3. 自定义行为(click)
 
 <div class="popup">
     <a href="#popup3" id="triggerId3">下拉框<span class="icon">▼</span></a>
@@ -99,7 +99,7 @@ seajs.use(['../src/popup'], function(Popup) {
 </div>
 
 ````javascript
-seajs.use(['../src/popup'], function(Popup){
+seajs.use(['popup'], function(Popup){
     var example3 = new Popup({
         trigger: '#triggerId3',
         triggerType: 'click',
@@ -111,52 +111,14 @@ seajs.use(['../src/popup'], function(Popup){
 });
 ````
 
-## 范例4: 自定义动画效果以及延时触发效果
-
-<div class="popup">
-    <a href="#popup4" id="triggerId4" title="400ms 后出现, 请稍安勿躁">下拉框<span class="icon">▼</span></a> 
-    <ul class="fn-hide ui-popup" id="popup4">
-        <li><a href="http://aralejs.org#1">内容1</a></li>
-        <li><a href="http://aralejs.org#2">内容2</a></li>
-        <li><a href="http://aralejs.org#3">内容3</a></li>
-        <li><a href="http://aralejs.org#4">内容4</a></li>
-    </ul>
-</div>
-
-````javascript
-seajs.use(['../src/popup'], function(Popup) {
-    var animPopup = Popup.extend({
-        // 此处定义动画效果存疑; 是否应该覆盖私有方法？
-        _onChangeVisible: function(val){
-            if (val) {
-                //this.element.fadeIn(); //淡入效果
-                this.element.animate({'height': 'toggle', 'opacity':'show'}, 200);
-            } else {
-                //this.element.fadeOut(); //淡出效果
-                this.element.animate({'height': 'toggle', 'opacity':'hide'}, 200);
-            }
-        }
-    });
-    var example4 = new animPopup({
-        trigger: '#triggerId4',
-        align: {
-            baseXY: [5,20]
-        },
-        delay: 400,
-        element: '#popup4'
-    });
-});
-````
-
-## 范例5: 自定义Template、Align并设置回调函数
+## 4. 自定义Template、Align并设置回调函数
 
 <div class="popup">
     <a href="#" id="triggerId5">下拉框<span class="icon">▼</span></a>
 </div>
 
 ````javascript
-seajs.use(['../src/popup','jquery'], function(Popup, $){
-
+seajs.use(['popup','jquery'], function(Popup, $){
     var example5 = new Popup({
         trigger: '#triggerId5',
         align: {
@@ -176,7 +138,7 @@ seajs.use(['../src/popup','jquery'], function(Popup, $){
 });
 ````
 
-范例6: 简单的自动完成组件
+## 5. 简单的自动完成组件
 
 <div class="popup">
     <input id="triggerId6" placeholder="请输入..." />
@@ -189,7 +151,7 @@ seajs.use(['../src/popup','jquery'], function(Popup, $){
 </div>
 
 ````javascript
-seajs.use(['../src/popup','jquery'], function(Popup, $) {
+seajs.use(['popup','$'], function(Popup, $) {
 
     var example6 = new Popup({
         trigger: '#triggerId6',
@@ -208,7 +170,7 @@ seajs.use(['../src/popup','jquery'], function(Popup, $) {
 });
 ````
 
-## 范例7: 多个 Trigger 的情况
+## 范例6: 多个 Trigger 的情况
 
 <div class="popup">
     <a class="trigger-all">下拉框1<span class="icon">▼</span></a>
@@ -223,10 +185,9 @@ seajs.use(['../src/popup','jquery'], function(Popup, $) {
 </div>
 
 ````javascript
-seajs.use(['../src/popup'], function(Popup){
+seajs.use(['popup'], function(Popup){
     new Popup({
         trigger: '.trigger-all',
-        triggerType: 'hover',
         element: '#popup7'
     });
 });

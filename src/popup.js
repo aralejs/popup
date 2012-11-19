@@ -24,10 +24,20 @@ define(function(require, exports, module) {
                 baseXY: [0, '100%'],
                 selfXY: [0, 0]
             },
+ 
+            // 延迟触发和隐藏时间
+            delay: 70,
 
             // 是否能够触发
             // 可以通过set('disabled', true)关闭
-            disabled: false
+            disabled: false,
+
+            // 基本的动画效果，可选 fade|slide
+            effect: '',
+
+            // 动画的持续时间
+            duration: 250
+
         },
 
         setup: function() {
@@ -37,6 +47,10 @@ define(function(require, exports, module) {
         },
 
         show: function() {
+            if (this.get('disabled')) {
+                return;
+            }
+
             // 若从未渲染，则调用 render
             (!this.rendered) && this.render();
             this.set('visible', true);
@@ -47,18 +61,13 @@ define(function(require, exports, module) {
         },
 
         toggle: function() {
-            if (this.get('disabled')) {
-                return;
-            }
             this[this.get('visible') ? 'hide' : 'show']();
         },
 
         _bindTrigger: function() {
             var trigger = this.get('trigger');
             var triggerType = this.get('triggerType');
-
-            // 延迟触发和隐藏时间
-            var delay = 100;
+            var delay = this.get('delay');
 
             var showTimer, hideTimer;
             var that = this;
@@ -84,13 +93,11 @@ define(function(require, exports, module) {
                 trigger.hover(function() {
                     clearTimeout(hideTimer);
 
-                    if (!that.get('visible')) {
-                        // 标识当前点击的元素
-                        that.activeTrigger = $(this);
-                        showTimer = setTimeout(function() {
-                            that.toggle();
-                        }, delay);
-                    }
+                    // 标识当前点击的元素
+                    that.activeTrigger = $(this);
+                    showTimer = setTimeout(function() {
+                        that.show();
+                    }, delay);
                 }, leaveHandler);
 
                 // 鼠标在悬浮层上时不消失
@@ -104,9 +111,22 @@ define(function(require, exports, module) {
 
                 if (that.get('visible')) {
                     hideTimer = setTimeout(function() {
-                        that.toggle();
+                        that.hide();
                     }, delay);
                 }
+            }
+        },
+
+        _onRenderVisible: function(val) {
+            var fade = (this.get('effect').indexOf('fade') !== -1);
+            var slide = (this.get('effect').indexOf('slide') !== -1);
+            var animConfig = {};
+            slide && (animConfig.height = (val ? 'show' : 'hide' ));
+            fade && (animConfig.opacity = (val ? 'show' : 'hide' ));
+            if (fade || slide) {
+                this.element.animate(animConfig, this.get('duration'));
+            } else {
+                this.element[val ? 'show' : 'hide']();                
             }
         }
     });
