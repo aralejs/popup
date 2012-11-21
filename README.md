@@ -37,6 +37,8 @@ Popup 是可触发的浮层组件。
 是否能触发弹出效果，可用`.set('disabled', true)`进行开关。
 
 
+> 若有范例和演示中有其他参数（如 align），请参见 Popup 的父类 [Overlay](http://aralejs.org/overlay/)。
+
 ## 最佳实践
 
 ```js
@@ -49,7 +51,7 @@ seajs.use(['popup'], function(Popup){
 ```
 
 另外，Popup 已从 Overlay 继承了点击页面空白处浮层消失的功能。
-详细请查看 [演示](/examples/)。
+详细请查看 [演示文档](/examples/)。
 
 ## 感谢
 
