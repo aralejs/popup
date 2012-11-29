@@ -164,7 +164,7 @@ seajs.use(['popup','$'], function(Popup, $) {
     example6.element.find('a').click(function(e) {
         e.preventDefault();
         example6.get('trigger').val($(this).text());
-        example6.set('visible', false);
+        example6.hide();
     });
     
 });

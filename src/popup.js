@@ -82,10 +82,20 @@ define(function(require, exports, module) {
                 });
             }
             else if (triggerType === 'focus') {
-                trigger.on('focus blur', function() {
+                trigger.on('focus', function() {
                     // 标识当前点击的元素
                     that.activeTrigger = $(this);
-                    that.toggle();
+                    that.show();
+                }).on('blur', function() {
+                    setTimeout(function() {
+                        (!that._downOnElement) && that.hide();
+                        that._downOnElement = false;
+                    }, delay);
+                });;
+
+                // 为了当input blur时能够选择和操作弹出层上的内容
+                this.element.on('mousedown', function(e) {
+                    that._downOnElement = true;
                 });
             }
             // 默认是 hover
