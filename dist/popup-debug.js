@@ -43,7 +43,7 @@ define("arale/popup/0.9.9/popup-debug", ["$-debug", "arale/overlay/0.9.13/overla
         setup: function() {
             Popup.superclass.setup.call(this);
             this._bindTrigger();
-            this._blurHide([this.get('trigger')]);
+            this._blurHide(this.get('trigger'));
         },
 
         show: function() {

@@ -43,7 +43,7 @@ define(function(require, exports, module) {
         setup: function() {
             Popup.superclass.setup.call(this);
             this._bindTrigger();
-            this._blurHide([this.get('trigger')]);
+            this._blurHide(this.get('trigger'));
         },
 
         show: function() {
