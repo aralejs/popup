@@ -105,11 +105,11 @@ seajs.use(['popup'], function(Popup) {
 ````javascript
 seajs.use(['popup'], function(Popup) {
     var animPopup = Popup.extend({
-        _onChangeVisible: function(val){
+        _onRenderVisible: function(val) {
             if (val) {
                 this.element.animate({'height': 'toggle', 'opacity':'0.8'}, 400);
             } else {
-                this.element.animate({'height': 'toggle', 'opacity':'hide'}, 100);
+                this.element.animate({'height': 'toggle', 'opacity':'hide'}, 600);
             }
         }
     });
