@@ -6,9 +6,12 @@
 
 `tag:fixed` 修复当 triggerType 为 focus 时无法操作弹出层上的内容的bug。
 
-## 0.9.9
+`tag:fixed` 修复 _blurHide 方法参数只能支持数组的问题。
 
-`tag:new` 依赖升级到 overlay 0.9.12 ，将popup的显示时重新定位功能提到overlay中。
+`tag:improved` 依赖升级到 overlay 0.9.13。
+
+
+## 0.9.9
 
 `tag:new` 增加 disabled（是否能触发）参数。
 
@@ -17,6 +20,8 @@
 `tag:fixed` 修复 trigger 为多个元素时的定位bug。
 
 `tag:fixed` 修复 align.baseXY 为 [0, 0] 时无效的bug。
+
+`tag:improved` 依赖升级到 overlay 0.9.12 ，将popup的显示时重新定位功能提到overlay中。
 
 `tag:improved` delay 默认值调整为 70 毫秒。
 
