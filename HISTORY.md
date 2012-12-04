@@ -6,8 +6,6 @@
 
 `tag:fixed` 修复当 triggerType 为 focus 时无法操作弹出层上的内容的bug。
 
-`tag:fixed` 修复 _blurHide 方法参数只能支持数组的问题。
-
 `tag:improved` 依赖升级到 overlay 0.9.13。
 
 
