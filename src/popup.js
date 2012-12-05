@@ -53,11 +53,12 @@ define(function(require, exports, module) {
 
             // 若从未渲染，则调用 render
             (!this.rendered) && this.render();
-            this.set('visible', true);
 
             var align = this.get('align');
             align.baseElement = this.activeTrigger;
             this.set('align', align);
+
+            this.set('visible', true);
         },
 
         toggle: function() {
@@ -133,10 +134,14 @@ define(function(require, exports, module) {
             var animConfig = {};
             slide && (animConfig.height = (val ? 'show' : 'hide' ));
             fade && (animConfig.opacity = (val ? 'show' : 'hide' ));
+
             if (fade || slide) {
                 this.element.animate(animConfig, this.get('duration'));
+                this.element.css({
+                    'visibility': 'visible'
+                });
             } else {
-                this.element[val ? 'show' : 'hide']();                
+                this.element[val ? 'show' : 'hide']();
             }
         }
     });

@@ -63,7 +63,11 @@ seajs.use(['popup'], function(Popup) {
     var example2 = new Popup({
         trigger: '#triggerId2',
         element: '#popup2',
-        effect: 'slide'
+        effect: 'slide',
+        align: {
+            selfXY: [0, '100%'],
+            baseXY: [0, 0]
+        }
     });
 });
 ````

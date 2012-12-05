@@ -6,6 +6,8 @@
 
 `tag:fixed` 修复当 triggerType 为 focus 时无法操作弹出层上的内容的bug。
 
+`tag:fixed` 修复一个动画为 slide 时的浮层定位错误。
+
 `tag:improved` 依赖升级到 overlay 0.9.13。
 
 
