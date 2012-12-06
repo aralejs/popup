@@ -114,35 +114,34 @@ seajs.use(['popup'], function(Popup){
 ## 4. 自定义Template、Align并设置回调函数
 
 <div class="popup">
-    <a href="#" id="triggerId5">下拉框<span class="icon">▼</span></a>
+    <a href="#" id="triggerId4">下拉框<span class="icon">▼</span></a>
 </div>
 
 ````javascript
 seajs.use(['popup','jquery'], function(Popup, $){
-    var example5 = new Popup({
-        trigger: '#triggerId5',
+    var example4 = new Popup({
+        trigger: '#triggerId4',
         align: {
             selfXY: [-10,-10],
             baseXY: [0,20]
         },
         template: '<div class="ui-popup fn-hide"><ul><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>'
     });
-    example5.after('show', function(){
-        $('#triggerId5').text('三秒后改变浮层位置');
+    example4.after('show', function(){
+        $('#triggerId4').text('三秒后改变浮层位置');
         window.setTimeout(function() {
-            example5.set('align', { baseXY: [0, -115] });
+            example4.set('align', { baseXY: [0, -115] });
         }, 3000);
     });
-    example5.render();
-    
+    example4.render();
 });
 ````
 
 ## 5. 简单的自动完成组件
 
 <div class="popup">
-    <input id="triggerId6" placeholder="请输入..." />
-    <ul class="fn-hide ui-popup" id="popup6">
+    <input id="triggerId5" placeholder="请输入..." />
+    <ul class="fn-hide ui-popup" id="popup5">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#2">内容2</a></li>
         <li><a href="http://aralejs.org#3">内容3</a></li>
@@ -153,18 +152,18 @@ seajs.use(['popup','jquery'], function(Popup, $){
 ````javascript
 seajs.use(['popup','$'], function(Popup, $) {
 
-    var example6 = new Popup({
-        trigger: '#triggerId6',
+    var example5 = new Popup({
+        trigger: '#triggerId5',
         triggerType: 'focus',
-        element: '#popup6',
+        element: '#popup5',
         align: {
             baseXY: [0, '100%+12']
         }
     });
-    example6.element.find('a').click(function(e) {
+    example5.element.find('a').click(function(e) {
         e.preventDefault();
-        example6.get('trigger').val($(this).text());
-        example6.hide();
+        example5.get('trigger').val($(this).text());
+        example5.hide();
     });
     
 });
@@ -176,7 +175,7 @@ seajs.use(['popup','$'], function(Popup, $) {
     <a class="trigger-all">下拉框1<span class="icon">▼</span></a>
     <a class="trigger-all">下拉框2<span class="icon">▼</span></a>
     <a class="trigger-all">下拉框3<span class="icon">▼</span></a>
-    <ul class="fn-hide ui-popup" id="popup7">
+    <ul class="fn-hide ui-popup" id="popup6">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#3">内容2</a></li>
         <li><a href="http://aralejs.org#3">内容3</a></li>
@@ -188,7 +187,28 @@ seajs.use(['popup','$'], function(Popup, $) {
 seajs.use(['popup'], function(Popup){
     new Popup({
         trigger: '.trigger-all',
-        element: '#popup7'
+        element: '#popup6'
     });
+});
+````
+
+## 范例7: 手动调用show方法
+
+<div class="popup">
+    <a id="triggerId7">下拉框<span class="icon">▼</span></a>
+    <ul class="fn-hide ui-popup" id="popup7">
+        <li><a href="http://aralejs.org#1">内容1</a></li>
+        <li><a href="http://aralejs.org#3">内容2</a></li>
+        <li><a href="http://aralejs.org#3">内容3</a></li>
+        <li><a href="http://aralejs.org#4">内容4</a></li>
+    </ul>
+</div>
+
+````javascript
+seajs.use(['popup'], function(Popup){
+    new Popup({
+        trigger: '#triggerId7',
+        element: '#popup7'
+    }).show();
 });
 ````

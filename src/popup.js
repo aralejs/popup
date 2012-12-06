@@ -44,6 +44,10 @@ define(function(require, exports, module) {
             Popup.superclass.setup.call(this);
             this._bindTrigger();
             this._blurHide(this.get('trigger'));
+
+            // 默认绑定activeTrigger为第一个元素
+            // for https://github.com/aralejs/popup/issues/6
+            this.activeTrigger = this.get('trigger')[0];
         },
 
         show: function() {

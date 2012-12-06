@@ -8,6 +8,8 @@
 
 `tag:fixed` 修复一个动画为 slide 时的浮层定位错误。
 
+`tag:fixed` [#6](https://github.com/aralejs/popup/issues/6) 直接调用 show 方法的定位错误。
+
 `tag:improved` 依赖升级到 overlay 0.9.13。
 
 
