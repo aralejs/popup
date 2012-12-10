@@ -6,8 +6,6 @@
 
 `tag:new` 增加基础的动画支持（fade | slide），以及动画时长 duration 参数。
 
-`tag:new` 增加 disabled（是否能触发）参数。
-
 `tag:fixed` 修复当 triggerType 为 focus 时无法操作弹出层上的内容的bug。
 
 `tag:fixed` 修复一个动画为 slide 时的浮层定位错误。
@@ -18,6 +16,8 @@
 
 
 ## 0.9.9
+
+`tag:new` 增加 disabled（是否能触发）参数。
 
 `tag:fixed` 修复 trigger 为多个元素时的定位bug。
 
