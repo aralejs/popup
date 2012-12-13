@@ -140,10 +140,11 @@ define(function(require, exports, module) {
             fade && (animConfig.opacity = (val ? 'show' : 'hide' ));
 
             if (fade || slide) {
-                this.element.animate(animConfig, this.get('duration'));
-                this.element.css({
-                    'visibility': 'visible'
-                });
+                this.element.stop(true, true)
+                            .animate(animConfig, this.get('duration'))
+                            .css({
+                                'visibility': 'visible'
+                            });
             } else {
                 this.element[val ? 'show' : 'hide']();
             }

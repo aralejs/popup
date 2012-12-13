@@ -187,7 +187,8 @@ seajs.use(['popup','$'], function(Popup, $) {
 seajs.use(['popup'], function(Popup){
     new Popup({
         trigger: '.trigger-all',
-        element: '#popup6'
+        element: '#popup6',
+        effect: 'fade'
     });
 });
 ````

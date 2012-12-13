@@ -126,3 +126,32 @@ seajs.use(['popup'], function(Popup) {
     });
 });
 ````
+
+## 5. 多个元素快速切换（多个实例，同一个element的情况）
+
+<div class="popup">
+    <a href="#popup5" id="triggerId5-1">下拉框1<span class="icon">▼</span></a>
+    <a href="#popup5" id="triggerId5-2">下拉框2<span class="icon">▼</span></a>
+    <ul class="fn-hide ui-popup" id="popup5">
+        <li><a href="http://aralejs.org#1">内容1</a></li>
+        <li><a href="http://aralejs.org#2">内容2</a></li>
+        <li><a href="http://aralejs.org#3">内容3</a></li>
+        <li><a href="http://aralejs.org#4">内容4</a></li>
+    </ul>
+</div>
+
+````js
+seajs.use(['popup'], function(Popup) {
+    new Popup({
+        trigger: '#triggerId5-1',
+        element: '#popup5',
+        effect: 'fade'
+    });
+    new Popup({
+        trigger: '#triggerId5-2',
+        element: '#popup5',
+        effect: 'fade'
+    });
+});
+````
+

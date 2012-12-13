@@ -1,4 +1,4 @@
-define("arale/popup/0.9.10/popup-debug", ["$-debug", "arale/overlay/0.9.13/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug"], function(require, exports, module) {
+define("arale/popup/0.9.11/popup-debug", ["$-debug", "arale/overlay/0.9.13/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug"], function(require, exports, module) {
 
     var $ = require('$-debug');
     var Overlay = require('arale/overlay/0.9.13/overlay-debug');
@@ -140,10 +140,11 @@ define("arale/popup/0.9.10/popup-debug", ["$-debug", "arale/overlay/0.9.13/overl
             fade && (animConfig.opacity = (val ? 'show' : 'hide' ));
 
             if (fade || slide) {
-                this.element.animate(animConfig, this.get('duration'));
-                this.element.css({
-                    'visibility': 'visible'
-                });
+                this.element.stop(true, true)
+                            .animate(animConfig, this.get('duration'))
+                            .css({
+                                'visibility': 'visible'
+                            });
             } else {
                 this.element[val ? 'show' : 'hide']();
             }
