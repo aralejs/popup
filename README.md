@@ -51,7 +51,7 @@ seajs.use(['popup'], function(Popup){
 ```
 
 另外，Popup 已从 Overlay 继承了点击页面空白处浮层消失的功能。
-详细请查看 [演示文档](/examples/)。
+详细请查看 [演示文档](http://aralejs.org/popup/examples/)。
 
 ## 感谢
 
