@@ -37,7 +37,7 @@ Popup 是可触发的浮层组件。封装了当用户点击、hover、focus 到
 是否能触发弹出效果，可用`.set('disabled', true)`进行开关。
 
 
-> 若有范例和演示中有其他参数（如 align），请参见 Popup 的父类 [Overlay](http://aralejs.org/overlay/)。
+> 若有范例和演示中有其他参数（如自定义位置参数 align），请参见 Popup 的父类 [Overlay](http://aralejs.org/overlay/)。
 
 
 ## 最佳实践
