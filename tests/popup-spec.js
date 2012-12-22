@@ -111,6 +111,20 @@ define(function(require) {
             expect(align.baseElement).to.eql('body');
         });
 
+        it('change specified BaseElement', function() {
+            var test1 = new Popup({
+                trigger: '#trigger1',
+                element: '#element1'
+            });
+            expect(test1.get('align').baseElement._id).to.be('VIEWPORT');            
+            expect(test1._specifiedBaseElement).to.be(undefined);            
+            test1.set('align', {
+                baseElement: 'body'
+            });
+            expect(test1._specifiedBaseElement).to.be(true);
+            expect(test1.get('align').baseElement).to.be('body');
+        });
+
     });
 
 });

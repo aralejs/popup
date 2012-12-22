@@ -21,8 +21,16 @@ define(function(require, exports, module) {
 
             // 默认的定位参数
             align: {
-                baseXY: [0, '100%'],
-                selfXY: [0, 0]
+                value: {
+                    baseXY: [0, '100%'],
+                    selfXY: [0, 0]
+                },
+                setter: function(val) {
+                    if (val && val.baseElement) {
+                        this._specifiedBaseElement = true;
+                    }
+                    return val;
+                }
             },
  
             // 延迟触发和隐藏时间
@@ -73,6 +81,7 @@ define(function(require, exports, module) {
 
         // 覆盖 initialize 是为了取一个信息
         // 关于使用者是否指定了 align.baseElement 的信息
+        /*
         initialize: function(config) {
             if (config && config.align && config.align.baseElement) {
                 this._specifiedBaseElement = true;
@@ -83,7 +92,7 @@ define(function(require, exports, module) {
                 this._specifiedBaseElement = true;
             }
             Popup.superclass.initialize.call(this, config);
-        },
+        },*/
 
         _bindTrigger: function() {
             var trigger = this.get('trigger');
