@@ -58,12 +58,11 @@ define(function(require, exports, module) {
             // 若从未渲染，则调用 render
             (!this.rendered) && this.render();
 
-            console.log(this.get('align'));
             var align = this.get('align');
+            // 若未指定基准元素，则按照当前的触发元素进行定位
             this._setPosition($.extend({}, align, this._specifiedBaseElement ?{}:{
                 baseElement: this.activeTrigger
             }));
-            console.log(this.get('align'));            
 
             this.set('visible', true);
         },
