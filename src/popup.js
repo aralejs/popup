@@ -26,8 +26,15 @@ define(function(require, exports, module) {
                     selfXY: [0, 0]
                 },
                 setter: function(val) {
-                    if (val && val.baseElement) {
+                    if (!val) {
+                        return;
+                    }
+                    if (val.baseElement) {
                         this._specifiedBaseElement = true;
+                    } else if (this.activeTrigger) {
+                        // 若给的定位元素未指定基准元素
+                        // 就给一个...
+                        val.baseElement = this.activeTrigger;
                     }
                     return val;
                 }
@@ -78,21 +85,6 @@ define(function(require, exports, module) {
         toggle: function() {
             this[this.get('visible') ? 'hide' : 'show']();
         },
-
-        // 覆盖 initialize 是为了取一个信息
-        // 关于使用者是否指定了 align.baseElement 的信息
-        /*
-        initialize: function(config) {
-            if (config && config.align && config.align.baseElement) {
-                this._specifiedBaseElement = true;
-            }
-            // data-api 生成的配置也不能放过
-            var attrConfig = this._parseDataAttrsConfig(config);
-            if (attrConfig && attrConfig.align && attrConfig.align.baseElement) {
-                this._specifiedBaseElement = true;
-            }
-            Popup.superclass.initialize.call(this, config);
-        },*/
 
         _bindTrigger: function() {
             var trigger = this.get('trigger');

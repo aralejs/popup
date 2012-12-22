@@ -5,21 +5,21 @@
 ------------
 
 <style>
-    .fn-hide, .ui-popup {
-        display: none;
-    }
-    .ui-popup {
-        border: 1px solid #CCC;
-        padding: 3px 5px;
-        background: #EEE;
-        margin: 0;
-    }
-    .ui-popup ul {
-        margin: 0;
-    }
-    .ui-popup li {
-        list-style: none;
-    }
+.fn-hide, .ui-popup {
+    display: none;
+}
+.ui-popup {
+    border: 1px solid #CCC;
+    padding: 3px 5px;
+    background: #EEE;
+    margin: 0;
+}
+.ui-popup ul {
+    margin: 0;
+}
+.ui-popup li {
+    list-style: none;
+}
 </style>
 
 ## 1. data-api
@@ -81,8 +81,6 @@ seajs.use(['popup'], function(Popup) {
     }).after('hide', function(){
         console.log('example2 is hidden');
     });
-    // 触发事件
-    // example2.trigger('shown');
 });
 ````
 
@@ -118,7 +116,7 @@ seajs.use(['popup'], function(Popup){
 </div>
 
 ````javascript
-seajs.use(['popup','jquery'], function(Popup, $){
+seajs.use(['popup','$'], function(Popup, $){
     var example4 = new Popup({
         trigger: '#triggerId4',
         align: {
@@ -133,7 +131,6 @@ seajs.use(['popup','jquery'], function(Popup, $){
             example4.set('align', { baseXY: [0, -115] });
         }, 3000);
     });
-    example4.render();
 });
 ````
 
