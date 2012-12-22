@@ -58,15 +58,32 @@ define(function(require, exports, module) {
             // 若从未渲染，则调用 render
             (!this.rendered) && this.render();
 
+            console.log(this.get('align'));
             var align = this.get('align');
-            align.baseElement = this.activeTrigger;
-            this.set('align', align);
+            this._setPosition($.extend({}, align, this._specifiedBaseElement ?{}:{
+                baseElement: this.activeTrigger
+            }));
+            console.log(this.get('align'));            
 
             this.set('visible', true);
         },
 
         toggle: function() {
             this[this.get('visible') ? 'hide' : 'show']();
+        },
+
+        // 覆盖 initialize 是为了取一个信息
+        // 关于使用者是否指定了 align.baseElement 的信息
+        initialize: function(config) {
+            if (config && config.align && config.align.baseElement) {
+                this._specifiedBaseElement = true;
+            }
+            // data-api 生成的配置也不能放过
+            var attrConfig = this._parseDataAttrsConfig(config);
+            if (attrConfig && attrConfig.align && attrConfig.align.baseElement) {
+                this._specifiedBaseElement = true;
+            }
+            Popup.superclass.initialize.call(this, config);
         },
 
         _bindTrigger: function() {
@@ -148,7 +165,8 @@ define(function(require, exports, module) {
             } else {
                 this.element[val ? 'show' : 'hide']();
             }
-        }
+        }       
+
     });
 
     module.exports = Popup;

@@ -230,11 +230,11 @@ seajs.use(['popup'], function(Popup){
 ````javascript
 seajs.use(['popup'], function(Popup){
     new Popup({
-        trigger: '#triggerId7',
-        element: '#popup7',
+        trigger: '#triggerId8',
+        element: '#popup8',
         align: {
             baseElement: '#other-element'
         }
-    }).show();
+    });
 });
 ````
