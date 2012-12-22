@@ -1,6 +1,6 @@
 {
     "name": "popup",
-    "version": "0.9.11",
+    "version": "0.9.12",
     "root": "arale",
     "description": "Popup 是可触发的浮层组件。",
     "tag": "widget",

@@ -2,6 +2,11 @@
 
 ---
 
+## 0.9.12
+
+`tag:fixed` [#8](https://github.com/aralejs/popup/issues/8) align 里的 baseElment 无法自定义的问题。
+
+
 ## 0.9.11
 
 `tag:fixed` 修复多个实例公用一个浮出层时的动画重叠问题。
