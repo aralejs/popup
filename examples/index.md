@@ -213,3 +213,28 @@ seajs.use(['popup'], function(Popup){
     }).show();
 });
 ````
+
+## 范例8: 相对别的元素定位
+
+<div class="popup">
+    <a id="triggerId8">下拉框<span class="icon">▼</span></a>
+    <ul class="fn-hide ui-popup" id="popup8">
+        <li><a href="http://aralejs.org#1">内容1</a></li>
+        <li><a href="http://aralejs.org#3">内容2</a></li>
+        <li><a href="http://aralejs.org#3">内容3</a></li>
+        <li><a href="http://aralejs.org#4">内容4</a></li>
+    </ul>
+    <p id="other-element">别的元素</p>
+</div>
+
+````javascript
+seajs.use(['popup'], function(Popup){
+    new Popup({
+        trigger: '#triggerId7',
+        element: '#popup7',
+        align: {
+            baseElement: '#other-element'
+        }
+    }).show();
+});
+````
