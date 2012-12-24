@@ -1,156 +1,139 @@
-define("arale/popup/0.9.11/popup-debug", ["$-debug", "arale/overlay/0.9.13/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug"], function(require, exports, module) {
-
-    var $ = require('$-debug');
-    var Overlay = require('arale/overlay/0.9.13/overlay-debug');
-
-
+define("arale/popup/0.9.12/popup-debug", [ "$-debug", "arale/overlay/0.9.13/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug" ], function(require, exports, module) {
+    var $ = require("$-debug");
+    var Overlay = require("arale/overlay/0.9.13/overlay-debug");
     // Popup 是可触发 Overlay 型 UI 组件
     var Popup = Overlay.extend({
-
         attrs: {
             // 触发元素
             trigger: {
-                value: null, // required
+                value: null,
+                // required
                 getter: function(val) {
                     return $(val);
                 }
             },
-
             // 触发类型
-            triggerType: 'hover', // or click or focus
-
+            triggerType: "hover",
+            // or click or focus
             // 默认的定位参数
             align: {
-                baseXY: [0, '100%'],
-                selfXY: [0, 0]
+                value: {
+                    baseXY: [ 0, "100%" ],
+                    selfXY: [ 0, 0 ]
+                },
+                setter: function(val) {
+                    if (!val) {
+                        return;
+                    }
+                    if (val.baseElement) {
+                        this._specifiedBaseElement = true;
+                    } else if (this.activeTrigger) {
+                        // 若给的定位元素未指定基准元素
+                        // 就给一个...
+                        val.baseElement = this.activeTrigger;
+                    }
+                    return val;
+                }
             },
- 
             // 延迟触发和隐藏时间
             delay: 70,
-
             // 是否能够触发
             // 可以通过set('disabled', true)关闭
             disabled: false,
-
             // 基本的动画效果，可选 fade|slide
-            effect: '',
-
+            effect: "",
             // 动画的持续时间
             duration: 250
-
         },
-
         setup: function() {
             Popup.superclass.setup.call(this);
             this._bindTrigger();
-            this._blurHide(this.get('trigger'));
-
+            this._blurHide(this.get("trigger"));
             // 默认绑定activeTrigger为第一个元素
             // for https://github.com/aralejs/popup/issues/6
-            this.activeTrigger = this.get('trigger')[0];
+            this.activeTrigger = this.get("trigger")[0];
         },
-
         show: function() {
-            if (this.get('disabled')) {
+            if (this.get("disabled")) {
                 return;
             }
-
             // 若从未渲染，则调用 render
-            (!this.rendered) && this.render();
-
-            var align = this.get('align');
-            align.baseElement = this.activeTrigger;
-            this.set('align', align);
-
-            this.set('visible', true);
+            !this.rendered && this.render();
+            var align = this.get("align");
+            // 若未指定基准元素，则按照当前的触发元素进行定位
+            this._setPosition($.extend({}, align, this._specifiedBaseElement ? {} : {
+                baseElement: this.activeTrigger
+            }));
+            this.set("visible", true);
         },
-
         toggle: function() {
-            this[this.get('visible') ? 'hide' : 'show']();
+            this[this.get("visible") ? "hide" : "show"]();
         },
-
         _bindTrigger: function() {
-            var trigger = this.get('trigger');
-            var triggerType = this.get('triggerType');
-            var delay = this.get('delay');
-
+            var trigger = this.get("trigger");
+            var triggerType = this.get("triggerType");
+            var delay = this.get("delay");
             var showTimer, hideTimer;
             var that = this;
-
-            if (triggerType === 'click') {
+            if (triggerType === "click") {
                 trigger.on(triggerType, function(e) {
                     e.preventDefault();
-
                     // 标识当前点击的元素
                     that.activeTrigger = $(this);
                     that.toggle();
                 });
-            }
-            else if (triggerType === 'focus') {
-                trigger.on('focus', function() {
+            } else if (triggerType === "focus") {
+                trigger.on("focus", function() {
                     // 标识当前点击的元素
                     that.activeTrigger = $(this);
                     that.show();
-                }).on('blur', function() {
+                }).on("blur", function() {
                     setTimeout(function() {
-                        (!that._downOnElement) && that.hide();
+                        !that._downOnElement && that.hide();
                         that._downOnElement = false;
                     }, delay);
-                });;
-
+                });
                 // 为了当input blur时能够选择和操作弹出层上的内容
-                this.element.on('mousedown', function(e) {
+                this.element.on("mousedown", function(e) {
                     that._downOnElement = true;
                 });
-            }
-            // 默认是 hover
-            else {
+            } else {
                 trigger.hover(function() {
                     clearTimeout(hideTimer);
-
                     // 标识当前点击的元素
                     that.activeTrigger = $(this);
                     showTimer = setTimeout(function() {
                         that.show();
                     }, delay);
                 }, leaveHandler);
-
                 // 鼠标在悬浮层上时不消失
                 this.element.hover(function() {
                     clearTimeout(hideTimer);
                 }, leaveHandler);
             }
-
             function leaveHandler() {
                 clearTimeout(showTimer);
-
-                if (that.get('visible')) {
+                if (that.get("visible")) {
                     hideTimer = setTimeout(function() {
                         that.hide();
                     }, delay);
                 }
             }
         },
-
         _onRenderVisible: function(val) {
-            var fade = (this.get('effect').indexOf('fade') !== -1);
-            var slide = (this.get('effect').indexOf('slide') !== -1);
+            var fade = this.get("effect").indexOf("fade") !== -1;
+            var slide = this.get("effect").indexOf("slide") !== -1;
             var animConfig = {};
-            slide && (animConfig.height = (val ? 'show' : 'hide' ));
-            fade && (animConfig.opacity = (val ? 'show' : 'hide' ));
-
+            slide && (animConfig.height = val ? "show" : "hide");
+            fade && (animConfig.opacity = val ? "show" : "hide");
             if (fade || slide) {
-                this.element.stop(true, true)
-                            .animate(animConfig, this.get('duration'))
-                            .css({
-                                'visibility': 'visible'
-                            });
+                this.element.stop(true, true).animate(animConfig, this.get("duration")).css({
+                    visibility: "visible"
+                });
             } else {
-                this.element[val ? 'show' : 'hide']();
+                this.element[val ? "show" : "hide"]();
             }
         }
     });
-
     module.exports = Popup;
-
 });
