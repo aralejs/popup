@@ -30,7 +30,7 @@ Popup 是可触发的浮层组件。封装了当用户点击、hover、focus 到
 
 ### delay `number`
 
-延迟 hover 触发显示的时长，默认 70 毫秒。
+延迟 hover 触发显示的时长，默认 70 毫秒。设为 -1 时，popup 就变为 tooltip 了。
 
 ### disabled `boolean`
 
@@ -47,6 +47,18 @@ seajs.use(['arale/popup/{{版本号}}/popup'], function(Popup){
     var example = new Popup({
         trigger: '#triggerId',
         element: '#targetId'
+    });
+});
+```
+
+需要 tooltip 效果的请如下调用：
+
+```js
+seajs.use(['arale/popup/{{版本号}}/popup'], function(Popup){
+    var example = new Popup({
+        trigger: '#triggerId',
+        element: '#targetId',
+        delay: -1
     });
 });
 ```

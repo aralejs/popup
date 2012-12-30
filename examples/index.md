@@ -235,3 +235,25 @@ seajs.use(['popup'], function(Popup){
     });
 });
 ````
+
+## 范例9: 实现 tooltip 效果（无法移动到浮层上）
+
+<div class="popup">
+    <a id="triggerId9">下拉框<span class="icon">▼</span></a>
+    <ul class="fn-hide ui-popup" id="popup9">
+        <li><a href="http://aralejs.org#1">内容1</a></li>
+        <li><a href="http://aralejs.org#3">内容2</a></li>
+        <li><a href="http://aralejs.org#3">内容3</a></li>
+        <li><a href="http://aralejs.org#4">内容4</a></li>
+    </ul>
+</div>
+
+````javascript
+seajs.use(['popup'], function(Popup){
+    new Popup({
+        trigger: '#triggerId9',
+        element: '#popup9',
+        delay: -1
+    });
+});
+````

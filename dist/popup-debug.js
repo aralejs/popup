@@ -98,6 +98,16 @@ define("arale/popup/0.9.12/popup-debug", [ "$-debug", "arale/overlay/0.9.13/over
                     that._downOnElement = true;
                 });
             } else {
+                // 当 delay 为负数时
+                // popup 变成 tooltip 的效果
+                if (delay < 0) {
+                    trigger.hover(function() {
+                        that.show();
+                    }, function() {
+                        that.hide();
+                    });
+                    return;
+                }
                 trigger.hover(function() {
                     clearTimeout(hideTimer);
                     // 标识当前点击的元素

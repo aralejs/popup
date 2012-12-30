@@ -4,6 +4,8 @@
 
 ## 0.9.12
 
+`tag:improved` delay 参数为 -1 时，表示 popup 没有 delay 因素而成为 tooltip 的效果。
+
 `tag:fixed` [#8](https://github.com/aralejs/popup/issues/8) align 里的 baseElment 无法自定义的问题。
 
 

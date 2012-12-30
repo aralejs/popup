@@ -122,6 +122,16 @@ define(function(require, exports, module) {
             }
             // 默认是 hover
             else {
+                // 当 delay 为负数时
+                // popup 变成 tooltip 的效果
+                if (delay < 0) {
+                    trigger.hover(function() {
+                        that.show();
+                    }, function() {
+                        that.hide();
+                    });
+                    return;
+                }
                 trigger.hover(function() {
                     clearTimeout(hideTimer);
 
