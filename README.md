@@ -30,7 +30,7 @@ Popup 是可触发的浮层组件。封装了当用户点击、hover、focus 到
 
 ### delay `number`
 
-延迟 hover 触发显示的时长，默认 70 毫秒。设为 -1 时，popup 就变为 tooltip 了。
+延迟 hover 触发显示的时长，默认 70 毫秒。设为`-1`时，表示 popup 没有延迟显示和隐藏因素而变为 tooltip 的效果。
 
 ### disabled `boolean`
 
