@@ -62,7 +62,7 @@ define(function(require, exports, module) {
 
             // 默认绑定activeTrigger为第一个元素
             // for https://github.com/aralejs/popup/issues/6
-            this.activeTrigger = this.get('trigger')[0];
+            this.activeTrigger = this.get('trigger').eq(0);
         },
 
         show: function() {
@@ -126,6 +126,8 @@ define(function(require, exports, module) {
                 // popup 变成 tooltip 的效果
                 if (delay < 0) {
                     trigger.hover(function() {
+                        // 标识当前点击的元素
+                        that.activeTrigger = $(this);
                         that.show();
                     }, function() {
                         that.hide();

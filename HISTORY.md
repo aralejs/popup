@@ -2,9 +2,17 @@
 
 ---
 
+## 0.9.13
+
+`tag:fixed` [#11](https://github.com/aralejs/popup/issues/11) delay 为 -1 时，未绑定 this.activeTrigger 而导致定位错误。
+
+`tag:fixed` [#10](https://github.com/aralejs/popup/issues/10) this.activeTrigger 初始化时不是 jQuery 对象。
+
 ## 0.9.12
 
 `tag:improved` delay 参数为 -1 时，表示 popup 没有延迟显示和隐藏因素而变为 tooltip 的效果。
+
+`tag:unresolved` delay 为 -1 时，未绑定 this.activeTrigger 而导致定位错误。
 
 `tag:fixed` [#8](https://github.com/aralejs/popup/issues/8) align 里的 baseElment 无法自定义的问题。
 

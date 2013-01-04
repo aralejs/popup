@@ -1,4 +1,4 @@
-define("arale/popup/0.9.12/popup-debug", [ "$-debug", "arale/overlay/0.9.13/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug" ], function(require, exports, module) {
+define("arale/popup/0.9.13/popup-debug", [ "$-debug", "arale/overlay/0.9.13/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug" ], function(require, exports, module) {
     var $ = require("$-debug");
     var Overlay = require("arale/overlay/0.9.13/overlay-debug");
     // Popup 是可触发 Overlay 型 UI 组件
@@ -51,7 +51,7 @@ define("arale/popup/0.9.12/popup-debug", [ "$-debug", "arale/overlay/0.9.13/over
             this._blurHide(this.get("trigger"));
             // 默认绑定activeTrigger为第一个元素
             // for https://github.com/aralejs/popup/issues/6
-            this.activeTrigger = this.get("trigger")[0];
+            this.activeTrigger = this.get("trigger").eq(0);
         },
         show: function() {
             if (this.get("disabled")) {
@@ -102,6 +102,8 @@ define("arale/popup/0.9.12/popup-debug", [ "$-debug", "arale/overlay/0.9.13/over
                 // popup 变成 tooltip 的效果
                 if (delay < 0) {
                     trigger.hover(function() {
+                        // 标识当前点击的元素
+                        that.activeTrigger = $(this);
                         that.show();
                     }, function() {
                         that.hide();
