@@ -39,7 +39,7 @@ define(function(require, exports, module) {
                     return val;
                 }
             },
- 
+
             // 延迟触发和隐藏时间
             delay: 70,
 
@@ -75,7 +75,7 @@ define(function(require, exports, module) {
 
             var align = this.get('align');
             // 若未指定基准元素，则按照当前的触发元素进行定位
-            this._setPosition($.extend({}, align, this._specifiedBaseElement ?{}:{
+            this._setPosition($.extend({}, align, this._specifiedBaseElement ? {} : {
                 baseElement: this.activeTrigger
             }));
 
@@ -113,7 +113,7 @@ define(function(require, exports, module) {
                         (!that._downOnElement) && that.hide();
                         that._downOnElement = false;
                     }, delay);
-                });;
+                });
 
                 // 为了当input blur时能够选择和操作弹出层上的内容
                 this.element.on('mousedown', function(e) {
@@ -165,8 +165,8 @@ define(function(require, exports, module) {
             var fade = (this.get('effect').indexOf('fade') !== -1);
             var slide = (this.get('effect').indexOf('slide') !== -1);
             var animConfig = {};
-            slide && (animConfig.height = (val ? 'show' : 'hide' ));
-            fade && (animConfig.opacity = (val ? 'show' : 'hide' ));
+            slide && (animConfig.height = (val ? 'show' : 'hide'));
+            fade && (animConfig.opacity = (val ? 'show' : 'hide'));
 
             if (fade || slide) {
                 this.element.stop(true, true)
@@ -177,7 +177,7 @@ define(function(require, exports, module) {
             } else {
                 this.element[val ? 'show' : 'hide']();
             }
-        }       
+        }
 
     });
 
