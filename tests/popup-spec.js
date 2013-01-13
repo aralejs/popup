@@ -20,7 +20,7 @@ define(function(require) {
         afterEach(function() {
             pop && pop.destroy();
             pop = null;
-            element && element.remove();
+            element && element.remove();            
         });
 
         it('instance', function() {
@@ -100,9 +100,9 @@ define(function(require) {
             });
             pop.render();
             expect(pop.element.is(':visible')).to.be(false);
-            input[0].focus();
+            input.focus();
             expect(pop.element.is(':visible')).to.be(true);
-            input[0].blur();
+            input.blur();
             setTimeout(function() {
                 expect(pop.element.is(':visible')).to.be(false);
                 input.remove();
