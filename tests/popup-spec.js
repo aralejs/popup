@@ -20,7 +20,7 @@ define(function(require) {
         afterEach(function() {
             pop && pop.destroy();
             pop = null;
-            element.remove();
+            element && element.remove();
         });
 
         it('instance', function() {
