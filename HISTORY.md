@@ -2,6 +2,10 @@
 
 ---
 
+## 0.9.14
+
+`tag:changed` 对 arale/overlay 的依赖从 0.9.13 升级到 1.0.0
+
 ## 0.9.13
 
 `tag:fixed` [#11](https://github.com/aralejs/popup/issues/11) delay 为 -1 时，未绑定 this.activeTrigger 而导致定位错误。

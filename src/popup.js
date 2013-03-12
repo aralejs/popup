@@ -136,6 +136,7 @@ define(function(require, exports, module) {
                 }
                 trigger.hover(function() {
                     clearTimeout(hideTimer);
+                    hideTimer = null;
 
                     // 标识当前点击的元素
                     that.activeTrigger = $(this);
@@ -152,6 +153,7 @@ define(function(require, exports, module) {
 
             function leaveHandler() {
                 clearTimeout(showTimer);
+                showTimer = null;
 
                 if (that.get('visible')) {
                     hideTimer = setTimeout(function() {

@@ -117,6 +117,7 @@ seajs.use(['popup'], function(Popup) {
             }
         }
     });
+    var t1 = (new Date).getTime();
     var example4 = new animPopup({
         trigger: '#triggerId4',
         align: {
@@ -124,6 +125,8 @@ seajs.use(['popup'], function(Popup) {
         },
         element: '#popup4'
     });
+    var t2 = (new Date).getTime();
+    document.title = (t2 - t1);
 });
 ````
 
