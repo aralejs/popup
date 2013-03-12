@@ -26,7 +26,6 @@ define(function(require, exports, module) {
                     selfXY: [0, 0]
                 },
                 setter: function(val) {
-                    console.log(val);
                     if (!val) {
                         return;
                     }
