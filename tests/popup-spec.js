@@ -168,7 +168,7 @@ define(function(require) {
                 trigger: '#trigger1',
                 element: '#element1'
             });
-            expect(pop.get('align').baseElement._id).to.be('VIEWPORT');
+            expect(pop.get('align').baseElement[0].id).to.be('trigger1');
             expect(pop._specifiedBaseElement).to.be(undefined);
             pop.set('align', {
                 baseElement: 'body'

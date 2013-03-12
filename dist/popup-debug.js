@@ -22,6 +22,7 @@ define("arale/popup/1.0.0/popup-debug", [ "$-debug", "arale/overlay/1.0.0/overla
                     selfXY: [ 0, 0 ]
                 },
                 setter: function(val) {
+                    console.log(val);
                     if (!val) {
                         return;
                     }
@@ -33,6 +34,12 @@ define("arale/popup/1.0.0/popup-debug", [ "$-debug", "arale/overlay/1.0.0/overla
                         val.baseElement = this.activeTrigger;
                     }
                     return val;
+                },
+                getter: function(val) {
+                    // 若未指定基准元素，则按照当前的触发元素进行定位
+                    return $.extend({}, val, this._specifiedBaseElement ? {} : {
+                        baseElement: this.activeTrigger
+                    });
                 }
             },
             // 延迟触发和隐藏时间
@@ -57,14 +64,7 @@ define("arale/popup/1.0.0/popup-debug", [ "$-debug", "arale/overlay/1.0.0/overla
             if (this.get("disabled")) {
                 return;
             }
-            // 若从未渲染，则调用 render
-            !this.rendered && this.render();
-            var align = this.get("align");
-            // 若未指定基准元素，则按照当前的触发元素进行定位
-            this._setPosition($.extend({}, align, this._specifiedBaseElement ? {} : {
-                baseElement: this.activeTrigger
-            }));
-            this.set("visible", true);
+            return Popup.superclass.show.call(this);
         },
         toggle: function() {
             this[this.get("visible") ? "hide" : "show"]();
@@ -94,7 +94,7 @@ define("arale/popup/1.0.0/popup-debug", [ "$-debug", "arale/overlay/1.0.0/overla
                     }, delay);
                 });
                 // 为了当input blur时能够选择和操作弹出层上的内容
-                this.element.on("mousedown", function(e) {
+                this.element.on("mousedown", function() {
                     that._downOnElement = true;
                 });
             } else {
