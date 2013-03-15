@@ -2,9 +2,13 @@
 
 ---
 
+## 1.0.1
+
+`tag:fixed` 修复了一个 slide 动画效果导致定位错误的问题。
+
 ## 1.0.0
 
-`tag:changed` 对 arale/overlay 的依赖从 0.9.13 升级到 1.0.0
+`tag:changed` 对 arale/overlay 的依赖从 0.9.13 升级到 1.0.0 。
 
 ## 0.9.13
 

@@ -172,6 +172,8 @@ define(function(require, exports, module) {
                             .css({
                                 'visibility': 'visible'
                             });
+                // 修复 slidedown 时定位错误的问题
+                this.off('after:show');
             } else {
                 this.element[val ? 'show' : 'hide']();
             }

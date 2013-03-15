@@ -126,7 +126,6 @@ seajs.use(['popup'], function(Popup) {
         element: '#popup4'
     });
     var t2 = (new Date).getTime();
-    document.title = (t2 - t1);
 });
 ````
 
