@@ -17,7 +17,7 @@
     },
     "dependencies": {
         "$": "$",
-        "overlay": "arale/overlay/1.0.0/overlay"
+        "overlay": "arale/overlay/1.0.1/overlay"
     },
     "tests": ["popup"]
 }
