@@ -1,9 +1,9 @@
 {
+    "family": "arale",
     "name": "popup",
     "version": "1.0.1",
-    "root": "arale",
     "description": "Popup 是可触发的浮层组件。",
-    "tag": "widget",
+    "keywords": ["widget"],
     "homepage": "http://aralejs.org/popup/",
     "repository": {
         "type": "git",
@@ -12,12 +12,11 @@
     "bugs": {
         "url": "https://github.com/aralejs/popup/issues"
     },
-    "output": {
-        "popup.js": ["popup.js"]
-    },
-    "dependencies": {
-        "$": "$",
-        "overlay": "arale/overlay/1.0.1/overlay"
-    },
-    "tests": ["popup"]
+    "spm": {
+        "output": ["popup.js"],
+        "alias": {
+            "$": "$",
+            "overlay": "arale/overlay/1.0.1/overlay"
+        }
+    }
 }
