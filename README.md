@@ -24,7 +24,7 @@ Popup 是可触发的浮层组件。封装了当用户点击、hover、focus 到
 
 ### delegateNode `element|string` `1.0.2+`
 
-触发事件委托的对象。
+触发事件委托的对象。**当使用这个配置时，需要保证 trigger 参数是一个 selector !!!**
 
 ### effect `string`
 
