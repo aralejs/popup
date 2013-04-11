@@ -1,6 +1,6 @@
-define("arale/popup/1.0.1/popup-debug", [ "$-debug", "arale/overlay/1.0.0/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.3/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug" ], function(require, exports, module) {
+define("arale/popup/1.0.1/popup-debug", [ "$-debug", "arale/overlay/1.0.1/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.0.3/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug" ], function(require, exports, module) {
     var $ = require("$-debug");
-    var Overlay = require("arale/overlay/1.0.0/overlay-debug");
+    var Overlay = require("arale/overlay/1.0.1/overlay-debug");
     // Popup 是可触发 Overlay 型 UI 组件
     var Popup = Overlay.extend({
         attrs: {

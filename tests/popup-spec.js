@@ -1,7 +1,8 @@
 define(function(require) {
 
     var $ = require('$');
-    var Popup = require('../src/popup');
+    var Popup = require('popup');
+    var expect = require('expect');
 
     describe('popup', function() {
         var element = '<div>' +
