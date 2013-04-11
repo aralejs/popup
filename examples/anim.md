@@ -1,6 +1,6 @@
 # 动画弹出层效果
 
-- order: 2
+- order: 3
 
 ---
 
@@ -61,11 +61,7 @@ seajs.use(['popup'], function(Popup) {
     var example2 = new Popup({
         trigger: '#triggerId2',
         element: '#popup2',
-        effect: 'slide',
-        align: {
-            selfXY: [0, '100%'],
-            baseXY: [0, 0]
-        }
+        effect: 'slide'
     });
 });
 ````

@@ -86,10 +86,6 @@ define(function(require, exports, module) {
             return Popup.superclass.show.call(this);
         },
 
-        toggle: function() {
-            this[this.get('visible') ? 'hide' : 'show']();
-        },
-
         _bindTrigger: function() {
             var triggerType = this.get('triggerType');
 
@@ -108,11 +104,38 @@ define(function(require, exports, module) {
 
             bindEvent('click', this.get('trigger'), function(e) {
                 e.preventDefault();
-
-                // 标识当前点击的元素
-                that.activeTrigger = $(this);
-                that.toggle();
+         
+                // this._active 这个变量表明了当前触发元素是激活状态
+                if (this._active === true) {
+                    that.hide();
+                } else {
+                    // 将当前trigger标为激活状态
+                    makeActive(this);
+                    that.show();
+                }
             }), this.get('delegateNode');
+
+            // 隐藏前清空激活状态
+            this.before('hide', function() {
+                makeActive();
+            });
+
+            // 处理所有trigger的激活状态
+            // 若 trigger 为空，相当于清除所有元素的激活状态
+            function makeActive(trigger) {
+                if (that.get('disabled')) {
+                    return;
+                }
+                that.get('trigger').each(function(i, item) {
+                    if (trigger == item) {
+                        item._active = true;
+                        // 标识当前点击的元素
+                        that.activeTrigger = $(item);
+                    } else {
+                        item._active = false;
+                    }
+                });
+            }
         },
         
         _bindFocus: function() {
@@ -211,8 +234,6 @@ define(function(require, exports, module) {
                             .css({
                                 'visibility': 'visible'
                             });
-                // 修复 slidedown 时定位错误的问题
-                this.off('after:show');
             } else {
                 this.element[val ? 'show' : 'hide']();
             }
@@ -225,9 +246,13 @@ define(function(require, exports, module) {
     // 一个绑定事件的简单封装
     function bindEvent(type, element, fn, delegateNode) {
         if (delegateNode && delegateNode[0]) {
-            delegateNode.on(type, element.selector, fn);
+            delegateNode.on(type, element.selector, function(e) {
+                fn.call(this, e);
+            });
         } else {
-            element.on(type, fn);
+            element.on(type, function(e) {
+                fn.call(this, e);
+            });
         }
     }
 
