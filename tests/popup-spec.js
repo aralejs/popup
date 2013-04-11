@@ -6,8 +6,8 @@ define(function(require) {
 
     describe('popup', function() {
         var element = '<div>' +
-                            '<a href="#" id="trigger1">popup</a>' +
-                            '<ul id="element1">' +
+                            '<a href="#" id="trigger1" class="trigger">popup</a>' +
+                            '<ul id="element1" style="display:none;">' +
                                 '<li>那些年，我们一起写过的单元测试...</li>' +
                                 '<li>卖萌是一种风格...</li>' +
                             '</ul>' +
@@ -38,7 +38,7 @@ define(function(require) {
             expect(align.selfXY).to.eql([0, 0]);
         });
 
-        it('hover event', function() {
+        it('hover event', function(done) {
             var event1;
             var event2;
             pop = new Popup({
@@ -61,19 +61,18 @@ define(function(require) {
             expect(event2).to.be(hideText);
 
             // 鼠标移入
-            $('#trigger1').trigger('mouseover');
-            pop.after('show', function() {
-                expect(pop.get('trigger').is(':visible')).to.be(true);
+            $('#trigger1').mouseover();
+            setTimeout(function() {
                 expect(pop.element.is(':visible')).to.be(true);
-            });
 
-            // 鼠标移出
-            $('#trigger1').trigger('mouseout');
+                // 鼠标移出                
+                $('#trigger1').mouseout();
 
-            pop.after('hide', function() {
-                expect(pop.get('trigger').is(':visible')).to.be(true);
-                expect(pop.element.is(':hidden')).to.be(true);
-            });
+                setTimeout(function() {
+                    expect(pop.element.is(':visible')).to.be(false);
+                    done();
+                }, 80);
+            }, 80);
 
         });
 
@@ -195,6 +194,32 @@ define(function(require) {
             $('#trigger1').click();
             expect(pop.element.is(':visible')).to.be(false);
         });
+
+        it('delegate event', function(done) {
+            pop = new Popup({
+                trigger: '.trigger',
+                element: '#element1',
+                delegateNode: element
+            });
+
+            // 动态加入节点
+            element.append('<a href="#" id="trigger2" class="trigger">popup</a>');
+            // 鼠标移入
+            $('#trigger2').mouseover();
+            setTimeout(function() {
+                expect(pop.element.is(':visible')).to.be(true);
+
+                // 鼠标移出                
+                $('#trigger2').mouseout();
+
+                setTimeout(function() {
+                    expect(pop.element.is(':visible')).to.be(false);
+                    done();
+                }, 80);
+            }, 80);
+
+        });
+
 
     });
 

@@ -22,8 +22,6 @@
     }
 </style>
 
-###
-
 ## 1. 渐隐效果 `effect: 'fade'`
 
 <div class="popup">

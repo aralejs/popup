@@ -22,6 +22,10 @@ Popup 是可触发的浮层组件。封装了当用户点击、hover、focus 到
 
 触发类型，可选[hover|click|focus]，默认为 hover。
 
+### delegateNode `element|string` `1.0.2+`
+
+触发事件委托的对象。
+
 ### effect `string`
 
 基础的动画效果，可选[fade|slide]，默认为空。fade 和 slide 可以并行。

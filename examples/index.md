@@ -36,7 +36,7 @@
 </div>
 
 ````javascript
-seajs.use(['arale/widget/1.0.2/widget'], function(Widget){
+seajs.use(['arale/widget/1.0.3/widget'], function(Widget){
     // example1
     // data-api 自动渲染
     Widget.autoRenderAll();
@@ -254,6 +254,35 @@ seajs.use(['popup'], function(Popup){
         trigger: '#triggerId9',
         element: '#popup9',
         delay: -1
+    });
+});
+````
+
+## 范例10: 委托事件的用法
+
+<div class="popup" id="delegateNode">
+    <button id="addNewNode">增加一个节点</button>
+    <a class="triggerClass10">下拉框<span class="icon">▼</span></a>
+    <a class="triggerClass10">下拉框<span class="icon">▼</span></a>  
+    <ul class="fn-hide ui-popup" id="popup10">
+        <li><a href="http://aralejs.org#1">内容1</a></li>
+        <li><a href="http://aralejs.org#3">内容2</a></li>
+        <li><a href="http://aralejs.org#3">内容3</a></li>
+        <li><a href="http://aralejs.org#4">内容4</a></li>
+    </ul>
+</div>
+
+````javascript
+seajs.use(['popup', '$'], function(Popup, $){
+    new Popup({
+        trigger: '.triggerClass10',
+        element: '#popup10',
+        delegateNode: '#delegateNode'
+    });
+    // 新增节点，观察是否绑定了popup事件
+    $('#addNewNode').click(function() {
+        $('<a class="triggerClass10">动态增加的节点<span class="icon">▼</span></a>')
+            .appendTo('#delegateNode');
     });
 });
 ````
