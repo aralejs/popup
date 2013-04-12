@@ -19,6 +19,14 @@ define(function(require, exports, module) {
             // 触发类型
             triggerType: 'hover', // or click or focus
 
+            // 触发事件委托的对象
+            delegateNode: {
+                value: null,
+                getter: function(val) {
+                    return $(val);
+                }
+            },
+
             // 默认的定位参数
             align: {
                 value: {
@@ -78,74 +86,112 @@ define(function(require, exports, module) {
             return Popup.superclass.show.call(this);
         },
 
-        toggle: function() {
-            this[this.get('visible') ? 'hide' : 'show']();
+        _bindTrigger: function() {
+            var triggerType = this.get('triggerType');
+
+            if (triggerType === 'click') {
+                this._bindClick();
+            } else if (triggerType === 'focus') {
+                this._bindFocus(); 
+            } else {
+                // 默认是 hover
+                this._bindHover();
+            }
         },
 
-        _bindTrigger: function() {
+        _bindClick: function() {
+            var that = this;
+
+            bindEvent('click', this.get('trigger'), function(e) {
+                e.preventDefault();
+         
+                // this._active 这个变量表明了当前触发元素是激活状态
+                if (this._active === true) {
+                    that.hide();
+                } else {
+                    // 将当前trigger标为激活状态
+                    makeActive(this);
+                    that.show();
+                }
+            }), this.get('delegateNode');
+
+            // 隐藏前清空激活状态
+            this.before('hide', function() {
+                makeActive();
+            });
+
+            // 处理所有trigger的激活状态
+            // 若 trigger 为空，相当于清除所有元素的激活状态
+            function makeActive(trigger) {
+                if (that.get('disabled')) {
+                    return;
+                }
+                that.get('trigger').each(function(i, item) {
+                    if (trigger == item) {
+                        item._active = true;
+                        // 标识当前点击的元素
+                        that.activeTrigger = $(item);
+                    } else {
+                        item._active = false;
+                    }
+                });
+            }
+        },
+        
+        _bindFocus: function() {
+            var that = this;
+
+            bindEvent('focus', this.get('trigger'), function() {
+                // 标识当前点击的元素
+                that.activeTrigger = $(this);
+                that.show();
+            }), this.get('delegateNode');
+
+            bindEvent('blur', this.get('trigger'), function() {
+                setTimeout(function() {
+                    (!that._downOnElement) && that.hide();
+                    that._downOnElement = false;
+                }, that.get('delay'));
+            }), this.get('delegateNode');
+
+            // 为了当input blur时能够选择和操作弹出层上的内容
+            this.element.on('mousedown', function() {
+                that._downOnElement = true;
+            });
+        },
+        
+        _bindHover: function() {
             var trigger = this.get('trigger');
-            var triggerType = this.get('triggerType');
+            var delegateNode = this.get('delegateNode');
             var delay = this.get('delay');
 
             var showTimer, hideTimer;
             var that = this;
 
-            if (triggerType === 'click') {
-                trigger.on(triggerType, function(e) {
-                    e.preventDefault();
-
-                    // 标识当前点击的元素
-                    that.activeTrigger = $(this);
-                    that.toggle();
-                });
+            // 当 delay 为负数时
+            // popup 变成 tooltip 的效果
+            if (delay < 0) {
+                this._bindTooltip();
+                return;
             }
-            else if (triggerType === 'focus') {
-                trigger.on('focus', function() {
-                    // 标识当前点击的元素
-                    that.activeTrigger = $(this);
+
+            bindEvent('mouseover', trigger, function() {
+                clearTimeout(hideTimer);
+                hideTimer = null;
+
+                // 标识当前点击的元素
+                that.activeTrigger = $(this);
+                showTimer = setTimeout(function() {
                     that.show();
-                }).on('blur', function() {
-                    setTimeout(function() {
-                        (!that._downOnElement) && that.hide();
-                        that._downOnElement = false;
-                    }, delay);
-                });
+                }, delay);
+            }, delegateNode);
 
-                // 为了当input blur时能够选择和操作弹出层上的内容
-                this.element.on('mousedown', function() {
-                    that._downOnElement = true;
-                });
-            }
-            // 默认是 hover
-            else {
-                // 当 delay 为负数时
-                // popup 变成 tooltip 的效果
-                if (delay < 0) {
-                    trigger.hover(function() {
-                        // 标识当前点击的元素
-                        that.activeTrigger = $(this);
-                        that.show();
-                    }, function() {
-                        that.hide();
-                    });
-                    return;
-                }
-                trigger.hover(function() {
-                    clearTimeout(hideTimer);
-                    hideTimer = null;
+            bindEvent('mouseout', trigger, leaveHandler, delegateNode);
 
-                    // 标识当前点击的元素
-                    that.activeTrigger = $(this);
-                    showTimer = setTimeout(function() {
-                        that.show();
-                    }, delay);
-                }, leaveHandler);
-
-                // 鼠标在悬浮层上时不消失
-                this.element.hover(function() {
-                    clearTimeout(hideTimer);
-                }, leaveHandler);
-            }
+            // 鼠标在悬浮层上时不消失
+            this.element.hover(function() {
+                clearTimeout(hideTimer);
+            }, leaveHandler);
 
             function leaveHandler() {
                 clearTimeout(showTimer);
@@ -157,6 +203,22 @@ define(function(require, exports, module) {
                     }, delay);
                 }
             }
+        },
+
+        _bindTooltip: function(){
+            var trigger = this.get('trigger');
+            var delegateNode = this.get('delegateNode');
+            var that = this;
+
+            bindEvent('mouseover', trigger, function() {
+                // 标识当前点击的元素
+                that.activeTrigger = $(this);
+                that.show();
+            }, delegateNode);
+
+            bindEvent('mouseout', trigger, function() {
+                that.hide();
+            }, delegateNode);
         },
 
         _onRenderVisible: function(val) {
@@ -172,8 +234,6 @@ define(function(require, exports, module) {
                             .css({
                                 'visibility': 'visible'
                             });
-                // 修复 slidedown 时定位错误的问题
-                this.off('after:show');
             } else {
                 this.element[val ? 'show' : 'hide']();
             }
@@ -182,5 +242,18 @@ define(function(require, exports, module) {
     });
 
     module.exports = Popup;
+
+    // 一个绑定事件的简单封装
+    function bindEvent(type, element, fn, delegateNode) {
+        if (delegateNode && delegateNode[0]) {
+            delegateNode.on(type, element.selector, function(e) {
+                fn.call(this, e);
+            });
+        } else {
+            element.on(type, function(e) {
+                fn.call(this, e);
+            });
+        }
+    }
 
 });

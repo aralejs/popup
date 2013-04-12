@@ -2,6 +2,10 @@
 
 ---
 
+## 1.0.2
+
+`tag:improved` [#13](https://github.com/aralejs/popup/issues/13) 增加 delegateNode 参数，可以将触发事件委托到指定元素上。
+
 ## 1.0.1
 
 `tag:fixed` 修复了一个 slide 动画效果导致定位错误的问题。
@@ -76,9 +80,9 @@
 
 `tag:changed` 改成了继承 Overlay 的方式。
 
-`tag:new` 支持 Delay 参数
+`tag:new` 支持 Delay 参数。
 
 
 ## 0.9.0 `2012-05-24`
 
-`tag:new` 包含 Dropdown 基本功能
+`tag:new` 包含 Dropdown 基本功能。

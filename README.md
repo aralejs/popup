@@ -22,6 +22,10 @@ Popup 是可触发的浮层组件。封装了当用户点击、hover、focus 到
 
 触发类型，可选[hover|click|focus]，默认为 hover。
 
+### delegateNode `element|string` `1.0.2+`
+
+触发事件委托的对象。**当使用这个配置时，需要保证 trigger 参数是一个 selector !!!**
+
 ### effect `string`
 
 基础的动画效果，可选[fade|slide]，默认为空。fade 和 slide 可以并行。
@@ -67,8 +71,6 @@ seajs.use(['arale/popup/{{版本号}}/popup'], function(Popup){
 
 另外，Popup 已从 Overlay 继承了点击页面空白处浮层消失，以及窗口改变大小后浮层重新定位等被动属性，
 详细请查看 [演示文档](http://aralejs.org/popup/examples/)。
-
-注意：Popup 是在 show 后进行定位，如果继承时需要配置自定义位置，请覆盖 show 方法。
 
 ## 感谢
 

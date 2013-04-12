@@ -5,9 +5,9 @@ define(function(require) {
     var expect = require('expect');
 
     describe('popup', function() {
-        var element = '<div>' +
-                            '<a href="#" id="trigger1">popup</a>' +
-                            '<ul id="element1">' +
+        var template = '<div>' +
+                            '<a href="#" id="trigger1" class="trigger">popup</a>' +
+                            '<ul id="element1" style="display:none;">' +
                                 '<li>那些年，我们一起写过的单元测试...</li>' +
                                 '<li>卖萌是一种风格...</li>' +
                             '</ul>' +
@@ -15,13 +15,13 @@ define(function(require) {
         var pop;
 
         beforeEach(function() {
-            element = $(element).appendTo(document.body);
+            element = $(template).appendTo(document.body);
         });
 
         afterEach(function() {
             pop && pop.destroy();
             pop = null;
-            element && element.remove();            
+            element && element.remove();
         });
 
         it('instance', function() {
@@ -38,7 +38,7 @@ define(function(require) {
             expect(align.selfXY).to.eql([0, 0]);
         });
 
-        it('hover event', function() {
+        it('hover event', function(done) {
             var event1;
             var event2;
             pop = new Popup({
@@ -61,19 +61,18 @@ define(function(require) {
             expect(event2).to.be(hideText);
 
             // 鼠标移入
-            $('#trigger1').trigger('mouseover');
-            pop.after('show', function() {
-                expect(pop.get('trigger').is(':visible')).to.be(true);
+            $('#trigger1').mouseover();
+            setTimeout(function() {
                 expect(pop.element.is(':visible')).to.be(true);
-            });
 
-            // 鼠标移出
-            $('#trigger1').trigger('mouseout');
+                // 鼠标移出                
+                $('#trigger1').mouseout();
 
-            pop.after('hide', function() {
-                expect(pop.get('trigger').is(':visible')).to.be(true);
-                expect(pop.element.is(':hidden')).to.be(true);
-            });
+                setTimeout(function() {
+                    expect(pop.element.is(':visible')).to.be(false);
+                    done();
+                }, 80);
+            }, 80);
 
         });
 
@@ -83,7 +82,6 @@ define(function(require) {
                 element: '#element1',
                 triggerType: 'click'
             });
-            pop.render();
             expect(pop.element.is(':visible')).to.be(false);            
             $('#trigger1').click();
             expect(pop.element.is(':visible')).to.be(true);
@@ -195,6 +193,78 @@ define(function(require) {
             $('#trigger1').click();
             expect(pop.element.is(':visible')).to.be(false);
         });
+
+        it('delegate event', function(done) {
+            pop = new Popup({
+                trigger: '.trigger',
+                element: '#element1',
+                delegateNode: element
+            });
+
+            // 动态加入节点
+            element.append('<a href="#" id="trigger2" class="trigger">popup</a>');
+            // 鼠标移入
+            $('#trigger2').mouseover();
+            setTimeout(function() {
+                expect(pop.element.is(':visible')).to.be(true);
+
+                // 鼠标移出                
+                $('#trigger2').mouseout();
+
+                setTimeout(function() {
+                    expect(pop.element.is(':visible')).to.be(false);
+                    done();
+                }, 80);
+            }, 80);
+
+        });
+
+        it('blur hide & triggers', function() {
+            // 加入节点
+            element.append('<a href="#" id="trigger2" class="trigger">popup</a>');
+            
+            pop = new Popup({
+                trigger: '.trigger',
+                triggerType: 'click',
+                element: '#element1'
+            });
+            
+            // 都不是激活状态
+            expect(pop.element.is(':visible')).to.be(false);
+            expect($('#trigger1')[0]._active).not.to.be.ok();
+            expect($('#trigger2')[0]._active).not.to.be.ok();
+
+            // 点击1，element 出现
+            $('#trigger1').click();
+            expect(pop.element.is(':visible')).to.be(true);
+            expect($('#trigger1')[0]._active).to.be(true);
+            expect($('#trigger2')[0]._active).to.be(false);
+
+            // 点击2，element 出现
+            $('#trigger2').click();
+            expect(pop.element.is(':visible')).to.be(true);
+            expect($('#trigger1')[0]._active).to.be(false);
+            expect($('#trigger2')[0]._active).to.be(true);
+            
+            // 点击body，element 消失 
+            $('body').click();
+            expect(pop.element.is(':visible')).to.be(false);
+            expect($('#trigger1')[0]._active).to.be(false);
+            expect($('#trigger2')[0]._active).to.be(false);
+
+            // 点击2，element 再次出现 
+            $('#trigger2').click();
+            expect(pop.element.is(':visible')).to.be(true);
+            expect($('#trigger1')[0]._active).to.be(false);
+            expect($('#trigger2')[0]._active).to.be(true);
+
+            // 点击2，element 再次消失
+            $('#trigger2').click();
+            expect(pop.element.is(':visible')).to.be(false);
+            expect($('#trigger1')[0]._active).to.be(false);
+            expect($('#trigger2')[0]._active).to.be(false);
+
+        });        
 
     });
 

@@ -166,12 +166,10 @@ seajs.use(['popup','$'], function(Popup, $) {
 });
 ````
 
-## 范例6: 多个 Trigger 的情况
+## 范例6: 手动调用show方法
 
 <div class="popup">
-    <a class="trigger-all">下拉框1<span class="icon">▼</span></a>
-    <a class="trigger-all">下拉框2<span class="icon">▼</span></a>
-    <a class="trigger-all">下拉框3<span class="icon">▼</span></a>
+    <a id="triggerId6">下拉框<span class="icon">▼</span></a>
     <ul class="fn-hide ui-popup" id="popup6">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#3">内容2</a></li>
@@ -183,39 +181,17 @@ seajs.use(['popup','$'], function(Popup, $) {
 ````javascript
 seajs.use(['popup'], function(Popup){
     new Popup({
-        trigger: '.trigger-all',
-        element: '#popup6',
-        effect: 'fade'
-    });
-});
-````
-
-## 范例7: 手动调用show方法
-
-<div class="popup">
-    <a id="triggerId7">下拉框<span class="icon">▼</span></a>
-    <ul class="fn-hide ui-popup" id="popup7">
-        <li><a href="http://aralejs.org#1">内容1</a></li>
-        <li><a href="http://aralejs.org#3">内容2</a></li>
-        <li><a href="http://aralejs.org#3">内容3</a></li>
-        <li><a href="http://aralejs.org#4">内容4</a></li>
-    </ul>
-</div>
-
-````javascript
-seajs.use(['popup'], function(Popup){
-    new Popup({
-        trigger: '#triggerId7',
-        element: '#popup7'
+        trigger: '#triggerId6',
+        element: '#popup6'
     }).show();
 });
 ````
 
-## 范例8: 相对别的元素定位
+## 范例7: 相对别的元素定位
 
 <div class="popup">
-    <a id="triggerId8">下拉框<span class="icon">▼</span></a>
-    <ul class="fn-hide ui-popup" id="popup8">
+    <a id="triggerId7">下拉框<span class="icon">▼</span></a>
+    <ul class="fn-hide ui-popup" id="popup7">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#3">内容2</a></li>
         <li><a href="http://aralejs.org#3">内容3</a></li>
@@ -227,8 +203,8 @@ seajs.use(['popup'], function(Popup){
 ````javascript
 seajs.use(['popup'], function(Popup){
     new Popup({
-        trigger: '#triggerId8',
-        element: '#popup8',
+        trigger: '#triggerId7',
+        element: '#popup7',
         align: {
             baseElement: '#other-element'
         }
@@ -236,11 +212,11 @@ seajs.use(['popup'], function(Popup){
 });
 ````
 
-## 范例9: 实现 tooltip 效果（无法移动到浮层上）
+## 范例8: 实现 tooltip 效果（无法移动到浮层上）
 
 <div class="popup">
-    <a id="triggerId9">下拉框<span class="icon">▼</span></a>
-    <ul class="fn-hide ui-popup" id="popup9">
+    <a id="triggerId8">下拉框<span class="icon">▼</span></a>
+    <ul class="fn-hide ui-popup" id="popup8">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#3">内容2</a></li>
         <li><a href="http://aralejs.org#3">内容3</a></li>
@@ -251,9 +227,10 @@ seajs.use(['popup'], function(Popup){
 ````javascript
 seajs.use(['popup'], function(Popup){
     new Popup({
-        trigger: '#triggerId9',
-        element: '#popup9',
+        trigger: '#triggerId8',
+        element: '#popup8',
         delay: -1
     });
 });
 ````
+
