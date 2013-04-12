@@ -36,7 +36,7 @@
 </div>
 
 ````javascript
-seajs.use(['arale/widget/1.0.2/widget'], function(Widget){
+seajs.use(['arale/widget/1.0.3/widget'], function(Widget){
     // example1
     // data-api 自动渲染
     Widget.autoRenderAll();
