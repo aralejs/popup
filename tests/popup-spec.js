@@ -27,7 +27,8 @@ define(function(require) {
         it('instance', function() {
             pop = new Popup({
                 trigger: '#trigger1',
-                element: '#element1'
+                element: '#element1',
+                effect: 'fade'
             });
             var trigger = pop.get('trigger');
             var align = pop.get('align');
@@ -36,6 +37,9 @@ define(function(require) {
             expect(pop.get('triggerType')).to.be('hover');
             expect(align.baseXY).to.eql([0, '100%']);
             expect(align.selfXY).to.eql([0, 0]);
+            expect(pop.get('effect')).to.be('fade');
+            pop.set('align', null);
+            expect(pop.get('align').baseElement[0].id).to.be('trigger1');
         });
 
         it('hover event', function(done) {
@@ -76,6 +80,29 @@ define(function(require) {
 
         });
 
+        it('hover elment make it visible', function(done) {
+            pop = new Popup({
+                trigger: '#trigger1',
+                element: '#element1'
+            });
+
+            // 鼠标移入
+            $('#trigger1').mouseover();
+            setTimeout(function() {
+                expect(pop.element.is(':visible')).to.be(true);
+
+                // 鼠标移出
+                $('#trigger1').mouseout();
+                $('#element1').mouseover();
+
+                setTimeout(function() {
+                    expect(pop.element.is(':visible')).to.be(true);
+                    done();
+                }, 80);
+            }, 80);
+
+        });
+
         it('click event', function() {
             pop = new Popup({
                 trigger: '#trigger1',
@@ -109,6 +136,27 @@ define(function(require) {
             }, 100);
         });
 
+        it('blur when click element', function(done) {
+            var input = $('<input type="text" />');
+            input.appendTo(document.body);
+            pop = new Popup({
+                trigger: 'input',
+                element: '#element1',
+                triggerType: 'focus'
+            });
+            pop.render();
+            expect(pop.element.is(':visible')).to.be(false);
+            input.focus();
+            expect(pop.element.is(':visible')).to.be(true);
+            pop.element.mousedown();
+            setTimeout(function() {
+                expect(pop.element.is(':visible')).to.be(true);
+                input.remove();
+                done();
+            }, 100);
+        });
+
+
         it('delay = -1', function() {
             pop = new Popup({
                 trigger: '#trigger1',
@@ -135,6 +183,13 @@ define(function(require) {
             var align = pop.get('align');
             expect(align.baseXY).to.eql(['40%', 0]);
             expect(align.selfXY).to.eql([34, 120]);
+            pop.set('align', {
+                baseXY: ['60%', -3],
+                selfXY: [0, '20%']
+            });
+            align = pop.get('align');
+            expect(align.baseXY).to.eql(['60%', -3]);
+            expect(align.selfXY).to.eql([0, '20%']);
         });
 
         it('change align baseElement', function() {
@@ -264,7 +319,35 @@ define(function(require) {
             expect($('#trigger1')[0]._active).to.be(false);
             expect($('#trigger2')[0]._active).to.be(false);
 
-        });        
+        });
+
+        it('animate show & hide', function(done) {
+            pop = new Popup({
+                trigger: '#trigger1',
+                element: '#element1',
+                effect: 'fade',
+                duration: 30
+            });
+
+            // 鼠标移入
+            $('#trigger1').mouseover();
+            setTimeout(function() {
+                expect(pop.element.is(':visible')).to.be(true);
+
+                // 鼠标移出                
+                $('#trigger1').mouseout();
+
+                setTimeout(function() {
+                    expect(pop.element.is(':visible')).to.be(true);
+
+                    setTimeout(function() {
+                        expect(pop.element.is(':visible')).to.be(false);                    
+                        done();                    
+                    }, 80);
+                }, 80);
+            }, 80);
+
+        });
 
     });
 
