@@ -59,7 +59,8 @@ define(function(require) {
                 event2 = hideText;
             });
             // 发布事件
-            pop.trigger('shown').trigger('hidden');
+            pop.trigger('shown');
+            pop.trigger('hidden');
             // 测试值
             expect(event1).to.be(showText);
             expect(event2).to.be(hideText);
@@ -91,7 +92,6 @@ define(function(require) {
             setTimeout(function() {
                 expect(pop.element.is(':visible')).to.be(true);
 
-                // 鼠标移出
                 $('#trigger1').mouseout();
                 $('#element1').mouseover();
 
