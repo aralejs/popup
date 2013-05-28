@@ -4,7 +4,7 @@
 
 ## 1.1.0
 
-`tag:changed` 对 arale/overlay 的依赖从 1.0.0 升级到 1.1.0 。
+`tag:improved` 对 arale/overlay 的依赖从 1.0.0 升级到 1.1.0 。
 
 ## 1.0.2
 
