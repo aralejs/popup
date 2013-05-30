@@ -81,9 +81,9 @@ seajs.use(['popup', '$'], function(Popup, $){
 > 当点击一个trigger弹出浮层后，再点击另一个trigger时，应该要正确弹出浮层。
 
 <div class="popup">
-    <a class="triggerClass3">下拉框<span class="icon">▼</span></a>
-    <a class="triggerClass3">下拉框<span class="icon">▼</span></a>  
-    <a class="triggerClass3">下拉框<span class="icon">▼</span></a>  
+    <a class="triggerClass3">下拉框1<span class="icon">▼</span></a>
+    <a class="triggerClass3">下拉框2<span class="icon">▼</span></a>
+    <a class="triggerClass3">下拉框3<span class="icon">▼</span></a>
     <ul class="fn-hide ui-popup" id="popup3">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#3">内容2</a></li>

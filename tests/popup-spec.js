@@ -13,6 +13,7 @@ define(function(require) {
                             '</ul>' +
                       '</div>';
         var pop;
+        var element;
 
         beforeEach(function() {
             element = $(template).appendTo(document.body);
@@ -109,7 +110,7 @@ define(function(require) {
                 element: '#element1',
                 triggerType: 'click'
             });
-            expect(pop.element.is(':visible')).to.be(false);            
+            expect(pop.element.is(':visible')).to.be(false);
             $('#trigger1').click();
             expect(pop.element.is(':visible')).to.be(true);
             $('#trigger1').click();
