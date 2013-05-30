@@ -6,6 +6,8 @@
 
 `tag:improved` 对 arale/overlay 的依赖从 1.0.0 升级到 1.1.0 。
 
+`tag:improved` 事件绑定使用 delegateEvents
+
 ## 1.0.2
 
 `tag:improved` [#13](https://github.com/aralejs/popup/issues/13) 增加 delegateNode 参数，可以将触发事件委托到指定元素上。
