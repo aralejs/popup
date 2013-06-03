@@ -90,7 +90,6 @@ define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overla
         _bindClick: function() {
             var that = this;
             this.delegateEvents(this.get("delegateNode"), "click " + this.get("trigger").selector, function(e) {
-                e.preventDefault();
                 var currentTrigger = e.currentTarget;
                 // this._active 这个变量表明了当前触发元素是激活状态
                 if (currentTrigger._active === true) {
