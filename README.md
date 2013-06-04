@@ -73,7 +73,22 @@ seajs.use(['arale/popup/{{版本号}}/popup'], function(Popup){
 另外，Popup 已从 Overlay 继承了点击页面空白处浮层消失，以及窗口改变大小后浮层重新定位等被动属性，
 详细请查看 [演示文档](http://aralejs.org/popup/examples/)。
 
-## 感谢
 
-* Bootstrap Dropdown
+### 多触发器的委托应用
 
+实践中常常遇到多个触发元素对应一个弹出层，而且触发元素会动态添加的情况。
+这样如果通过多个实例来绑定 popup 效果就会比较麻烦。
+
+这时，可以使用 `delegateNode` 这个参数将事件绑定到委托节点上，配合多个 trigger 来实现。
+在委托节点内动态添加了 trigger 后，也无须重新绑定。
+
+```js
+seajs.use(['popup'], function(Popup){
+    new Popup({
+        trigger: '.triggerClass',
+        element: '#popup',
+        delegateNode: '#delegateNode'
+    });
+});
+```
+[delegeteNode示例](examples/triggers.html#范例2-委托事件)
