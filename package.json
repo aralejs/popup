@@ -5,6 +5,11 @@
     "description": "Popup 是可触发的浮层组件。",
     "keywords": ["widget"],
     "homepage": "http://aralejs.org/popup/",
+    "author": "偏右 <afc163@gmail.com>",
+    "maintainers": [
+        "偏右 <afc163@gmail.com>",
+        "贯高 <sakura9515@gmail.com>"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/aralejs/popup.git"
