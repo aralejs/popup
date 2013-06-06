@@ -199,7 +199,8 @@ define(function(require, exports, module) {
             this.delegateEvents("mouseenter", function() {
                 clearTimeout(hideTimer);
             });
-            this.delegateEvents("mouseleaver", leaveHandler);
+            this.delegateEvents("mouseleave", leaveHandler);
+
 
             function leaveHandler(e) {
                 clearTimeout(showTimer);

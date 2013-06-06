@@ -82,7 +82,7 @@ define(function(require) {
 
         });
 
-        it('hover elment make it visible', function(done) {
+        it('hover element make it visible', function(done) {
             pop = new Popup({
                 trigger: '#trigger1',
                 element: '#element1'
@@ -98,10 +98,16 @@ define(function(require) {
 
                 setTimeout(function() {
                     expect(pop.element.is(':visible')).to.be(true);
-                    done();
+
+                    $("#element1").mouseout();
+
+                    setTimeout(function() {
+                        expect(pop.element.is(':visible')).to.be(false);
+
+                        done();
+                    }, 80);
                 }, 80);
             }, 80);
-
         });
 
         it('click event', function() {
