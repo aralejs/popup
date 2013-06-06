@@ -109,6 +109,10 @@ define(function(require, exports, module) {
             this.delegateEvents(this.get('delegateNode'), "click "+this.get("trigger").selector, function(e) {
                 var currentTrigger = e.currentTarget;
 
+                if (currentTrigger.tagName.toLowerCase() === "a") {
+                    e.preventDefault();
+                }
+
                 // this._active 这个变量表明了当前触发元素是激活状态
                 if (currentTrigger._active === true) {
                     this.hide();
