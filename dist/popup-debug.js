@@ -58,7 +58,7 @@ define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overla
             // 可以通过set('disabled', true)关闭
             disabled: false,
             // 基本的动画效果，可选 fade|slide
-            effect: null,
+            effect: "",
             // 动画的持续时间
             duration: 250
         },
@@ -194,9 +194,8 @@ define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overla
             });
         },
         _onRenderVisible: function(val) {
-            var effect = this.get("effect");
-            var fade = effect ? effect.indexOf("fade") !== -1 : false;
-            var slide = effect ? effect.indexOf("slide") !== -1 : false;
+            var fade = this.get("effect").indexOf("fade") !== -1;
+            var slide = this.get("effect").indexOf("slide") !== -1;
             var animConfig = {};
             slide && (animConfig.height = val ? "show" : "hide");
             fade && (animConfig.opacity = val ? "show" : "hide");
