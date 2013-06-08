@@ -58,7 +58,7 @@ define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overla
             // 可以通过set('disabled', true)关闭
             disabled: false,
             // 基本的动画效果，可选 fade|slide
-            effect: undefined,
+            effect: null,
             // 动画的持续时间
             duration: 250
         },

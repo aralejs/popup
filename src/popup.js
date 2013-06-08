@@ -66,7 +66,7 @@ define(function(require, exports, module) {
             disabled: false,
 
             // 基本的动画效果，可选 fade|slide
-            effect: undefined,
+            effect: null,
 
             // 动画的持续时间
             duration: 250
