@@ -1,4 +1,4 @@
-define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
+define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/position/1.0.0/position-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
     var $ = require("$-debug");
     var Overlay = require("arale/overlay/1.1.0/overlay-debug");
     // Popup 是可触发 Overlay 型 UI 组件
@@ -58,7 +58,7 @@ define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overla
             // 可以通过set('disabled', true)关闭
             disabled: false,
             // 基本的动画效果，可选 fade|slide
-            effect: "",
+            effect: undefined,
             // 动画的持续时间
             duration: 250
         },
@@ -194,8 +194,9 @@ define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overla
             });
         },
         _onRenderVisible: function(val) {
-            var fade = this.get("effect").indexOf("fade") !== -1;
-            var slide = this.get("effect").indexOf("slide") !== -1;
+            var effect = this.get("effect");
+            var fade = effect ? effect.indexOf("fade") !== -1 : false;
+            var slide = effect ? effect.indexOf("slide") !== -1 : false;
             var animConfig = {};
             slide && (animConfig.height = val ? "show" : "hide");
             fade && (animConfig.opacity = val ? "show" : "hide");

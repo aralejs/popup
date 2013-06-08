@@ -66,7 +66,7 @@ define(function(require, exports, module) {
             disabled: false,
 
             // 基本的动画效果，可选 fade|slide
-            effect: '',
+            effect: undefined,
 
             // 动画的持续时间
             duration: 250
@@ -234,8 +234,9 @@ define(function(require, exports, module) {
         },
 
         _onRenderVisible: function(val) {
-            var fade = (this.get('effect').indexOf('fade') !== -1);
-            var slide = (this.get('effect').indexOf('slide') !== -1);
+            var effect = this.get("effect");
+            var fade = (effect ? effect.indexOf('fade') !== -1 : false);
+            var slide = (effect ? effect.indexOf('slide') !== -1 : false);
             var animConfig = {};
             slide && (animConfig.height = (val ? 'show' : 'hide'));
             fade && (animConfig.opacity = (val ? 'show' : 'hide'));
