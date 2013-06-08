@@ -29,7 +29,7 @@ Popup 是可触发的浮层组件。封装了当用户点击、hover、focus 到
 
 ### effect `string`
 
-基础的动画效果，可选[fade|slide]，默认为 `null` 。fade 和 slide 可以并行。
+基础的动画效果，可选[fade|slide]，默认为空 。fade 和 slide 可以并行。
 
 ### duration `number`
 
