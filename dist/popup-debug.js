@@ -97,7 +97,7 @@ define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overla
                     makeActive(this);
                     that.show();
                 }
-            }), this.get("delegateNode");
+            }, this.get("delegateNode"), this);
             // 隐藏前清空激活状态
             this.before("hide", function() {
                 makeActive();
@@ -125,13 +125,13 @@ define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overla
                 // 标识当前点击的元素
                 that.activeTrigger = $(this);
                 that.show();
-            }), this.get("delegateNode");
+            }, this.get("delegateNode"), this);
             bindEvent("blur", this.get("trigger"), function() {
                 setTimeout(function() {
                     !that._downOnElement && that.hide();
                     that._downOnElement = false;
                 }, that.get("delay"));
-            }), this.get("delegateNode");
+            }, this.get("delegateNode"), this);
             // 为了当input blur时能够选择和操作弹出层上的内容
             this.delegateEvents("mousedown", function(e) {
                 this._downOnElement = true;
@@ -149,7 +149,7 @@ define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overla
                 this._bindTooltip();
                 return;
             }
-            bindEvent("mouseover", trigger, function() {
+            bindEvent("mouseenter", trigger, function() {
                 clearTimeout(hideTimer);
                 hideTimer = null;
                 // 标识当前点击的元素
@@ -157,8 +157,8 @@ define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overla
                 showTimer = setTimeout(function() {
                     that.show();
                 }, delay);
-            }, delegateNode);
-            bindEvent("mouseout", trigger, leaveHandler, delegateNode);
+            }, delegateNode, this);
+            bindEvent("mouseleave", trigger, leaveHandler, delegateNode, this);
             // 鼠标在悬浮层上时不消失
             this.delegateEvents("mouseenter", function() {
                 clearTimeout(hideTimer);
@@ -178,14 +178,14 @@ define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overla
             var trigger = this.get("trigger");
             var delegateNode = this.get("delegateNode");
             var that = this;
-            bindEvent("mouseover", trigger, function() {
+            bindEvent("mouseenter", trigger, function() {
                 // 标识当前点击的元素
                 that.activeTrigger = $(this);
                 that.show();
-            }, delegateNode);
-            bindEvent("mouseout", trigger, function() {
+            }, delegateNode, this);
+            bindEvent("mouseleave", trigger, function() {
                 that.hide();
-            }, delegateNode);
+            }, delegateNode, this);
         },
         _onRenderVisible: function(val) {
             var fade = this.get("effect").indexOf("fade") !== -1;
@@ -204,10 +204,11 @@ define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overla
     });
     module.exports = Popup;
     // 一个绑定事件的简单封装
-    function bindEvent(type, element, fn, delegateNode) {
+    function bindEvent(type, element, fn, delegateNode, context) {
         if (delegateNode && delegateNode[0]) {
-            delegateNode.on(type, element.selector, function(e) {
-                fn.call(this, e);
+            //delegateNode.on(type, element.selector, function(e) {
+            context.delegateEvents(delegateNode, type + " " + element.selector, function(e) {
+                fn.call(e.currentTarget, e);
             });
         } else {
             element.on(type, function(e) {

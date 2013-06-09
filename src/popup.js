@@ -115,7 +115,7 @@ define(function(require, exports, module) {
                     makeActive(this);
                     that.show();
                 }
-            }), this.get('delegateNode');
+            }, this.get('delegateNode'), this);
 
             // 隐藏前清空激活状态
             this.before('hide', function() {
@@ -147,14 +147,14 @@ define(function(require, exports, module) {
                 // 标识当前点击的元素
                 that.activeTrigger = $(this);
                 that.show();
-            }), this.get('delegateNode');
+            }, this.get('delegateNode'), this);
 
             bindEvent('blur', this.get('trigger'), function() {
                 setTimeout(function() {
                     (!that._downOnElement) && that.hide();
                     that._downOnElement = false;
                 }, that.get('delay'));
-            }), this.get('delegateNode');
+            }, this.get('delegateNode'), this);
 
             // 为了当input blur时能够选择和操作弹出层上的内容
             this.delegateEvents("mousedown", function(e) {
@@ -177,7 +177,7 @@ define(function(require, exports, module) {
                 return;
             }
 
-            bindEvent('mouseover', trigger, function() {
+            bindEvent('mouseenter', trigger, function() {
                 clearTimeout(hideTimer);
                 hideTimer = null;
 
@@ -186,9 +186,9 @@ define(function(require, exports, module) {
                 showTimer = setTimeout(function() {
                     that.show();
                 }, delay);
-            }, delegateNode);
+            }, delegateNode, this);
 
-            bindEvent('mouseout', trigger, leaveHandler, delegateNode);
+            bindEvent('mouseleave', trigger, leaveHandler, delegateNode, this);
 
             // 鼠标在悬浮层上时不消失
             this.delegateEvents("mouseenter", function() {
@@ -214,15 +214,15 @@ define(function(require, exports, module) {
             var delegateNode = this.get('delegateNode');
             var that = this;
 
-            bindEvent('mouseover', trigger, function() {
+            bindEvent('mouseenter', trigger, function() {
                 // 标识当前点击的元素
                 that.activeTrigger = $(this);
                 that.show();
-            }, delegateNode);
+            }, delegateNode, this);
 
-            bindEvent('mouseout', trigger, function() {
+            bindEvent('mouseleave', trigger, function() {
                 that.hide();
-            }, delegateNode);
+            }, delegateNode, this);
         },
 
         _onRenderVisible: function(val) {
@@ -248,10 +248,11 @@ define(function(require, exports, module) {
     module.exports = Popup;
 
     // 一个绑定事件的简单封装
-    function bindEvent(type, element, fn, delegateNode) {
+    function bindEvent(type, element, fn, delegateNode, context) {
         if (delegateNode && delegateNode[0]) {
-            delegateNode.on(type, element.selector, function(e) {
-                fn.call(this, e);
+            //delegateNode.on(type, element.selector, function(e) {
+            context.delegateEvents(delegateNode, type + " " + element.selector, function(e) {
+                fn.call(e.currentTarget, e);
             });
         } else {
             element.on(type, function(e) {
