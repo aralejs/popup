@@ -350,6 +350,20 @@ define(function(require) {
 
         });
 
+        it('trigger selector', function() {
+            var trigger = $('<div id="wrap"><a href="javascript:void(0)" class="trigger-element">Trigger</a></div>')
+                .appendTo(document.body);
+            pop = new Popup({
+                trigger: '#wrap .trigger-element',
+                element: '#element1',
+                triggerType: 'click'
+            });
+            $('#wrap .trigger-element').click();
+            expect(pop.element.is(':visible')).to.be(true);
+            $('#wrap .trigger-element').click();
+            expect(pop.element.is(':visible')).to.be(false);
+            trigger.remove();
+        });
     });
 
 });
