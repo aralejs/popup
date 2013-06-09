@@ -249,17 +249,11 @@ define(function(require, exports, module) {
 
     // 一个绑定事件的简单封装
     function bindEvent(type, element, fn, delegateNode, context) {
-        if (delegateNode && delegateNode[0]) {
-            //delegateNode.on(type, element.selector, function(e) {
-            context.delegateEvents(delegateNode, type + " " + element.selector, function(e) {
-                fn.call(e.currentTarget, e);
-            });
-        } else {
-            context.delegateEvents(element, type, function(e) {
-            //element.on(type, function(e) {
-                fn.call(e.currentTarget, e);
-            });
-        }
+        var hasDelegateNode = delegateNode && delegateNode[0];
+
+        context.delegateEvents(hasDelegateNode ? delegateNode : element, hasDelegateNode ? type + " " + element.selector : type, function (e) {
+            fn.call(e.currentTarget, e);
+        });
     }
 
 });
