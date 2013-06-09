@@ -107,9 +107,11 @@ define(function(require, exports, module) {
             var that = this;
 
             this.delegateEvents(this.get('delegateNode'), "click "+this.get("trigger").selector, function(e) {
-                e.preventDefault();
-
                 var currentTrigger = e.currentTarget;
+
+                if (currentTrigger.tagName.toLowerCase() === "a") {
+                    e.preventDefault();
+                }
 
                 // this._active 这个变量表明了当前触发元素是激活状态
                 if (currentTrigger._active === true) {
@@ -201,7 +203,8 @@ define(function(require, exports, module) {
             this.delegateEvents("mouseenter", function() {
                 clearTimeout(hideTimer);
             });
-            this.delegateEvents("mouseleaver", leaveHandler);
+            this.delegateEvents("mouseleave", leaveHandler);
+
 
             function leaveHandler(e) {
                 clearTimeout(showTimer);
