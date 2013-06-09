@@ -211,8 +211,9 @@ define("arale/popup/1.1.0/popup-debug", [ "$-debug", "arale/overlay/1.1.0/overla
                 fn.call(e.currentTarget, e);
             });
         } else {
-            element.on(type, function(e) {
-                fn.call(this, e);
+            context.delegateEvents(element, type, function(e) {
+                //element.on(type, function(e) {
+                fn.call(e.currentTarget, e);
             });
         }
     }

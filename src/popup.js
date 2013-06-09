@@ -255,8 +255,9 @@ define(function(require, exports, module) {
                 fn.call(e.currentTarget, e);
             });
         } else {
-            element.on(type, function(e) {
-                fn.call(this, e);
+            context.delegateEvents(element, type, function(e) {
+            //element.on(type, function(e) {
+                fn.call(e.currentTarget, e);
             });
         }
     }
