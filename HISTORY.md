@@ -2,6 +2,11 @@
 
 ---
 
+## 1.1.1
+
+`tag:fixed` 由于之前 build 出来的代码包含依赖两个不同版本的 position, 重新 build
+
+
 ## 1.1.0
 
 `tag:improved` 对 arale/overlay 的依赖从 1.0.0 升级到 1.1.0 。
