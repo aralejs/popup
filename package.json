@@ -21,7 +21,7 @@
         "output": ["popup.js"],
         "alias": {
             "$": "$",
-            "overlay": "arale/overlay/1.1.0/overlay"
+            "overlay": "arale/overlay/1.1.1/overlay"
         }
     }
 }

@@ -4,6 +4,8 @@
 
 ## 1.1.1
 
+`tag:improved` 升级 overlay 到 1.1.1
+
 `tag:fixed` 由于之前 build 出来的代码包含依赖两个不同版本的 position, 重新 build
 
 

@@ -133,13 +133,19 @@ define(function(require) {
             });
             pop.render();
             expect(pop.element.is(':visible')).to.be(false);
+
+            window.focus();
             input.focus();
-            expect(pop.element.is(':visible')).to.be(true);
-            input.blur();
-            setTimeout(function() {
-                expect(pop.element.is(':visible')).to.be(false);
-                input.remove();
-                done();
+            setTimeout(function () {
+                expect(pop.element.is(':visible')).to.be(true);
+
+                input.blur();
+                setTimeout(function () {
+                    expect(pop.element.is(':visible')).to.be(false);
+
+                    input.remove();
+                    done();
+                }, 100);
             }, 100);
         });
 
@@ -153,13 +159,18 @@ define(function(require) {
             });
             pop.render();
             expect(pop.element.is(':visible')).to.be(false);
+
+            window.focus();
             input.focus();
-            expect(pop.element.is(':visible')).to.be(true);
-            pop.element.mousedown();
-            setTimeout(function() {
+            setTimeout(function () {
                 expect(pop.element.is(':visible')).to.be(true);
-                input.remove();
-                done();
+
+                pop.element.mousedown();
+                setTimeout(function () {
+                    expect(pop.element.is(':visible')).to.be(true);
+                    input.remove();
+                    done();
+                }, 100);
             }, 100);
         });
 
