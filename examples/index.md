@@ -234,3 +234,37 @@ seajs.use(['popup'], function(Popup){
 });
 ````
 
+## 范例8: 异步的情况
+
+一般适用于 Ajax 请求成功后再显示浮层的情况。
+
+<div class="popup">
+    <a id="triggerId9">点击后一秒出现<span class="icon">▼</span></a>
+    <ul class="fn-hide ui-popup" id="popup9">
+        <li><a href="http://aralejs.org#1">内容1</a></li>
+        <li><a href="http://aralejs.org#3">内容2</a></li>
+        <li><a href="http://aralejs.org#3">内容3</a></li>
+        <li><a href="http://aralejs.org#4">内容4</a></li>
+    </ul>
+</div>
+
+````javascript
+seajs.use(['popup'], function(Popup){
+    var popup = new Popup({
+        trigger: '#triggerId9',
+        element: '#popup8',
+        triggerType: 'click'
+    });
+    popup.after('show', function() {
+        var that = this;
+        // 先隐藏
+        this.element.hide();
+
+        // 然后异步显示，这里也可以是一段 Ajax 的回调
+        setTimeout(function() {
+            that.element.fadeIn();            
+        }, 1000);
+    });
+});
+````
+
