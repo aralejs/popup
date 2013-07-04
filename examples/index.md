@@ -252,7 +252,7 @@ seajs.use(['popup'], function(Popup){
 seajs.use(['popup'], function(Popup){
     var popup = new Popup({
         trigger: '#triggerId9',
-        element: '#popup8',
+        element: '#popup9',
         triggerType: 'click'
     });
     popup.after('show', function() {
