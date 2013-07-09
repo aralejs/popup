@@ -2,6 +2,10 @@
 
 ---
 
+## 1.1.2
+
+`tag:improved` 升级 overlay 到 1.1.2
+
 ## 1.1.1
 
 `tag:improved` 升级 overlay 到 1.1.1
