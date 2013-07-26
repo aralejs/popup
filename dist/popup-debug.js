@@ -1,4 +1,4 @@
-define("arale/popup/1.1.2/popup-debug", [ "$-debug", "arale/overlay/1.1.2/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
+define("arale/popup/1.1.3/popup-debug", [ "$-debug", "arale/overlay/1.1.2/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
     var $ = require("$-debug");
     var Overlay = require("arale/overlay/1.1.2/overlay-debug");
     // Popup 是可触发 Overlay 型 UI 组件
@@ -65,6 +65,15 @@ define("arale/popup/1.1.2/popup-debug", [ "$-debug", "arale/overlay/1.1.2/overla
             // 默认绑定activeTrigger为第一个元素
             // for https://github.com/aralejs/popup/issues/6
             this.activeTrigger = this.get("trigger").eq(0);
+            // 当使用委托事件时，_blurHide 方法对于新添加的节点会失效
+            // 这时需要重新绑定
+            var that = this;
+            if (this.get("delegateNode")) {
+                this.before("show", function() {
+                    that._relativeElements = that.get("trigger");
+                    that._relativeElements.push(that.element);
+                });
+            }
         },
         show: function() {
             if (this.get("disabled")) {
