@@ -174,7 +174,6 @@ define(function(require) {
             }, 100);
         });
 
-
         it('delay = -1', function() {
             pop = new Popup({
                 trigger: '#trigger1',
@@ -291,6 +290,27 @@ define(function(require) {
             }, 80);
 
         });
+
+        it('blur hide with delegate events', function() {
+            pop = new Popup({
+                trigger: '.trigger',
+                element: '#element1',
+                delegateNode: element,
+                delay: -1
+            });
+            // 动态加入节点
+            element.append('<a href="#" id="trigger2" class="trigger">popup</a>');
+            expect(pop._relativeElements.length).to.be(2);            
+            // 鼠标移入
+            $('#trigger2').mouseover();
+            expect(pop._relativeElements.length).to.be(3);
+            expect(pop.element.is(':visible')).to.be(true);
+            $('#trigger2').click();
+            expect(pop.element.is(':visible')).to.be(true);
+            $('#element1').click();
+            expect(pop.element.is(':visible')).to.be(true);
+        });
+        
 
         it('blur hide & triggers', function() {
             // 加入节点
