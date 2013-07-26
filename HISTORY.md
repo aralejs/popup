@@ -2,6 +2,10 @@
 
 ---
 
+## 1.1.3
+
+`tag:fixed` #19 修复一个 delegateNode 时导致点击 trigger 触发 blurHide 的问题。
+
 ## 1.1.2
 
 `tag:improved` 升级 overlay 到 1.1.2
