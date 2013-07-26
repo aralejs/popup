@@ -251,9 +251,13 @@ define(function(require, exports, module) {
     function bindEvent(type, element, fn, delegateNode, context) {
         var hasDelegateNode = delegateNode && delegateNode[0];
 
-        context.delegateEvents(hasDelegateNode ? delegateNode : element, hasDelegateNode ? type + " " + element.selector : type, function (e) {
-            fn.call(e.currentTarget, e);
-        });
+        context.delegateEvents(
+            hasDelegateNode ? delegateNode : element,
+            hasDelegateNode ? type + " " + element.selector : type,
+            function (e) {
+                fn.call(e.currentTarget, e);
+            }
+        );
     }
 
 });
