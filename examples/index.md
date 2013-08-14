@@ -262,7 +262,7 @@ seajs.use(['popup'], function(Popup){
 
         // 然后异步显示，这里也可以是一段 Ajax 的回调
         setTimeout(function() {
-            that.element.fadeIn();            
+            that.element.fadeIn();
         }, 1000);
     });
 });

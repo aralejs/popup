@@ -151,3 +151,18 @@ seajs.use(['popup'], function(Popup) {
 });
 ````
 
+## 6. 动画 & template 配合
+
+<div class="popup">
+    <a href="javascript:;" id="triggerId6">下拉框<span class="icon">▼</span></a>
+</div>
+
+````js
+seajs.use(['popup'], function(Popup) {
+    var example2 = new Popup({
+        trigger: '#triggerId6',
+        template: '<div style="background:#fff;border:1px solid #ccc;padding:6px;height:120px;">xxxxx</div>',
+        effect: 'slide'
+    });
+});
+````

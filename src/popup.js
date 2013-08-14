@@ -77,7 +77,7 @@ define(function(require, exports, module) {
             // 默认绑定activeTrigger为第一个元素
             // for https://github.com/aralejs/popup/issues/6
             this.activeTrigger = this.get('trigger').eq(0);
-            
+
             // 当使用委托事件时，_blurHide 方法对于新添加的节点会失效
             // 这时需要重新绑定
             var that = this;
@@ -87,6 +87,15 @@ define(function(require, exports, module) {
                     that._relativeElements.push(that.element);
                 });
             }
+        },
+
+        render: function() {
+            Popup.superclass.render.call(this);
+
+            // 通过 template 生成的元素默认也应该是不可见的
+            // 所以插入元素前强制隐藏元素，#20
+            this.element.hide();
+            return this;
         },
 
         show: function() {
@@ -149,7 +158,7 @@ define(function(require, exports, module) {
                 });
             }
         },
-        
+
         _bindFocus: function() {
             var that = this;
 
@@ -171,7 +180,7 @@ define(function(require, exports, module) {
                 this._downOnElement = true;
             });
         },
-        
+
         _bindHover: function() {
             var trigger = this.get('trigger');
             var delegateNode = this.get('delegateNode');
