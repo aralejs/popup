@@ -2,6 +2,10 @@
 
 ---
 
+## 1.1.4
+
+`tag:fixed` #20 通过 template 生成的元素默认应该是不可见的。
+
 ## 1.1.3
 
 `tag:fixed` #19 修复一个 delegateNode 时导致点击 trigger 触发 blurHide 的问题。
