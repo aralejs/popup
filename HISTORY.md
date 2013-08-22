@@ -8,6 +8,8 @@
 
 `tag:fixed` 修复动画效果时在 ie6 下 iframe-shim 无法隐藏的问题。
 
+`tag:improved` 升级 overlay 到 1.1.3
+
 
 ## 1.1.3
 
