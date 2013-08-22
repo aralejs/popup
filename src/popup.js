@@ -111,7 +111,7 @@ define(function(require, exports, module) {
             if (triggerType === 'click') {
                 this._bindClick();
             } else if (triggerType === 'focus') {
-                this._bindFocus(); 
+                this._bindFocus();
             } else {
                 // 默认是 hover
                 this._bindHover();
@@ -228,7 +228,7 @@ define(function(require, exports, module) {
             }
         },
 
-        _bindTooltip: function(){
+        _bindTooltip: function() {
             var trigger = this.get('trigger');
             var delegateNode = this.get('delegateNode');
             var that = this;
@@ -251,9 +251,17 @@ define(function(require, exports, module) {
             slide && (animConfig.height = (val ? 'show' : 'hide'));
             fade && (animConfig.opacity = (val ? 'show' : 'hide'));
 
+            // 需要在回调时强制调一下 hide
+            // 来触发 iframe-shim 的 hide 方法
+            // 修复 ie6 下 shim 未隐藏的问题
+            var that = this;
+            var hideComplete = val ? function() {} : function() {
+                that.hide();
+            };
+
             if (fade || slide) {
                 this.element.stop(true, true)
-                            .animate(animConfig, this.get('duration'))
+                            .animate(animConfig, this.get('duration'), hideComplete)
                             .css({
                                 'visibility': 'visible'
                             });

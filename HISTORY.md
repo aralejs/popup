@@ -6,6 +6,9 @@
 
 `tag:fixed` #20 通过 template 生成的元素默认应该是不可见的。
 
+`tag:fixed` 修复动画效果时在 ie6 下 iframe-shim 无法隐藏的问题。
+
+
 ## 1.1.3
 
 `tag:fixed` #19 修复一个 delegateNode 时导致点击 trigger 触发 blurHide 的问题。
