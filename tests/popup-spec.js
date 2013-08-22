@@ -300,7 +300,7 @@ define(function(require) {
             });
             // 动态加入节点
             element.append('<a href="#" id="trigger2" class="trigger">popup</a>');
-            expect(pop._relativeElements.length).to.be(2);            
+            expect(pop._relativeElements.length).to.be(2);
             // 鼠标移入
             $('#trigger2').mouseover();
             expect(pop._relativeElements.length).to.be(3);
@@ -310,18 +310,18 @@ define(function(require) {
             $('#element1').click();
             expect(pop.element.is(':visible')).to.be(true);
         });
-        
+
 
         it('blur hide & triggers', function() {
             // 加入节点
             element.append('<a href="#" id="trigger2" class="trigger">popup</a>');
-            
+
             pop = new Popup({
                 trigger: '.trigger',
                 triggerType: 'click',
                 element: '#element1'
             });
-            
+
             // 都不是激活状态
             expect(pop.element.is(':visible')).to.be(false);
             expect($('#trigger1')[0]._active).not.to.be.ok();
@@ -338,14 +338,14 @@ define(function(require) {
             expect(pop.element.is(':visible')).to.be(true);
             expect($('#trigger1')[0]._active).to.be(false);
             expect($('#trigger2')[0]._active).to.be(true);
-            
-            // 点击body，element 消失 
+
+            // 点击body，element 消失
             $('body').click();
             expect(pop.element.is(':visible')).to.be(false);
             expect($('#trigger1')[0]._active).to.be(false);
             expect($('#trigger2')[0]._active).to.be(false);
 
-            // 点击2，element 再次出现 
+            // 点击2，element 再次出现
             $('#trigger2').click();
             expect(pop.element.is(':visible')).to.be(true);
             expect($('#trigger1')[0]._active).to.be(false);
@@ -372,15 +372,15 @@ define(function(require) {
             setTimeout(function() {
                 expect(pop.element.is(':visible')).to.be(true);
 
-                // 鼠标移出                
+                // 鼠标移出
                 $('#trigger1').mouseout();
 
                 setTimeout(function() {
                     expect(pop.element.is(':visible')).to.be(true);
 
                     setTimeout(function() {
-                        expect(pop.element.is(':visible')).to.be(false);                    
-                        done();                    
+                        expect(pop.element.is(':visible')).to.be(false);
+                        done();
                     }, 80);
                 }, 80);
             }, 80);
