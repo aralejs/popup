@@ -204,6 +204,10 @@ define("arale/popup/1.1.5/popup-debug", [ "$-debug", "arale/overlay/1.1.3/overla
             }, delegateNode, this);
         },
         _onRenderVisible: function(val, originVal) {
+            // originVal 为 undefined 时不继续执行
+            if (val === !!originVal) {
+                return;
+            }
             var fade = this.get("effect").indexOf("fade") !== -1;
             var slide = this.get("effect").indexOf("slide") !== -1;
             var animConfig = {};
@@ -214,8 +218,11 @@ define("arale/popup/1.1.5/popup-debug", [ "$-debug", "arale/overlay/1.1.3/overla
             // 修复 ie6 下 shim 未隐藏的问题
             // visible 只有从 true 变为 false 时，才调用这个 hide
             var that = this;
-            var hideComplete = val || !originVal ? function() {} : function() {
+            var hideComplete = val ? function() {
+                that.trigger("animated");
+            } : function() {
                 that.hide();
+                that.trigger("animated");
             };
             if (fade || slide) {
                 this.element.stop(true, true).animate(animConfig, this.get("duration"), hideComplete).css({
