@@ -244,7 +244,7 @@ define(function(require, exports, module) {
             }, delegateNode, this);
         },
 
-        _onRenderVisible: function(val) {
+        _onRenderVisible: function(val, originVal) {
             var fade = (this.get('effect').indexOf('fade') !== -1);
             var slide = (this.get('effect').indexOf('slide') !== -1);
             var animConfig = {};
@@ -252,10 +252,11 @@ define(function(require, exports, module) {
             fade && (animConfig.opacity = (val ? 'show' : 'hide'));
 
             // 需要在回调时强制调一下 hide
-            // 来触发 iframe-shim 的 hide 方法
+            // 来触发 iframe-shim 的 sync 方法
             // 修复 ie6 下 shim 未隐藏的问题
+            // visible 只有从 true 变为 false 时，才调用这个 hide
             var that = this;
-            var hideComplete = val ? function() {} : function() {
+            var hideComplete = (val || !originVal) ? function() {} : function() {
                 that.hide();
             };
 

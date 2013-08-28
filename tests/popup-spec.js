@@ -413,6 +413,25 @@ define(function(require) {
             pop.show();
             expect(pop.element.is(':visible')).to.be(true);
         });
+
+        it('hide function should not be called when origin visible value is false', function() {
+            var temp = 0;
+            pop = new Popup({
+                template: '<div>template</div>',
+                trigger: '#trigger1',
+                effect: 'fade',
+                afterHide: function() {
+                    temp++;
+                }
+            });
+            pop.render();
+            expect(temp).to.be(0);
+            pop.show();
+            expect(temp).to.be(0);
+            pop.hide();
+            expect(temp).to.be(1);
+        });
+
     });
 
 });
