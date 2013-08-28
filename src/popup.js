@@ -245,6 +245,11 @@ define(function(require, exports, module) {
         },
 
         _onRenderVisible: function(val, originVal) {
+            // originVal 为 undefined 时不继续执行
+            if (val === !!originVal) {
+                return;
+            }
+
             var fade = (this.get('effect').indexOf('fade') !== -1);
             var slide = (this.get('effect').indexOf('slide') !== -1);
             var animConfig = {};
@@ -256,7 +261,7 @@ define(function(require, exports, module) {
             // 修复 ie6 下 shim 未隐藏的问题
             // visible 只有从 true 变为 false 时，才调用这个 hide
             var that = this;
-            var hideComplete = (val || !originVal) ? function() {
+            var hideComplete = val ? function() {
                 that.trigger('animated');
             } : function() {
                 that.hide();

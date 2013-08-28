@@ -432,6 +432,27 @@ define(function(require) {
             expect(temp).to.be(1);
         });
 
+        it('animated event', function(done) {
+            var temp = 0;
+            pop = new Popup({
+                template: '<div>template</div>',
+                trigger: '#trigger1',
+                effect: 'slide',
+                duration: 100
+            });
+            pop.on('animated', function() {
+                this.element.css('overflow', 'visible');
+                temp++;
+            });
+            pop.show();
+            expect(pop.element.css('overflow')).to.be('hidden');
+            setTimeout(function() {
+                expect(pop.element.css('overflow')).to.be('visible');
+                expect(temp).to.be(1);
+                done();
+            }, 120);
+        });
+
     });
 
 });
