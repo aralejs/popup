@@ -438,7 +438,7 @@ define(function(require) {
                 template: '<div>template</div>',
                 trigger: '#trigger1',
                 effect: 'slide',
-                duration: 100
+                duration: 80
             });
             pop.on('animated', function() {
                 this.element.css('overflow', 'visible');
@@ -450,7 +450,7 @@ define(function(require) {
                 expect(pop.element.css('overflow')).to.be('visible');
                 expect(temp).to.be(1);
                 done();
-            }, 120);
+            }, 100);
         });
 
     });

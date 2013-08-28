@@ -63,6 +63,9 @@ seajs.use(['popup'], function(Popup) {
         element: '#popup2',
         effect: 'slide'
     });
+    example2.on('animated', function() {
+        console.log('animated');
+    });
 });
 ````
 
