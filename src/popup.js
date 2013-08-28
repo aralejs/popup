@@ -256,8 +256,11 @@ define(function(require, exports, module) {
             // 修复 ie6 下 shim 未隐藏的问题
             // visible 只有从 true 变为 false 时，才调用这个 hide
             var that = this;
-            var hideComplete = (val || !originVal) ? function() {} : function() {
+            var hideComplete = (val || !originVal) ? function() {
+                that.trigger('animated');
+            } : function() {
                 that.hide();
+                that.trigger('animated');
             };
 
             if (fade || slide) {

@@ -46,6 +46,12 @@ Popup 是可触发的浮层组件。封装了当用户点击、hover、focus 到
 
 > 若有范例和演示中有其他参数（如自定义位置参数 align），请参见 Popup 的父类 [Overlay](http://aralejs.org/overlay/)。
 
+## 事件
+
+### animated
+
+动画效果结束时的回调事件。`.on('animated', function(){ })`
+
 
 ## 最佳实践
 
