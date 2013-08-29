@@ -5,6 +5,9 @@ define(function(require) {
     var expect = require('expect');
 
     describe('popup', function() {
+
+        this.timeout(0);
+
         var template = '<div>' +
                             '<a href="#" id="trigger1" class="trigger">popup</a>' +
                             '<ul id="element1" style="display:none;">' +
