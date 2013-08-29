@@ -122,10 +122,6 @@ define(function(require, exports, module) {
             var that = this;
 
             bindEvent('click', this.get('trigger'), function(e) {
-                if (this.tagName.toLowerCase() === "a") {
-                    e.preventDefault();
-                }
-
                 // this._active 这个变量表明了当前触发元素是激活状态
                 if (this._active === true) {
                     that.hide();
