@@ -9,6 +9,9 @@ Popup 是可触发的浮层组件。封装了当用户点击、hover、focus 到
 
 ---
 
+Popup 继承自 [overlay](http://aralejs.org/overlay/)，可使用其中包括 [widget](http://aralejs.org/widget/)、[base](http://aralejs.org/base/)、[class](http://aralejs.org/class/)、[events](http://aralejs.org/events/)、[attribute](http://aralejs.org/base/docs/attribute.html)、[aspect](http://aralejs.org/base/docs/aspect.html) 的属性和方法。
+
+
 ## 配置说明
 
 ### element `element|string`
