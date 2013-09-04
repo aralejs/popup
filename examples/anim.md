@@ -39,6 +39,7 @@ seajs.use(['popup'], function(Popup) {
     var example1 = new Popup({
         trigger: '#triggerId1',
         element: '#popup1',
+        duration: 3000,
         effect: 'fade'
     });
 });

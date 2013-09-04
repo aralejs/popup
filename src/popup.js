@@ -105,6 +105,15 @@ define(function(require, exports, module) {
             return Popup.superclass.show.call(this);
         },
 
+        // triggerShimSync 为 true 时
+        // 表示什么都不做，只是触发 hide 的 before/after 绑定方法
+        hide: function(triggerShimSync) {
+            if (!triggerShimSync) {
+                return Popup.superclass.hide.call(this);
+            }
+            return this;
+        },
+
         _bindTrigger: function() {
             var triggerType = this.get('triggerType');
 
@@ -260,7 +269,8 @@ define(function(require, exports, module) {
             var hideComplete = val ? function() {
                 that.trigger('animated');
             } : function() {
-                that.hide();
+                // 参数 true 代表只是为了触发 shim 方法
+                that.hide(true);
                 that.trigger('animated');
             };
 
