@@ -53,7 +53,8 @@ Popup 继承自 [overlay](http://aralejs.org/overlay/)，可使用其中包括 [
 
 ### activeTrigger
 
-当前触发对象. 当触发元素有多个时, 当前触发显示 Popup 的那个触发器元素(jQuery Node 对象).
+总是指向触发显示浮层的当前触发元素(jQuery Node 对象)。
+
 
 ## 事件
 
