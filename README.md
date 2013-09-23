@@ -49,6 +49,12 @@ Popup 继承自 [overlay](http://aralejs.org/overlay/)，可使用其中包括 [
 
 > 若有范例和演示中有其他参数（如自定义位置参数 align），请参见 Popup 的父类 [Overlay](http://aralejs.org/overlay/)。
 
+## 属性
+
+### activeTrigger
+
+当前触发对象. 当触发元素有多个时, 当前触发显示 Popup 的那个触发器元素(jQuery Node 对象).
+
 ## 事件
 
 ### animated
