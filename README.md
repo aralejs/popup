@@ -101,3 +101,21 @@ seajs.use(['popup'], function(Popup){
 });
 ```
 [delegeteNode示例](examples/triggers.html#范例2-委托事件)
+
+### 动态内容
+
+当有多个触发元素，而弹出层是同一个，而且内容是根据不同触发元素而不同时，可以用下面的方式进行绑定：
+
+```js
+seajs.use(['popup'], function(Popup){
+    new Popup({
+        trigger: '.triggerClass', // 有多个触发元素
+        element: '#popup'
+    }).before('show', funtion() {
+      // 通过 activeTrigger 拿到当前触发的触发元素
+      var content = this.activeTrigger.html();
+      // 动态设定内容
+      this.element.html(content);
+    });
+});
+```
