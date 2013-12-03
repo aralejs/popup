@@ -2,6 +2,10 @@
 
 ---
 
+## 1.1.6
+
+`tag:improved` 升级 overlay 到 1.1.4
+
 ## 1.1.5
 
 `tag:new`  新增 animated 动画结束的事件。
