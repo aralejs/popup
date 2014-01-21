@@ -5,21 +5,18 @@
 ---
 
 <style>
-    .fn-hide, .ui-popup {
-        display: none;
-    }
-    .ui-popup {
-        border: 1px solid #CCC;
-        padding: 3px 5px;
-        background: #EEE;
-        margin: 0;
-    }
-    .ui-popup ul {
-        margin: 0;
-    }
-    .ui-popup li {
-        list-style: none;
-    }
+.fn-hide, .ui-popup {
+    display: none;
+}
+.ui-popup {
+    border: 1px solid #CCC;
+    padding: 3px 5px;
+    background: #EEE;
+    margin: 0;
+}
+.ui-popup li {
+    list-style: none;
+}
 </style>
 
 

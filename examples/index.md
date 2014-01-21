@@ -14,9 +14,6 @@
     background: #EEE;
     margin: 0;
 }
-.ui-popup ul {
-    margin: 0;
-}
 .ui-popup li {
     list-style: none;
 }

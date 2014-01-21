@@ -220,6 +220,9 @@ define(function(require, exports, module) {
             });
             this.delegateEvents("mouseleave", leaveHandler);
 
+            this.element.on('mouseleave', 'select', function(e) {
+                e.stopPropagation();
+            });
 
             function leaveHandler(e) {
                 clearTimeout(showTimer);

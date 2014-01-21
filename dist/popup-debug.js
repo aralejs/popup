@@ -185,6 +185,9 @@ define("arale/popup/1.1.6/popup-debug", [ "$-debug", "arale/overlay/1.1.4/overla
                 clearTimeout(hideTimer);
             });
             this.delegateEvents("mouseleave", leaveHandler);
+            this.element.on("mouseleave", "select", function(e) {
+                e.stopPropagation();
+            });
             function leaveHandler(e) {
                 clearTimeout(showTimer);
                 showTimer = null;

@@ -6,6 +6,8 @@
 
 `tag:improved` 升级 overlay 到 1.1.4
 
+`tag:fixed` #23 修复一个浮层中有 select 控件时影响了 hover 时的隐藏行为的问题。
+
 ## 1.1.5
 
 `tag:new`  新增 animated 动画结束的事件。
