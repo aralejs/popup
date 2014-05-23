@@ -2,6 +2,7 @@
 
 ---
 
+[![spm package](http://spmjs.io/badge/arale-popup)](http://spmjs.io/package/arale-popup)
 [![Build Status](https://travis-ci.org/aralejs/popup.png)](https://travis-ci.org/aralejs/popup)
 [![Coverage Status](https://coveralls.io/repos/aralejs/popup/badge.png?branch=master)](https://coveralls.io/r/aralejs/popup)
 
