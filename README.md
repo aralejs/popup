@@ -3,8 +3,8 @@
 ---
 
 [![spm package](http://spmjs.io/badge/arale-popup)](http://spmjs.io/package/arale-popup)
-[![Build Status](https://travis-ci.org/aralejs/popup.png)](https://travis-ci.org/aralejs/popup)
-[![Coverage Status](https://coveralls.io/repos/aralejs/popup/badge.png?branch=master)](https://coveralls.io/r/aralejs/popup)
+[![Build Status](https://img.shields.io/travis/aralejs/popup.svg?style=flat)](https://travis-ci.org/aralejs/popup)
+[![Coverage Status](https://img.shields.io/coveralls/aralejs/popup.svg?style=flat)](https://coveralls.io/r/aralejs/popup)
 
 Popup 是可触发的浮层组件。封装了当用户点击、hover、focus 到指定元素时，可以触发另一个浮层显示的行为。
 
