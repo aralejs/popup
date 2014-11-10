@@ -4,7 +4,7 @@ var expect = require('expect.js');
 
 describe('popup', function () {
 
-  this.timeout(0);
+  this.timeout(null);
 
   var template = '<div>' + '<a href="#" id="trigger1" class="trigger">popup</a>' + '<ul id="element1" style="display:none;">' + '<li>那些年，我们一起写过的单元测试...</li>' + '<li>卖萌是一种风格...</li>' + '</ul>' + '</div>';
   var pop;

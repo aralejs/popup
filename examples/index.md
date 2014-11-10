@@ -23,7 +23,7 @@
 
 <div class="popup">
     点击链接
-    <a href="#popup1" id="triggerId1">下拉框<span class="icon">▼</span></a>
+    <a href="javascript:;" id="triggerId1">下拉框<span class="icon">▼</span></a>
     <ul class="ui-popup" id="popup1" data-widget="popup" data-trigger="#triggerId1" data-trigger-type="click">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#2">内容2</a></li>
@@ -33,7 +33,7 @@
 </div>
 
 ````javascript
-seajs.use(['arale/widget/1.0.3/widget'], function(Widget){
+seajs.use(['arale-widget/1.2.0/widget'], function(Widget){
     // example1
     // data-api 自动渲染
     Widget.autoRenderAll();
@@ -84,7 +84,7 @@ seajs.use(['popup'], function(Popup) {
 ## 3. 自定义行为(click)
 
 <div class="popup">
-    <a href="#popup3" id="triggerId3">下拉框<span class="icon">▼</span></a>
+    <a href="javascript:;" id="triggerId3">下拉框<span class="icon">▼</span></a>
     <ul class="fn-hide ui-popup" id="popup3">
         <li><a href="http://aralejs.org#1">内容1</a></li>
         <li><a href="http://aralejs.org#3">内容2</a></li>
@@ -113,7 +113,7 @@ seajs.use(['popup'], function(Popup){
 </div>
 
 ````javascript
-seajs.use(['popup','$'], function(Popup, $){
+seajs.use(['popup', 'jquery'], function(Popup, $){
     var example4 = new Popup({
         trigger: '#triggerId4',
         align: {
@@ -144,7 +144,7 @@ seajs.use(['popup','$'], function(Popup, $){
 </div>
 
 ````javascript
-seajs.use(['popup','$'], function(Popup, $) {
+seajs.use(['popup','jquery'], function(Popup, $) {
 
     var example5 = new Popup({
         trigger: '#triggerId5',
