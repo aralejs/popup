@@ -119,7 +119,7 @@ seajs.use(['popup'], function(Popup){
     new Popup({
         trigger: '.triggerClass', // 有多个触发元素
         element: '#popup'
-    }).before('show', funtion() {
+    }).before('show', function() {
       // 通过 activeTrigger 拿到当前触发的触发元素
       var content = this.activeTrigger.html();
       // 动态设定内容
