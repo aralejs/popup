@@ -18,6 +18,7 @@
     list-style: none;
 }
 </style>
+<script src="../spm_modules/jquery/1.7.2/jquery.js?nowrap"></script>
 
 
 ## 范例1: 多个 Trigger 共享一个实例
@@ -35,12 +36,11 @@
 </div>
 
 ````javascript
-seajs.use(['popup'], function(Popup){
-    new Popup({
-        trigger: '.trigger-all',
-        element: '#popup1',
-        effect: 'fade'
-    });
+var Popup = require('arale-popup');
+new Popup({
+    trigger: '.trigger-all',
+    element: '#popup1',
+    effect: 'fade'
 });
 ````
 
@@ -59,17 +59,16 @@ seajs.use(['popup'], function(Popup){
 </div>
 
 ````javascript
-seajs.use(['popup', '$'], function(Popup, $){
-    new Popup({
-        trigger: '.triggerClass2',      // 用了 delegateNode 时，trigger 参数必须为 selector!
-        element: '#popup2',
-        delegateNode: '#delegateNode'
-    });
-    // 新增节点，观察是否绑定了popup事件
-    $('#addNewNode').click(function() {
-        $('<a class="triggerClass2">动态增加的节点<span class="icon">▼</span></a>')
-            .appendTo('#delegateNode');
-    });
+var Popup = require('arale-popup');
+new Popup({
+    trigger: '.triggerClass2',      // 用了 delegateNode 时，trigger 参数必须为 selector!
+    element: '#popup2',
+    delegateNode: '#delegateNode'
+});
+// 新增节点，观察是否绑定了popup事件
+$('#addNewNode').click(function() {
+    $('<a class="triggerClass2">动态增加的节点<span class="icon">▼</span></a>')
+        .appendTo('#delegateNode');
 });
 ````
 
@@ -90,11 +89,10 @@ seajs.use(['popup', '$'], function(Popup, $){
 </div>
 
 ````javascript
-seajs.use(['popup', '$'], function(Popup, $){
-    new Popup({
-        trigger: '.triggerClass3',
-        triggerType: 'click',
-        element: '#popup3'
-    });
+var Popup = require('arale-popup');
+new Popup({
+    trigger: '.triggerClass3',
+    triggerType: 'click',
+    element: '#popup3'
 });
 ````

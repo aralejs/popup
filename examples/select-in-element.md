@@ -40,10 +40,9 @@
 </div>
 
 ````javascript
-seajs.use(['popup'], function(Popup) {
-    var example2 = new Popup({
-        trigger: '#triggerId2',
-        element: '#popup2'
-    })
+var Popup = require('arale-popup');
+var example2 = new Popup({
+    trigger: '#triggerId2',
+    element: '#popup2'
 });
 ````

@@ -64,20 +64,19 @@ seajs.use(['arale-widget/1.2.0/widget'], function(Widget){
 </div>
 
 ````javascript
-seajs.use(['popup'], function(Popup) {
-    var example2 = new Popup({
-        trigger: '#triggerId2',
-        element: '#popup2',
-        align: {
-            baseXY: [0, 0]
-        }
-    });
-    // 订阅事件
-    example2.after('show', function(){
-        console.log('example2 is shown');
-    }).after('hide', function(){
-        console.log('example2 is hidden');
-    });
+var Popup = require('arale-popup');
+var example2 = new Popup({
+    trigger: '#triggerId2',
+    element: '#popup2',
+    align: {
+        baseXY: [0, 0]
+    }
+});
+// 订阅事件
+example2.after('show', function(){
+    console.log('example2 is shown');
+}).after('hide', function(){
+    console.log('example2 is hidden');
 });
 ````
 
@@ -94,15 +93,14 @@ seajs.use(['popup'], function(Popup) {
 </div>
 
 ````javascript
-seajs.use(['popup'], function(Popup){
-    var example3 = new Popup({
-        trigger: '#triggerId3',
-        triggerType: 'click',
-        align: {
-            baseXY: [0, -80]
-        },
-        element: '#popup3'
-    });
+var Popup = require('arale-popup');
+var example3 = new Popup({
+    trigger: '#triggerId3',
+    triggerType: 'click',
+    align: {
+        baseXY: [0, -80]
+    },
+    element: '#popup3'
 });
 ````
 
@@ -113,21 +111,20 @@ seajs.use(['popup'], function(Popup){
 </div>
 
 ````javascript
-seajs.use(['popup', 'jquery'], function(Popup, $){
-    var example4 = new Popup({
-        trigger: '#triggerId4',
-        align: {
-            selfXY: [-10,-10],
-            baseXY: [0,20]
-        },
-        template: '<div class="ui-popup fn-hide"><ul><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>'
-    });
-    example4.after('show', function(){
-        $('#triggerId4').text('三秒后改变浮层位置');
-        window.setTimeout(function() {
-            example4.set('align', { baseXY: [0, -115] });
-        }, 3000);
-    });
+var Popup = require('arale-popup');
+var example4 = new Popup({
+    trigger: '#triggerId4',
+    align: {
+        selfXY: [-10,-10],
+        baseXY: [0,20]
+    },
+    template: '<div class="ui-popup fn-hide"><ul><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>'
+});
+example4.after('show', function(){
+    $('#triggerId4').text('三秒后改变浮层位置');
+    window.setTimeout(function() {
+        example4.set('align', { baseXY: [0, -115] });
+    }, 3000);
 });
 ````
 
@@ -144,22 +141,19 @@ seajs.use(['popup', 'jquery'], function(Popup, $){
 </div>
 
 ````javascript
-seajs.use(['popup','jquery'], function(Popup, $) {
-
-    var example5 = new Popup({
-        trigger: '#triggerId5',
-        triggerType: 'focus',
-        element: '#popup5',
-        align: {
-            baseXY: [0, '100%+12']
-        }
-    });
-    example5.element.find('a').click(function(e) {
-        e.preventDefault();
-        example5.get('trigger').val($(this).text());
-        example5.hide();
-    });
-    
+var Popup = require('arale-popup');
+var example5 = new Popup({
+    trigger: '#triggerId5',
+    triggerType: 'focus',
+    element: '#popup5',
+    align: {
+        baseXY: [0, '100%+12']
+    }
+});
+example5.element.find('a').click(function(e) {
+    e.preventDefault();
+    example5.get('trigger').val($(this).text());
+    example5.hide();
 });
 ````
 
@@ -176,12 +170,11 @@ seajs.use(['popup','jquery'], function(Popup, $) {
 </div>
 
 ````javascript
-seajs.use(['popup'], function(Popup){
-    new Popup({
-        trigger: '#triggerId6',
-        element: '#popup6'
-    }).show();
-});
+var Popup = require('arale-popup');
+new Popup({
+    trigger: '#triggerId6',
+    element: '#popup6'
+}).show();
 ````
 
 ## 范例7: 相对别的元素定位
@@ -198,14 +191,13 @@ seajs.use(['popup'], function(Popup){
 </div>
 
 ````javascript
-seajs.use(['popup'], function(Popup){
-    new Popup({
-        trigger: '#triggerId7',
-        element: '#popup7',
-        align: {
-            baseElement: '#other-element'
-        }
-    });
+var Popup = require('arale-popup');
+new Popup({
+    trigger: '#triggerId7',
+    element: '#popup7',
+    align: {
+        baseElement: '#other-element'
+    }
 });
 ````
 
@@ -222,12 +214,11 @@ seajs.use(['popup'], function(Popup){
 </div>
 
 ````javascript
-seajs.use(['popup'], function(Popup){
-    new Popup({
-        trigger: '#triggerId8',
-        element: '#popup8',
-        delay: -1
-    });
+var Popup = require('arale-popup');
+new Popup({
+    trigger: '#triggerId8',
+    element: '#popup8',
+    delay: -1
 });
 ````
 
@@ -246,22 +237,21 @@ seajs.use(['popup'], function(Popup){
 </div>
 
 ````javascript
-seajs.use(['popup'], function(Popup){
-    var popup = new Popup({
-        trigger: '#triggerId9',
-        element: '#popup9',
-        triggerType: 'click'
-    });
-    popup.after('show', function() {
-        var that = this;
-        // 先隐藏
-        this.element.hide();
+var Popup = require('arale-popup');
+var popup = new Popup({
+    trigger: '#triggerId9',
+    element: '#popup9',
+    triggerType: 'click'
+});
+popup.after('show', function() {
+    var that = this;
+    // 先隐藏
+    this.element.hide();
 
-        // 然后异步显示，这里也可以是一段 Ajax 的回调
-        setTimeout(function() {
-            that.element.fadeIn();
-        }, 1000);
-    });
+    // 然后异步显示，这里也可以是一段 Ajax 的回调
+    setTimeout(function() {
+        that.element.fadeIn();
+    }, 1000);
 });
 ````
 

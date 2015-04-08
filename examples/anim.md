@@ -32,13 +32,12 @@
 </div>
 
 ````js
-seajs.use(['popup'], function(Popup) {
-    var example1 = new Popup({
-        trigger: '#triggerId1',
-        element: '#popup1',
-        duration: 3000,
-        effect: 'fade'
-    });
+var Popup = require('arale-popup');
+var example1 = new Popup({
+    trigger: '#triggerId1',
+    element: '#popup1',
+    duration: 3000,
+    effect: 'fade'
 });
 ````
 
@@ -55,15 +54,14 @@ seajs.use(['popup'], function(Popup) {
 </div>
 
 ````js
-seajs.use(['popup'], function(Popup) {
-    var example2 = new Popup({
-        trigger: '#triggerId2',
-        element: '#popup2',
-        effect: 'slide'
-    });
-    example2.on('animated', function() {
-        console.log('animated');
-    });
+var Popup = require('arale-popup');
+var example2 = new Popup({
+    trigger: '#triggerId2',
+    element: '#popup2',
+    effect: 'slide'
+});
+example2.on('animated', function() {
+    console.log('animated');
 });
 ````
 
@@ -80,12 +78,11 @@ seajs.use(['popup'], function(Popup) {
 </div>
 
 ````js
-seajs.use(['popup'], function(Popup) {
-    var example3 = new Popup({
-        trigger: '#triggerId3',
-        element: '#popup3',
-        effect: 'fade slide'
-    });
+var Popup = require('arale-popup');
+var example3 = new Popup({
+    trigger: '#triggerId3',
+    element: '#popup3',
+    effect: 'fade slide'
 });
 ````
 
@@ -102,26 +99,25 @@ seajs.use(['popup'], function(Popup) {
 </div>
 
 ````javascript
-seajs.use(['popup'], function(Popup) {
-    var animPopup = Popup.extend({
-        _onRenderVisible: function(val) {
-            if (val) {
-                this.element.animate({'height': 'toggle', 'opacity':'0.8'}, 400);
-            } else {
-                this.element.animate({'height': 'toggle', 'opacity':'hide'}, 600);
-            }
+var Popup = require('arale-popup');
+var animPopup = Popup.extend({
+    _onRenderVisible: function(val) {
+        if (val) {
+            this.element.animate({'height': 'toggle', 'opacity':'0.8'}, 400);
+        } else {
+            this.element.animate({'height': 'toggle', 'opacity':'hide'}, 600);
         }
-    });
-    var t1 = (new Date).getTime();
-    var example4 = new animPopup({
-        trigger: '#triggerId4',
-        align: {
-            baseXY: [5,20]
-        },
-        element: '#popup4'
-    });
-    var t2 = (new Date).getTime();
+    }
 });
+var t1 = (new Date).getTime();
+var example4 = new animPopup({
+    trigger: '#triggerId4',
+    align: {
+        baseXY: [5,20]
+    },
+    element: '#popup4'
+});
+var t2 = (new Date).getTime();
 ````
 
 ## 5. 多个元素快速切换（多个实例，同一个element的情况）
@@ -138,17 +134,16 @@ seajs.use(['popup'], function(Popup) {
 </div>
 
 ````js
-seajs.use(['popup'], function(Popup) {
-    new Popup({
-        trigger: '#triggerId5-1',
-        element: '#popup5',
-        effect: 'fade'
-    });
-    new Popup({
-        trigger: '#triggerId5-2',
-        element: '#popup5',
-        effect: 'fade'
-    });
+var Popup = require('arale-popup');
+new Popup({
+    trigger: '#triggerId5-1',
+    element: '#popup5',
+    effect: 'fade'
+});
+new Popup({
+    trigger: '#triggerId5-2',
+    element: '#popup5',
+    effect: 'fade'
 });
 ````
 
@@ -159,11 +154,10 @@ seajs.use(['popup'], function(Popup) {
 </div>
 
 ````js
-seajs.use(['popup'], function(Popup) {
-    var example2 = new Popup({
-        trigger: '#triggerId6',
-        template: '<div style="background:#fff;border:1px solid #ccc;padding:6px;height:120px;">xxxxx</div>',
-        effect: 'slide'
-    });
+var Popup = require('arale-popup');
+var example2 = new Popup({
+    trigger: '#triggerId6',
+    template: '<div style="background:#fff;border:1px solid #ccc;padding:6px;height:120px;">xxxxx</div>',
+    effect: 'slide'
 });
 ````
