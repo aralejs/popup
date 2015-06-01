@@ -173,8 +173,13 @@ var Popup = Overlay.extend({
     }, this.get('delegateNode'), this);
 
     bindEvent('blur', this.get('trigger'), function () {
+      var blurTrigger = this;
       setTimeout(function () {
-        (!that._downOnElement) && that.hide();
+        // 当 blur 的触发元素和当前的 activeTrigger 一样时才能干掉
+        // 修复 https://github.com/aralejs/popup/issues/27
+        if (!that._downOnElement && that.activeTrigger[0] === blurTrigger) {
+          that.hide();
+        }
         that._downOnElement = false;
       }, that.get('delay'));
     }, this.get('delegateNode'), this);

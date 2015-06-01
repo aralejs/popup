@@ -96,3 +96,26 @@ new Popup({
     element: '#popup3'
 });
 ````
+
+Focus 的情况 [#27](https://github.com/aralejs/popup/issues/27)：
+
+<div class="popup">
+    <a class="triggerClass4" href="javascript:;">下拉框1<span class="icon">▼</span></a>
+    <a class="triggerClass4" href="javascript:;">下拉框2<span class="icon">▼</span></a>
+    <a class="triggerClass4" href="javascript:;">下拉框3<span class="icon">▼</span></a>
+    <ul class="fn-hide ui-popup" id="popup4">
+        <li><a href="http://aralejs.org#1">内容1</a></li>
+        <li><a href="http://aralejs.org#3">内容2</a></li>
+        <li><a href="http://aralejs.org#3">内容3</a></li>
+        <li><a href="http://aralejs.org#4">内容4</a></li>
+    </ul>
+</div>
+
+````javascript
+var Popup = require('arale-popup');
+new Popup({
+    trigger: '.triggerClass4',
+    triggerType: 'focus',
+    element: '#popup4'
+});
+````
