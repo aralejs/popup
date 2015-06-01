@@ -147,8 +147,6 @@ var Popup = Overlay.extend({
 
     // 处理所有trigger的激活状态
     // 若 trigger 为空，相当于清除所有元素的激活状态
-
-
     function makeActive(trigger) {
       if (that.get('disabled')) {
         return;
@@ -255,7 +253,7 @@ var Popup = Overlay.extend({
 
   _onRenderVisible: function (val, originVal) {
     // originVal 为 undefined 时不继续执行
-    if (val === !! originVal) {
+    if (val === !!originVal) {
       return;
     }
 
@@ -293,8 +291,6 @@ var Popup = Overlay.extend({
 module.exports = Popup;
 
 // 一个绑定事件的简单封装
-
-
 function bindEvent(type, element, fn, delegateNode, context) {
   var hasDelegateNode = delegateNode && delegateNode[0];
 
