@@ -2,6 +2,10 @@
 
 ---
 
+## 1.2.0
+
+`tag:changed` 迁移到 spm3 。
+
 ## 1.1.6
 
 `tag:improved` 升级 overlay 到 1.1.4
