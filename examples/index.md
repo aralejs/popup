@@ -19,28 +19,7 @@
 }
 </style>
 
-## 1. data-api
-
-<div class="popup">
-    点击链接
-    <a href="javascript:;" id="triggerId1">下拉框<span class="icon">▼</span></a>
-    <ul class="ui-popup" id="popup1" data-widget="popup" data-trigger="#triggerId1" data-trigger-type="click">
-        <li><a href="http://aralejs.org#1">内容1</a></li>
-        <li><a href="http://aralejs.org#2">内容2</a></li>
-        <li><a href="http://aralejs.org#3">内容3</a></li>
-        <li><a href="http://aralejs.org#4">内容4</a></li>
-    </ul>
-</div>
-
-````javascript
-seajs.use(['arale-widget/1.2.0/widget'], function(Widget){
-    // example1
-    // data-api 自动渲染
-    Widget.autoRenderAll();
-});
-````
-
-## 2. 默认行为与表现
+## 1. 默认行为与表现
 
 > 默认行为通过 hover 触发，可以不用传递参数 triggerType
 
@@ -80,7 +59,7 @@ example2.after('show', function(){
 });
 ````
 
-## 3. 自定义行为(click)
+## 2. 自定义行为(click)
 
 <div class="popup">
     <a href="javascript:;" id="triggerId3">下拉框<span class="icon">▼</span></a>
@@ -104,7 +83,7 @@ var example3 = new Popup({
 });
 ````
 
-## 4. 自定义Template、Align并设置回调函数
+## 3. 自定义Template、Align并设置回调函数
 
 <div class="popup">
     <a href="#" id="triggerId4">下拉框<span class="icon">▼</span></a>
@@ -128,7 +107,7 @@ example4.after('show', function(){
 });
 ````
 
-## 5. 简单的自动完成组件
+## 4. 简单的自动完成组件
 
 <div class="popup">
     <input id="triggerId5" placeholder="请输入..." />
@@ -157,7 +136,7 @@ example5.element.find('a').click(function(e) {
 });
 ````
 
-## 范例6: 手动调用show方法
+## 5: 手动调用show方法
 
 <div class="popup">
     <a id="triggerId6">下拉框<span class="icon">▼</span></a>
@@ -177,7 +156,7 @@ new Popup({
 }).show();
 ````
 
-## 范例7: 相对别的元素定位
+## 6: 相对别的元素定位
 
 <div class="popup">
     <a id="triggerId7">下拉框<span class="icon">▼</span></a>
@@ -201,7 +180,7 @@ new Popup({
 });
 ````
 
-## 范例8: 实现 tooltip 效果（无法移动到浮层上）
+## 7: 实现 tooltip 效果（无法移动到浮层上）
 
 <div class="popup">
     <a id="triggerId8">下拉框<span class="icon">▼</span></a>
@@ -222,7 +201,7 @@ new Popup({
 });
 ````
 
-## 范例9: 异步的情况
+## 8: 异步的情况
 
 一般适用于 Ajax 请求成功后再显示浮层的情况。
 
@@ -254,4 +233,3 @@ popup.after('show', function() {
     }, 1000);
 });
 ````
-
